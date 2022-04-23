@@ -1,0 +1,20 @@
+Package: stressor
+Type: Package
+Title: Algorithms for testing models under stress. 
+Version: 0.1.0
+Authors@R: c(
+    person("Brennan", "Bean", , "brennan.bean@usu.edu", 
+    role = c("aut", "cre")),
+    person("Samuel", "Haycock", role = "aut")
+  )
+Maintainer: Brennan Bean <brennan.bean@usu.edu>
+Description: Traditional model evaluation metrics fail to capture model 
+    performance under less than ideal conditions. This package employs 
+    techniques to evaluate models "under-stress". This includes testing 
+    models' extrapolation ability, or testing accuracy on specific 
+    sub-samples of the overall model space. Included also are a series 
+    of convienet visualizations of model accuracy under "stressful" conditions. 
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.2

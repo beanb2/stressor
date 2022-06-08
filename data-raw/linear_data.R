@@ -1,19 +1,14 @@
 # Code to make LINEAR DATASET
-linear_data <- function(n, weight_vec, ...){
+data_gen_lm <- function(n, weight_vec, resp_sd, ...){
   # This chunk makes the predictor variables
-  vec_1 <- rnorm(n)
-  data_test <- cbind(vec_1)
-  for (i in seq_len(length(weight_vec) - 1)) {
-    vec_2 <- rnorm(n)
-    data_test <- cbind(data_test, vec_2)
-  }
-  colnames(data_test) <- NULL
+  vec_1 <- rnorm(n * length(weight_vec))
+  vec_1 <- matrix(vec_1, nrow = n, ncol = length(weight_vec))
 
-  colnames(data_test) <- paste0(rep("V", length(weight_vec)),
+  colnames(vec_1) <- paste0(rep("V", length(weight_vec)),
                                 seq(length(weight_vec)))
   # Create the Response Variable with the specified weights
-  eps <- rnorm(n)
-  Y <- as.vector(t(weight_vec) %*% t(data_test)) + eps
-  data_test <- cbind(Y, data_test)
-  data_test
+  eps <- rnorm(n, sd = resp_sd)
+  Y <- as.vector(t(weight_vec) %*% t(vec_1)) + eps
+  vec_1 <- cbind(Y, vec_1)
+  as.data.frame(vec_1)
 }

@@ -1,20 +1,19 @@
 # Model function
-reg_sine <- function(formula, data, method = "BFGS", ...){
+reg_sine <- function(formula, data, method = "BFGS",
+                     init_guess = rep(1, ncol(data) * 3 - 2), ...){
   temp <- model.frame(formula = formula, data = data)
   Y <- temp[, 1]
   X <- as.matrix(temp[, -1])
 
-  # Find the formula using the optim function
-  s <- optimize_sine(X, Y, method)
-  s
-
-  # class(s) <- "reg_sine"
-
+  obj <- sine_optimize(init_guess, X, Y, method, ...)
+  class(obj) <- "reg_sine"
+  obj
 }
 
 sine_function <- function(estimated, X, Y) {
   Y_pred <- sine_yhat(estimated, X, Y)
-  error <- SSE(Y_pred, Y)
+  error <- sum((Y_pred - Y)^2, na.rm=TRUE)
+  error
 }
 
 sine_yhat <- function(estimated, X, Y) {
@@ -43,22 +42,21 @@ sine_gradient <- function(estimated, X, Y) {
                               cos(per * (X[, i] - shft)))
     vec_2[3 * i] <- sum(amp * per * cos(per * (X[, i] - shft)))
   }
-  # Ask Dr. Bean if it should be the sum of -1
   vec_2[length(estimated)] <- -1 * nrow(X)
   vec_2 <- sum(2 * (Y - Y_pred)) * vec_2
   vec_2
 }
 
-optimize_sine <- function(X, Y, method) {
-  opt <- optim(rep(1, ncol(X) * 3 + 1), fn = sine_function,
-               gr = sine_gradient, method = method, X, Y)
+sine_optimize <- function(init_guess, X, Y, method, ...) {
+  opt <- optim(init_guess, fn = sine_function,
+               gr = sine_gradient, method = method, X, Y, ...)
 }
 
-
-# Predict function
-SSE <- function(estimated, actual) {
-  sum((estimated - actual)^2,
-      na.rm=TRUE)
+# Predict for reg_sine, Does this need to include all the parameters like
+#  predict.lm?
+predict.reg_sine <- function(object, newdata, ...) {
+  # Ask Dr. Bean how this should be
+  print("TODO:Need to implement this!")
 }
 
 # Set a default matrix of coefficients
@@ -84,5 +82,5 @@ data_gen_sine <- function(n, weight_mat = matrix(rnorm(15), nrow = 3, ncol =5),
   as.data.frame(vec_1)
 }
 
-# Pycarat
-#
+# Pycarat - Learned about/porting
+# Asymptotic Regression

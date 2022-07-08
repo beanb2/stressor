@@ -1,1 +1,0 @@
-reticulate::virtualenv_list()

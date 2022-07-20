@@ -1,10 +1,43 @@
 create_virtualenv <- function(python = "3.8.10", delete_env = FALSE) {
   current_virtualenv <- reticulate::virtualenv_list()
-  if (length(current_virtualenv) > 0 && delete_env == FALSE) {
-    #TODO: Use the most recent stressor env
-  } else if (length(current_virtualenv) > 0 && delete_env == TRUE) {
-    #TODO: Remove the stressor env
-  } else if (length(current_virtualenv)) {
+  stressor_env <- grep("stressor", current_virtualenv)
+  active_env <- vector(mode = "logical", length = length(stressor_env))
+  for (i in seq_len(length(current_virtualenv))) {
+    active_env[i] <- reticulate::virtualenv_exists(stressor_env[i])
+  }
+  if (length(stressor_env) > 0 && delete_env == FALSE) {
+    # Use the most recent stressor env
+    if (active_env[stressor_env[length(stressor_env)]]) {
+      message(paste("Using Virtual Environment:",
+                  stressor_env[length(stressor_env)]))
+      reticulate::use_virtualenv(stressor_env[length(stressor_env)])
+    }
+  } else if (length(stressor_env) > 0 && delete_env == TRUE) {
+    # Remove the stressor env
+    stressor_env <- grep("stressor", current_virtualenv)
+    if (length(stressor_env) > 0) {
+      for (i in seq_len(length(stressor_env))) {
+        message(paste("Removing Virtual Environmnet:", stressor_env[i]))
+        reticulate::virtualenv_remove(stressor_env[i], confirm = FALSE)
+      }
+    }
+  } else if ((length(stressor_env) == 0 || sum(active_env) == 0)
+             && delete_env == FALSE) {
+    # Create the new environment
+    time <- gsub(":", "", gsub(" ", "", Sys.time()))
 
+    reticulate::virtualenv_create(paste0("stressor-env", time),
+                                  python = Sys.which("python"))
+    message(paste("Created Virtual Environment:",
+                paste0("stressor-env", time)))
+    message("Installing pycaret")
+    reticulate::py_install("pycaret",
+                           envname = paste0("stressor-env", time))
+    message("Installed pycaret")
+    reticulate::use_virtualenv(paste0("stressor-env", time))
+    message(paste("Using Virtual Environment:",
+                paste0("stressor-env", time)))
+  } else {
+    stop("ERROR:: No Virtual Environments exist!")
   }
 }

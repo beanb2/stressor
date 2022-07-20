@@ -8,7 +8,7 @@ reticulate::py_install("pycaret",
 # Clear the RETICULATE_PYTHON env name
 reticulate::use_virtualenv(paste0("stressor-env", time))
 reg <- reticulate::import("pycaret.regression")
-test_sine <- data_gen_sine(100000, weight_mat = matrix(rep(1, 15), nrow =3 ,
+test_sine <- data_gen_sine(10000, weight_mat = matrix(rep(1, 15), nrow =3 ,
                                                        ncol = 5),
                            resp_sd = .1)
 data_test <- sample(nrow(test_sine), .1 * nrow(test_sine))

@@ -1,16 +1,21 @@
 create_virtualenv <- function(python = "3.8.10", delete_env = FALSE) {
+  if (Sys.getenv("RETICULATE_PYTHON") != "") {
+    Sys.setenv("RETICULATE_PYTHON" = "")
+  }
   current_virtualenv <- reticulate::virtualenv_list()
   stressor_env <- grep("stressor", current_virtualenv)
   active_env <- vector(mode = "logical", length = length(stressor_env))
   for (i in seq_len(length(current_virtualenv))) {
-    active_env[i] <- reticulate::virtualenv_exists(stressor_env[i])
+    check <- stressor_env[i]
+    active_env[i] <- reticulate::virtualenv_exists(current_virtualenv[check])
   }
   if (length(stressor_env) > 0 && delete_env == FALSE) {
     # Use the most recent stressor env
     if (active_env[stressor_env[length(stressor_env)]]) {
+      use <- stressor_env[length(stressor_env)]
       message(paste("Using Virtual Environment:",
-                  stressor_env[length(stressor_env)]))
-      reticulate::use_virtualenv(stressor_env[length(stressor_env)])
+                  current_virtualenv[use]))
+      reticulate::use_virtualenv(current_virtualenv[use])
     }
   } else if (length(stressor_env) > 0 && delete_env == TRUE) {
     # Remove the stressor env

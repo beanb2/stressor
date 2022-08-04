@@ -35,3 +35,14 @@ compare_mlm <- function(formula, data, n_models = 9999, ...) {
 # Can Save models for future use, by saving the pipeline
 #  Are we wanting the prediction part to be separate?
 #  Do we want to have a function that tunes a model?
+
+# Can we tune the models and then use the clustered cross validation function
+#  Call python to tune the model once we give the data
+#  Looking more specific at scykit to call the individual mlm. Pushing the
+#   parameters from pycaret to retrain.
+
+# Want return predictions
+
+# Already built-in fit function!
+
+# Saving models as a group or individual

@@ -1,3 +1,13 @@
+#' Create Python Virtual Environment
+#'
+#' Allows the user to create a stressor python environment with pycaret
+#'   installed on the environment. This function takes into account that
+#'   you have properly installed python. We recommend version 3.8.10. Uses
+#'   existing stressor environments.
+#' @param python Defaults to your install of python, prefer 3.8.10
+#' @param delete_env Boolean value to indicate if the environments need to be
+#'  deleted.
+#' @return A message indicating which environment is being used
 create_virtualenv <- function(python = Sys.which('python'),
                               delete_env = FALSE) {
   if (Sys.getenv("RETICULATE_PYTHON") != "") {
@@ -22,8 +32,9 @@ create_virtualenv <- function(python = Sys.which('python'),
     message("Installing pycaret")
     reticulate::py_install("pycaret",
                            envname = paste0("stressor-env", time))
-    reticulate::py_install("fugue",
-                           envname = paste0("stressor-env", time))
+    # Possible Parallelization
+    # reticulate::py_install("fugue",
+    #                       envname = paste0("stressor-env", time))
     message("Installed pycaret")
     reticulate::use_virtualenv(paste0("stressor-env", time))
     message(paste("Using Virtual Environment:",

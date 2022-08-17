@@ -11,6 +11,8 @@
 #' @param ... Additional arguments passed to the setup function in pycaret
 #' @return A list object that contains all the fitted models and the CV
 #'   predictive accuracy.
+#'
+# Make into two separate functions and have a common function
 compare_mlm <- function(formula, data, n_models = 9999,
                         classification = FALSE, ...) {
   # This broke when I added the models to it

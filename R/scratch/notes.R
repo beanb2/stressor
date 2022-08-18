@@ -3,9 +3,12 @@
 # Documentation of other pieces
 
 # Fix the Fitting (done)
-# Standard CV
-# K-means
-# Data Thinning by 80/20 and digress (Random Sampling)
+# Standard CV (done)
+# K-means (done)
+# Data Thinning by 80/20 and digress (Random Sampling) (done)
+
+# Distance from center of train (average of X variables) to create a plot of
+#  residuals vs distance from center
 
 # Start a vignette uses those two functions
 #  Document in the vignette reference
@@ -34,6 +37,9 @@ xvs <- rep(1:n_folds,length = nrow(boston))
 xvs <- sample(xvs)
 pred_accuracy_cv <- matrix(0, nrow = length(mlm_original$models),
                            ncol = n_folds)
+
+# Return the overall average error/ return the predictions for each fold
+#  calculate error after
 for(i in 1:10){
   train <- boston[xvs!=i, ]
   test <- boston[xvs==i, ]
@@ -42,6 +48,7 @@ for(i in 1:10){
 }
 row.names(pred_accuracy_cv) <- row.names(mlm_original$pred_accuracy)
 colnames(pred_accuracy_cv) <- paste0(seq(1, 10, 1), rep("fold", 10))
+pred_accuracy_cv
 
 # K-means
 boston_feat <- scale(select(.data = boston, -cmedv))

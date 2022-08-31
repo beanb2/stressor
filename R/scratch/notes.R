@@ -9,6 +9,7 @@
 
 # Distance from center of train (average of X variables) to create a plot of
 #  residuals vs distance from center
+#  1. Calculate the distance of the points from the center,
 
 # Start a vignette uses those two functions
 #  Document in the vignette reference
@@ -44,10 +45,12 @@ for(i in 1:10){
   train <- boston[xvs!=i, ]
   test <- boston[xvs==i, ]
   refitted <- refit_mlm(mlm_original, train, test)
-  pred_accuracy_cv[, i] <- accuracy(refitted)
+  pred_accuracy_cv[, i] <- (nrow(test) / nrow(boston)) * accuracy(refitted)
 }
+rmse <- rowSums(pred_accuracy_cv)
+pred_accuracy_cv < data.frame(rmse, pred_accuracy_cv,
+                                 row.names = row.names(mlm_original$pred_accuracy))
 row.names(pred_accuracy_cv) <- row.names(mlm_original$pred_accuracy)
-colnames(pred_accuracy_cv) <- paste0(seq(1, 10, 1), rep("fold", 10))
 pred_accuracy_cv
 
 # K-means

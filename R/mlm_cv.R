@@ -9,21 +9,20 @@ mlm_cv <- function(formula, data, mlm_object, n_folds = 10, k_mult = NULL) {
     xvs <- rep(1:n_folds,length = nrow(data))
     xvs <- sample(xvs)
   }
-  predictions <- vector(mode = "list", length = n_folds)
+  # Restructure it into a matrix
+  predictions <- matrix(0, nrow = nrow(data), ncol = length(mlm_object$models))
   for(i in seq_len(n_folds)){
     test_index <- which(i == xvs)
     train <- data[-test_index, ]
     test <- data[test_index, ]
-    predictions[[i]] <- refit_mlm(mlm_object, train, test)
+    fit <- refit_mlm(mlm_object, train, test)
+    for (j in seq_len(length(mlm_object$models))){
+      predictions[test_index, j] <- fit[, j]
+    }
   }
-  if (!is.null(k_mult)) {
-    names(predictions) <- paste0(seq(1, n_folds, 1), rep('group', n_folds))
-  } else {
-    names(predictions) <- paste0(seq(1, n_folds, 1), rep('fold', n_folds))
-  }
+  colnames(predictions) <- row.names(mlm_object$pred_accuracy)
+  attr(predictions, "groups") <- xvs
   predictions
-  # Possible problem is that we don't have exactly what these predictions are
-  #  being compared to
 }
 
 

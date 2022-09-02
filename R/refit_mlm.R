@@ -17,13 +17,14 @@ refit_mlm <- function(mlm_object, train_data, test_data,
   refit_mlm_X <<- train_data[, -1]
   refit_mlm_y <<- train_data[, 1]
   refit_mlm_test <<- test_data
-  prediction_mlm <- vector("list", length = length(mlm_object$models))
+  prediction_mlm <- matrix(0, nrow = nrow(test_data),
+                           ncol = length(mlm_object$models))
   modelnames <- row.names(mlm_object$pred_accuracy)
-  names(prediction_mlm) <- modelnames
+  colnames(prediction_mlm) <- modelnames
   for (i in seq_len(length(mlm_object$models))) {
     refit_mlm_temp <<- mlm_object$models[[i]]
     reticulate::source_python(file)
-    prediction_mlm[[i]] <- predictions[, "Label"]
+    prediction_mlm[, i] <- predictions[, "Label"]
   }
   prediction_mlm
 }

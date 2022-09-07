@@ -1,9 +1,7 @@
-mlm_rmse <- function(predictions, response) {
-  # Need to rewrite to use the correct response
-  # n_models <- length(predictions[[1]])
-  # pred_accuracy <- matrix(0, ncol = length(predictions), nrow = n_models)
-  # for (i in seq_len(length(predictions))) {
-  #   pred_accuracy[, i] <- accuracy(predictions[[i]], response)
-  # }
-  # pred_accuracy
+mlm_rmse <- function(predictions, observed) {
+  rmse <- vector("numeric", length = ncol(predictions))
+  for (i in seq_len(ncol(predictions))) {
+    rmse[i] <- sqrt(sum((observed - predictions[, i])^2) / nrow(predictions))
+  }
+  rmse
 }

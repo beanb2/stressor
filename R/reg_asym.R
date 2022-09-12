@@ -21,7 +21,7 @@ reg_asym <- function(formula, data, method = "BFGS",
   X <- temp[, -1]
   Y <- temp[, 1]
   obj <- asym_optimize(init_guess, X, Y, method = method, ...)
-  attr(obj, "formula") <- delete.response(terms(formula, data = data))
+  attr(obj, "formula") <- terms(formula, data = data)
   class(obj) <- "reg_asym"
   obj
 }

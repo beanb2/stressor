@@ -20,7 +20,7 @@ reg_sine <- function(formula, data, method = "BFGS",
   X <- as.matrix(temp[, -1])
 
   obj <- sine_optimize(init_guess, X, Y, method, ...)
-  attr(obj, "formula") <- delete.response(terms(formula, data = data))
+  attr(obj, "formula") <- terms(formula, data = data)
   class(obj) <- "reg_sine"
   obj
 }

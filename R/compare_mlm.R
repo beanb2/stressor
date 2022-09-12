@@ -65,7 +65,8 @@ compare_mlm <- function(formula, data, n_models = 9999,
   }
   obj <- list(models = models, pred_accuracy = pred_accuracy)
   # Possibly change to a formula/data type
-  attr(obj, "response") <- rr
+  attr(obj, "formula") <- terms(formula, data = data)
+  class(obj) <- "mlm_stressor"
   obj
   # Should we add a class so that when summary is called it displays nice?
 }

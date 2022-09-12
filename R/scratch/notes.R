@@ -105,3 +105,10 @@ for (i in seq_len(max(k_groups))) {
     pred_accuracy[j, i] <- sum(test$Class == refitted[[j]]$Label) / nrow(test)
   }
 }
+
+
+# Meeting 9/7/2022
+# Generic Cross Validation
+# Run for Asymptotic
+# Check sine in the single dimension
+# Run a study with dimensionality, variance

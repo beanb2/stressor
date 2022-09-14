@@ -10,6 +10,9 @@
 predict.reg_sine <- function(object, newdata, ...) {
   par <- object$par
   X <- model.matrix(attr(object, "formula"), data = newdata)[, -1]
+  if (!is.element("matrix", class(X))) {
+    X <- as.matrix(X, ncol = 1)
+  }
   y_pred <- sine_yhat(par, X)
   y_pred
 }

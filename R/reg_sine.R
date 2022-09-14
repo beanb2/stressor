@@ -33,14 +33,29 @@ sine_function <- function(estimated, X, Y) {
 
 sine_yhat <- function(estimated, X) {
   vec_2 <- X
-  est_mat <- matrix(estimated[-length(estimated)], nrow = 3, ncol = ncol(X))
-  for (i in seq_len(ncol(X))) {
-    amp <- est_mat[1, i]
-    per <- est_mat[2, i]
-    shift <- est_mat[3, i]
-    vec_2[, i] <- amp * sin(per * (X[, i] - shift))
+  cols <- ncol(X)
+  #print(cols)
+  if (is.null(cols)) {
+    Y_pred <- NA
   }
-  Y_pred <- rowSums(vec_2) + estimated[length(estimated)]
+  else if (cols == 1){
+  amp <- estimated[1]
+  per <- estimated[2]
+  shift <- estimated[3]
+  b_0 <- estimated[4]
+  Y_pred <- amp * sin(per * (X - shift)) + b_0
+  Y_pred <- t(Y_pred)
+  } else {
+      par <- estimated[-length(estimated)]
+      est_mat <- matrix(par, nrow = 3, ncol = cols)
+      for (i in seq_len(cols)) {
+        amp <- est_mat[1, i]
+        per <- est_mat[2, i]
+        shift <- est_mat[3, i]
+        vec_2[, i] <- amp * sin(per * (X[, i] - shift))
+      }
+      Y_pred <- colSums(vec_2) + estimated[length(estimated)]
+  }
   Y_pred
 }
 

@@ -4,15 +4,16 @@
 \alias{refit_mlm}
 \title{Refit Machine Learning Models}
 \usage{
-refit_mlm(models, train_data, test_data)
+refit_mlm(mlm_object, train_data, test_data, classification = FALSE)
 }
 \arguments{
-\item{models}{The returned object of the [compare_mlm()]}
-
 \item{train_data}{A dataframe object used for refitting excludes the test
-data}
+data, making sure that the response variable is first.}
 
-\item{test_data}{A dataframe object used for predictions}
+\item{test_data}{A dataframe object used for predictions, making sure that
+the response variable is first.}
+
+\item{models}{The returned object of the [compare_mlm()]}
 }
 \value{
 A named list object of result from pycaret's [predict_model()].

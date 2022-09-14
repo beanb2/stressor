@@ -1,0 +1,19 @@
+#' Cross Validation for mlm_stressor
+#'
+#' This is the cross validation wrapper for the mlm_stressor method
+#' @param object A reg_sine object.
+#' @param data A data-frame object to be used for cross-validation
+#' @param n_folds An integer value for the number of folds defaulted to 10.
+#' @param k_mult Used to specify if k-means clustering is to be used, defaulted
+#'   to NULL.
+#' @return A data frame of cross-validated predictions where the columns are the
+#'   various methods of machine learning models.
+#' @export
+cv.mlm_stressor <- function(object, data, n_folds = 10, k_mult = NULL) {
+  groups <- create_groups(formula(object), data, n_folds, k_mult)
+  predictions <- cv_core(object, data, groups)
+  predictions
+}
+
+
+

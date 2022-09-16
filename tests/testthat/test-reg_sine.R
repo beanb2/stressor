@@ -7,3 +7,5 @@ test_that("check to see reg_asym outputs correctly", {
   expect_equal(class(test_obj), "reg_sine")
   expect_equal(length(test_obj$par), 13)
 })
+
+# Check for y_hat

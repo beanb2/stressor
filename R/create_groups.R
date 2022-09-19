@@ -3,9 +3,11 @@ create_groups <- function(formula, data, n_folds = 10, k_mult = NULL){
   if (!is.null(k_mult)){
     features <- scale(x_data)
     xvs <- cluster_part2(features, n_folds, k_mult)
-  } else {
+  } else if (!is.null(n_folds)){
     xvs <- rep(1:n_folds,length = nrow(data))
     xvs <- sample(xvs)
+  } else {
+    xvs <- seq_len(nrow(data))
   }
   xvs
 }

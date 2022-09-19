@@ -9,7 +9,8 @@
 #' @export
 predict.reg_sine <- function(object, newdata, ...) {
   par <- object$par
-  X <- model.matrix(attr(object, "formula"), data = newdata)[, -1]
+  formula <- delete.response(formula(object))
+  X <- model.matrix(formula, data = newdata)[, -1]
   if (!is.element("matrix", class(X))) {
     X <- as.matrix(X, ncol = 1)
   }

@@ -4,7 +4,7 @@
 \alias{cv}
 \title{Cross Validation}
 \usage{
-cv(object, data, t_groups)
+cv(object, data, n_folds = 10, k_mult = NULL)
 }
 \arguments{
 \item{object}{One of the four objects that is accepted mlm_stressor,
@@ -13,7 +13,11 @@ reg_sine, reg_asym, or lm.}
 \item{data}{A data frame object that contains all the entries to be cross-
 validated on.}
 
-\item{t_groups}{A vector of how the data entries are assigned to each group.}
+\item{n_folds}{An integer value for the number of folds defaulted to 10. If
+NULL, it will run LOO cross validation.}
+
+\item{k_mult}{Used to specify if k-means clustering is to be used, defaulted
+to NULL.}
 }
 \value{
 If the object is of class mlm_stressor then a data frame will be

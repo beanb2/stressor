@@ -11,7 +11,8 @@
 
 \item{data}{A data-frame object to be used for cross-validation}
 
-\item{n_folds}{An integer value for the number of folds defaulted to 10.}
+\item{n_folds}{An integer value for the number of folds defaulted to 10. If
+NULL, it will run LOO cross validation.}
 
 \item{k_mult}{Used to specify if k-means clustering is to be used, defaulted
 to NULL.}

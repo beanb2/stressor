@@ -1,4 +1,4 @@
-test_that("check to see reg_asym outputs correctly", {
+test_that("check to see reg_sine outputs correctly", {
   set.seed(43421)
   test_data <- data_gen_sine(4, weight_mat = matrix(rep(c(1, 1, 0), 4),
                                                     nrow = 3, ncol = 4),

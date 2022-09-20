@@ -40,3 +40,4 @@ vignettes/*.pdf
 
 # PyCaret Files
 *.pkl
+inst/doc

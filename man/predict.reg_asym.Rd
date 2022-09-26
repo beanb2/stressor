@@ -12,6 +12,9 @@ estimates from \link[reg_asym]{reg_asym}.}
 
 \item{newdata}{Dataframe that has the same variables as the formula from
 "reg_asym".}
+
+\item{...}{Extending the [stats::predict()] function default, in this case
+this is ignored.}
 }
 \value{
 A vector with the predicted values.

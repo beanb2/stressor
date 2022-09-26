@@ -5,6 +5,8 @@
 #'  estimates from \link[reg_asym]{reg_asym}.
 #' @param newdata Dataframe that has the same variables as the formula from
 #'  "reg_asym".
+#' @param ... Extending the [stats::predict()] function default, in this case
+#'   this is ignored.
 #' @return A vector with the predicted values.
 #' @export
 predict.reg_asym <- function(object, newdata, ...) {

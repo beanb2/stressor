@@ -12,6 +12,9 @@ estimates from \link[reg_sine]{reg_sine}.}
 
 \item{newdata}{Dataframe that has the same variables as the formula from
 "reg_sine".}
+
+\item{...}{Extending the [stats::predict()] function default, in this case
+this is ignored.}
 }
 \value{
 A vector with the predicted values.

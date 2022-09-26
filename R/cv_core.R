@@ -1,6 +1,6 @@
 cv_core <- function(object, data, t_groups) {
   curr_methods <- c("reg_sine", "reg_asym", "lm", "mlm_stressor")
-  method <- class(object)
+  method <- class(object)[1]
   if (!is.element(method, curr_methods)){
     stop("Not a supported method at this time!")
   }
@@ -15,7 +15,7 @@ cv_core <- function(object, data, t_groups) {
     train <- data[-test_index, ]
     test <- data[test_index, ]
     if (method == "mlm_stressor") {
-      predictions[test_index, ] <- refit_mlm(object, train, test)
+      predictions[test_index, ] <- mlm_refit(object, train, test)
     } else if (method == "reg_sine") {
       predictions[test_index] <- predict(reg_sine(formula(object),
                                                        data = train), test)

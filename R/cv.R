@@ -17,6 +17,6 @@ cv <- function(object, data, n_folds = 10, k_mult = NULL) {
 }
 
 # Add functionality when n_folds to use LOO specifying NULL (done)
-# Error checks
+# Error checks (done)
 # Start Vignette
 # If Dr. Bean needs to read something send on Mon or Fri

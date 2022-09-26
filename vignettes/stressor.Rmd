@@ -14,6 +14,56 @@ knitr::opts_chunk$set(
 )
 ```
 
+This package is designed to allow the user to use multiple machine learning 
+methods by calling simple commands for data exploration. To get started, this 
+package requires that you have <a href = https://www.python.org/downloads/release/python-3810/>Python 3.8.10</a>
+installed on your computer. Visit the link before and follow the instructions to
+install Python. 
+
+Once installed, you can now install the package by:
+<!-- Ask Dr. Bean about this. -->
+```{r}
+# install.package("stressor")
+```
+
+Once installed, we will add it to our work space like other packages.
 ```{r setup}
 library(stressor)
 ```
+
+## Data Generation
+
+In this section we will show an example of generating data where are assumed 
+model is linear with a epsilon that we choose. We will generate 500 entries to a
+linear model that has five variables with equal weights and y-intercept of 0. 
+We will then choose a response standard deviation of 1.
+```{r}
+set.seed(43421)
+lm_data <- data_gen_lm(500, weight_vec = rep(1, 5), y_int = 0, resp_sd = 1)
+head(lm_data)
+```
+
+## Machine Learning Model Workflow
+
+In this section we will demonstrate the workflow to use this package to explore
+the machine learning models(mlm) that are accessible through the PyCaret module
+in python. First we need to create a virtual environment for the PyCaret module
+to exist in. The first time you run this code will take a bit as it needs to 
+install the necessary modules into the virtual environment. Once installed the 
+following message will be shown after you execute the code indicating that you
+are now using the virtual environment. See the <a href=#troubleshoot>
+troubleshoot</a> section if other errors appear.
+```{r}
+create_virtualenv()
+```
+
+Next we need create all the mlm by running this command. This may take a moment
+the first time you run as the PyCaret module needs to be imported.
+```{r}
+
+```
+
+
+<div id="troubleshoot">
+## Troubleshooting
+</div>

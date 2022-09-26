@@ -1,6 +1,6 @@
 Package: stressor
 Type: Package
-Title: Algorithms for testing models under stress. 
+Title: Algorithms for testing models under stress 
 Version: 0.1.0
 Authors@R: c(
     person("Brennan", "Bean", , "brennan.bean@usu.edu", 

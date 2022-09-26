@@ -8,6 +8,7 @@
 #' @param delete_env Boolean value to indicate if the environments need to be
 #'  deleted.
 #' @return A message indicating which environment is being used
+#' @export
 create_virtualenv <- function(python = Sys.which('python'),
                               delete_env = FALSE) {
   if (Sys.getenv("RETICULATE_PYTHON") != "") {

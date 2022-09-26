@@ -28,4 +28,4 @@ refit_mlm <- function(mlm_object, train_data, test_data,
   }
   prediction_mlm
 }
-# Just return predictions
+

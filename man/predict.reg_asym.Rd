@@ -8,7 +8,7 @@
 }
 \arguments{
 \item{object}{A "reg_asym" object that has a formula attribute and parameter
-estimates from \link[reg_asym]{reg_asym}.}
+estimates from \code{\link{reg_asym}}}
 
 \item{newdata}{Dataframe that has the same variables as the formula from
 "reg_asym".}

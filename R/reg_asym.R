@@ -26,12 +26,25 @@ reg_asym <- function(formula, data, method = "BFGS",
   obj
 }
 
+#' @title Asymptotic function for the optimize function
+#' @description It returns the loss of the additive sinusoidal function for the
+#'   [stats::optim()] function.
+#' @inheritParams asym_yhat
+#' @param Y A vector of the observed results used to calculate the Loss
+#'   function.
+#' @return A numeric value representing the error with the current parameter
+#'   estimates.
 asym_function <- function(estimated, X, Y) {
   Y_pred <- asym_yhat(estimated, X)
   error <- sum((Y_pred - Y)^2, na.rm=TRUE)
   error
 }
 
+#' @title Gradient Asymptotic Function used for Optim
+#' @description This is the gradient function used for the [stats::optim()] for
+#'  the `"BFGS"` optimization of optim.
+#' @inheritParams asym_function
+#' @return The gradient of the loss with the current parameter estimates
 asym_gradient <- function(estimated, X, Y) {
   Y_pred <- asym_yhat(estimated, X)
   vec_2 <- vector(length = length(estimated))
@@ -47,6 +60,13 @@ asym_gradient <- function(estimated, X, Y) {
   vec_2
 }
 
+#' @title Predictions for the Additive Asymptotic Model
+#' @description Fits the Additive Sinusoidal model with the current coefficients
+#'   and the current predictor space.
+#' @param estimated A vector of the current guesses on the coefficients of the
+#'   model.
+#' @param X A matrix of the predictor space
+#' @return A vector of predictions from the model
 asym_yhat <- function(estimated, X) {
   vec_2 <- X
   est_mat <- matrix(estimated[-length(estimated)], nrow = 2, ncol = ncol(X))
@@ -59,6 +79,19 @@ asym_yhat <- function(estimated, X) {
   Y_pred
 }
 
+#' @title Optim function for the Additive Asymptotic Regression Model
+#' @description Utilizes the [stats::optim()] function to perform the
+#'   optimization of the curve.
+#' @param init_guess The initial parameter guesses for the optim function, by
+#'  default it is all ones.
+#' @param X A matrix of the predictor space
+#' @param Y A vector of the observed results used to calculate the Loss
+#'   function.
+#' @param method The method to be used. See method in
+#'   \code{\link[stats]{optim}}.
+#' @param ... Additional arguments passed to the \code{\link[stats]{optim}}
+#'   function.
+#' @inherit stats::optim return
 asym_optimize <- function(init_guess, X, Y, method, ...) {
   opt <- optim(init_guess, fn = asym_function, gr = asym_gradient,
                method = method, X, Y, ...)

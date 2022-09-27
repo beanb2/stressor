@@ -25,12 +25,27 @@ reg_sine <- function(formula, data, method = "BFGS",
   obj
 }
 
+#' @title Sine function for the optimize function
+#' @description It returns the loss of the additive sinusoidal function for the
+#'   [stats::optim()] function.
+#' @inheritParams sine_yhat
+#' @param Y A vector of the observed results used to calculate the Loss
+#'   function.
+#' @return A numeric value representing the error with the current parameter
+#'   estimates.
 sine_function <- function(estimated, X, Y) {
   Y_pred <- sine_yhat(estimated, X)
   error <- sum((Y_pred - Y)^2, na.rm=TRUE)
   error
 }
 
+#' @title Predictions for the Additive Sinusoidal Model
+#' @description Fits the Additive Sinusoidal model with the current coefficients
+#'   and the current predictor space.
+#' @param estimated A vector of the current guesses on the coefficients of the
+#'   model.
+#' @param X A matrix of the predictor space
+#' @return A vector of predictions from the model
 sine_yhat <- function(estimated, X) {
   vec_2 <- X
   cols <- ncol(X)
@@ -59,6 +74,11 @@ sine_yhat <- function(estimated, X) {
   Y_pred
 }
 
+#' @title Gradient Sine Function used for Optim
+#' @description This is the gradient function used for the [stats::optim()] for
+#'  the `"BFGS"` optimization of optim.
+#' @inheritParams sine_function
+#' @return The gradient of the loss with the current parameter estimates
 sine_gradient <- function(estimated, X, Y) {
   vec_2 <- vector("numeric", length = length(estimated))
   Y_pred <- sine_yhat(estimated, X)
@@ -77,6 +97,19 @@ sine_gradient <- function(estimated, X, Y) {
   vec_2
 }
 
+#' @title Optim function for the Additive Sinusoidal Regression Model
+#' @description Utilizes the [stats::optim()] function to perform the
+#'   optimization of the curve.
+#' @param init_guess The initial parameter guesses for the optim function, by
+#'  default it is all ones.
+#' @param X A matrix of the predictor space
+#' @param Y A vector of the observed results used to calculate the Loss
+#'   function.
+#' @param method The method to be used. See method in
+#'   \code{\link[stats]{optim}}.
+#' @param ... Additional arguments passed to the \code{\link[stats]{optim}}
+#'   function.
+#' @inherit stats::optim return
 sine_optimize <- function(init_guess, X, Y, method, ...) {
   opt <- optim(init_guess, fn = sine_function,
                gr = sine_gradient, method = method, X, Y, ...)

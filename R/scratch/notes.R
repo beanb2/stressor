@@ -112,3 +112,11 @@ for (i in seq_len(max(k_groups))) {
 # Run for Asymptotic
 # Check sine in the single dimension
 # Run a study with dimensionality, variance
+
+
+# Meeting 9/28/2022
+# Create Examples for core functions
+# Vignette done by Tuesday Night
+
+# Real dataset on alternative cross-validation -
+#  benchmark on a real dataset

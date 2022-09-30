@@ -61,7 +61,7 @@ Next we need create all the mlm by running this command. This may take a moment
 the first time you run as the PyCaret module needs to be imported. Then
 depending on your data size it may take a moment to fit the data.
 ```{r include=FALSE}
-
+mlm_lm <- stressor::mlm_vignette_lm
 ```
 
 

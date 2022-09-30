@@ -1,3 +1,14 @@
+#' Distance to Center
+#'
+#' Calculates the distance from center of the X parameter space.
+#' @param formula A formula object
+#' @param data A data frame object
+#' @return A vector of distances from the center.
+#' @examples
+#'   data <- data_gen_lm(10)
+#'   dist <- dist_cent(Y ~ ., data)
+#'   dist
+#' @export
 dist_cent <- function(formula, data){
   t_data <- model.matrix(formula, data = data)[, -1]
   t_response <- model.response(model.frame(formula, data = data))

@@ -24,12 +24,13 @@
 #' @source mlbench package
 "boston"
 
-#' @title Machine Learning Models fitted to Boston data
-#' @description Fitted to the Boston data set in this package to save computational time for
-#'  the vignette.
+#' @title Cross Validation for Machine Learning Models on Boston Housing data
+#' @description To save computational cost of compile time of vignette, this
+#'   was computed earlier to demonstrate the results
 #' @format
 #' \describe{
-#'   \item{models}{List of the models currently supported in PyCaret}
+#'  A data frame with 506 rows and 18 columns
+#'   \item{et}{Extra Trees Regressor}
 #'   \item{pred_accuracy}{The initial predictive accuracy of the models}
 #' }
 #' @name mlm_vignette_boston

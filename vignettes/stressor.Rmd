@@ -59,8 +59,13 @@ be prompted
 mlm_lm <- mlm_regressor(Y ~ ., lm_data)
 ```
 
-```{r echo=FALSE}
+```{r echo=FALSE, cache=TRUE}
 mlm_lm <- mlm_regressor(Y ~ ., lm_data, silent = TRUE)
+```
+
+Now we can look at the initial predictive accuracy of the various models by
+```{r}
+mlm_lm$pred_accuracy
 ```
 
 

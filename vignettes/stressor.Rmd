@@ -20,12 +20,6 @@ package requires that you have <a href = https://www.python.org/downloads/releas
 installed on your computer. Visit the link before and follow the instructions to
 install Python. 
 
-Once installed, you can now install the package by:
-<!-- Ask Dr. Bean about this. -->
-```{r}
-# install.package("stressor")
-```
-
 Once installed, we will add it to our work space like other packages.
 ```{r setup}
 library(stressor)
@@ -59,9 +53,14 @@ create_virtualenv()
 
 Next we need create all the mlm by running this command. This may take a moment
 the first time you run as the PyCaret module needs to be imported. Then
-depending on your data size it may take a moment to fit the data.
-```{r include=FALSE}
-mlm_lm <- stressor::mlm_vignette_lm
+depending on your data size it may take a moment to fit the data. Note you will
+be prompted
+```{r eval=FALSE}
+mlm_lm <- mlm_regressor(Y ~ ., lm_data)
+```
+
+```{r echo=FALSE}
+mlm_lm <- mlm_regressor(Y ~ ., lm_data, silent = TRUE)
 ```
 
 

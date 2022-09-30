@@ -1,4 +1,20 @@
-cv_core <- function(object, data, t_groups) {
+#' Cross Validation Function
+#'
+#' The machinery to run cross validation in that it subsets the test and train
+#'  set based on the groups it receives.
+#' @param object Currently `"reg_sine", "reg_asym", "lm", "mlm_stressor"`
+#'   objects are accepted.
+#' @param data A data frame object that has the same formula that was fitted on
+#'   the data.
+#' @param t_groups The groups for cross validation: standard cross validation,
+#'   LOO cross_validation, or spatial cross validation.
+#' @param ... Additional arguments that are passed to the predict function.
+#' @return Either a vector of predictions for `"reg_sine", "reg_asym", "lm"` and
+#'   a data frame for `"mlm_stressor"`
+#' @examples
+#'
+#' @export
+cv_core <- function(object, data, t_groups, ...) {
   curr_methods <- c("reg_sine", "reg_asym", "lm", "mlm_stressor")
   method <- class(object)[1]
   if (!is.element(method, curr_methods)){
@@ -18,13 +34,13 @@ cv_core <- function(object, data, t_groups) {
       predictions[test_index, ] <- mlm_refit(object, train, test)
     } else if (method == "reg_sine") {
       predictions[test_index] <- predict(reg_sine(formula(object),
-                                                       data = train), test)
+                                                       data = train), test, ...)
     } else if (method == "reg_asym") {
       predictions[test_index] <- predict(reg_asym(formula(object),
-                                                       data = train), test)
+                                                       data = train), test, ...)
     } else if (method == "lm"){
       predictions[test_index] <- predict(lm(formula(object),
-                                                 data = train), test)
+                                                 data = train), test, ...)
     } else {
       stop("Current method is unsupported at this time.")
     }

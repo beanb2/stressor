@@ -68,6 +68,7 @@ Now we can look at the initial predictive accuracy of the various models by
 mlm_lm$pred_accuracy
 ```
 
+In comparison we can fit this data using the `lm()` function 
 
 <div id="troubleshoot">
 ## Troubleshooting

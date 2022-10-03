@@ -3,6 +3,7 @@
 #' A subset of data from the Housing data for 506 census tracts of Boston from
 #'  the 1970 Census.
 #'
+#' @usage data(boston)
 #' @format
 #' A data frame with 506 rows and 13 columns:
 #' \describe{
@@ -24,26 +25,30 @@
 #' @source mlbench package
 "boston"
 
-#' @title Cross Validation for Machine Learning Models on Boston Housing data
-#' @description To save computational cost of compile time of vignette, this
-#'   was computed earlier to demonstrate the results
-#' @format
-#' \describe{
-#'  A data frame with 506 rows and 18 columns
-#'   \item{et}{Extra Trees Regressor}
-#'   \item{pred_accuracy}{The initial predictive accuracy of the models}
-#' }
-#' @name mlm_vignette_boston
-"mlm_vignette_boston"
-
 #' @title Machine Learning Models fitted to Boston data
-#' @description Fitted to a linear data set in this package to save computational time for
-#'  the vignette. This data set was created by `"data_gen_lm()"` function in
-#'  this package
+#' @description Fitted to the Boston data set in this package to save
+#'  computational time for the vignette.
+#' @usage data(mlm_vignette_boston_cv)
 #' @format
 #' \describe{
-#'   \item{models}{List of the models currently supported in PyCaret}
-#'   \item{pred_accuracy}{The initial predictive accuracy of the models}
+#'   \item{ada}{AdaBoost Regressor}
+#'   \item{br}{Bayesian Ridge}
+#'   \item{dt}{Decision Tree Regressor}
+#'   \item{dummy}{Dummy Regressor}
+#'   \item{en}{Elastic Net}
+#'   \item{et}{Extra Trees Regressor}
+#'   \item{gbr}{Gradient Boosting Regressor}
+#'   \item{huber}{Huber Regressor}
+#'   \item{knn}{K Neighbors Regressor}
+#'   \item{lar}{Least Angle Regression}
+#'   \item{lasso}{Lasso Regression}
+#'   \item{lightgbm}{Light Gradient Boosting Machine}
+#'   \item{llar}{Lasso Least Angle Regression}
+#'   \item{lr}{Linear Regression}
+#'   \item{omp}{Orthogonal Matching Pursuit}
+#'   \item{par}{Passive Aggressive Regressor}
+#'   \item{rf}{Random Forest Regressor}
+#'   \item{ridge}{Ridge Regression}
 #' }
-#' @name mlm_vignette_lm
-"mlm_vignette_lm"
+#' @name mlm_vignette_boston_cv
+"mlm_vignette_boston_cv"

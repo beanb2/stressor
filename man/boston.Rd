@@ -26,7 +26,7 @@ A data frame with 506 rows and 13 columns:
 mlbench package
 }
 \usage{
-boston
+data(boston)
 }
 \description{
 A subset of data from the Housing data for 506 census tracts of Boston from

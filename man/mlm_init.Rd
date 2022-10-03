@@ -23,41 +23,41 @@ mlm_init(
  them using a character vector.
  \tabular{rl}{
    ada \tab AdaBoost Regressor \cr
+   br \tab Bayesian Ridge \cr
+   dt \tab Decision Tree Regressor \cr
+   dummy \tab Dummy Regressor \cr
+   en \tab Elastic Net \cr
    et \tab Extra Trees Regressor \cr
-   lightgbm \tab Light Gradient Boosting Machine\cr
-   gbr \tab Gradient Boosting Regressor\cr
-   lr \tab Linear Regression\cr
+   gbr \tab Gradient Boosting Regressor \cr
+   huber \tab Huber Regressor \cr
+   knn \tab K Neighbors Regressor \cr
+   lar \tab Least Angle Regression \cr
+   lasso \tab Lasso Regression \cr
+   lightgbm \tab Light Gradient Boosting Machine \cr
+   llar \tab Lasso Least Angle Regression \cr
+   lr \tab Linear Regression \cr
+   omp \tab Orthogonal Matching Pursuit \cr
+   par \tab Passive Aggressive Regressor \cr
    rf \tab Random Forest Regressor\cr
-   ridge \tab Ridge Regression\cr
-   knn \tab K Neighbors Regressor\cr
-   dt \tab Decision Tree Regressor\cr
-   dummy \tab Dummy Regressor\cr
-   lar \tab Least Angle Regression\cr
-   br \tab Bayesian Ridge\cr
-   huber \tab Huber Regressor\cr
-  omp \tab Orthogonal Matching Pursuit\cr
-   lasso \tab Lasso Regression\cr
-   en \tab Elastic Net\cr
-   llar \tab Lasso Least Angle Regression\cr
-   par \tab Passive Aggressive Regressor
+   ridge \tab Ridge Regression
  }
 If classification is set to TRUE, these models can be used depending on user
 specified but these are the default values for classification:
  \tabular{rl}{
    ada \tab AdaBoost Classifier \cr
-   et \tab Extra Trees Classifier \cr
-   lightgbm \tab Light Gradient Boosting Machine\cr
-   gbr \tab Gradient Boosting Classifier\cr
-   lr \tab Logistic Regression\cr
-   rf \tab Random Forest Classifier\cr
-   ridge \tab Ridge Classifier\cr
-   knn \tab K Neighbors Classifier\cr
    dt \tab Decision Tree Classifier\cr
    dummy \tab Dummy Classifier\cr
-   svm \tab SVM - Linear Kernel\cr
+   et \tab Extra Trees Classifier \cr
+   gbr \tab Gradient Boosting Classifier\cr
+   knn \tab K Neighbors Classifier\cr
    lda \tab Linear Discriminant Analysis\cr
+   lightgbm \tab Light Gradient Boosting Machine\cr
+   lr \tab Logistic Regression\cr
    nb \tab Naive Bayes \cr
-   qda \tab Quadratic Discriminant Analysis
+   qda \tab Quadratic Discriminant Analysis\cr
+   rf \tab Random Forest Classifier\cr
+   ridge \tab Ridge Classifier\cr
+   svm \tab SVM - Linear Kernel
  }}
 
 \item{n_models}{A defaulted integer to return the maximum number of models}

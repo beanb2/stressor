@@ -59,8 +59,9 @@ be prompted
 mlm_lm <- mlm_regressor(Y ~ ., lm_data)
 ```
 
-```{r echo=FALSE, cache=TRUE}
+```{r echo=FALSE}
 mlm_lm <- mlm_regressor(Y ~ ., lm_data, silent = TRUE)
+top_rmse <- min(mlm_lm$pred_accuracy$rmse)
 ```
 
 Now we can look at the initial predictive accuracy of the various models by
@@ -68,7 +69,29 @@ Now we can look at the initial predictive accuracy of the various models by
 mlm_lm$pred_accuracy
 ```
 
-In comparison we can fit this data using the `lm()` function 
+In comparison we can fit this data using the `lm()` function and check the 
+initial predictive accuracy with a simple test data.
+```{r}
+test_index <- sample(1:nrow(lm_data), 50)
+test <- lm_data[test_index, ]
+train <- lm_data[-test_index, ]
+lm_test <- lm(Y ~ ., train)
+lm_rmse <- sqrt(sum((lm_test$residuals)^2)/ nrow(train))
+```
+
+As we look at this initial result we see that there are some comparable models 
+to the rmse of generated from `lm()` which is `r lm_rmse` compared to 
+`r top_rmse`. We see that the analytical model is still performs better than the
+models that were fitted, however, this can be by chance of the random subsetting
+of the test and train set. A better practice will be performing a cross 
+validation either Leave One Out (LOO) or standard cross validation. In this case
+we will demonstrate the use of standard cross validation as the rest stem from
+specifying parameters inside the `cv()` function.
+```{r}
+mlm_cv <- cv(mlm_lm, lm_data, n_folds = 10, k_mult = NULL)
+rmse(mlm_cv, lm_data$Y)
+```
+
 
 <div id="troubleshoot">
 ## Troubleshooting

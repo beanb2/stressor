@@ -12,6 +12,7 @@
 #'   to NULL.
 #' @return If the object is of class mlm_stressor then a data frame will be
 #'   returned otherwise a vector of the predictions will be returned.
+#' @export
 cv <- function(object, data, n_folds = 10, k_mult = NULL) {
   UseMethod("cv")
 }

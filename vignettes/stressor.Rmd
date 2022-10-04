@@ -20,17 +20,17 @@ package requires that you have <a href = https://www.python.org/downloads/releas
 installed on your computer. Visit the link before and follow the instructions to
 install Python. 
 
-Once installed, we will add it to our work space like other packages.
+Once installed, we can add the installed stressor package to our work space.
 ```{r setup}
 library(stressor)
 ```
 
 ## Data Generation
 
-In this section we will show an example of generating data where are assumed 
-model is linear with a epsilon that we choose. We will generate 500 entries to a
-linear model that has five variables with equal weights and y-intercept of 0. 
-We will then choose a response standard deviation of 1.
+In this section we will show an example of generating linear data with a epsilon
+and intercept that we choose. We will generate 500 entries to a
+linear model that has five variables with equal weights, y-intercept of 0, and a
+response standard deviation of 1.
 ```{r}
 set.seed(43421)
 lm_data <- data_gen_lm(500, weight_vec = rep(1, 5), y_int = 0, resp_sd = 1)
@@ -42,7 +42,7 @@ head(lm_data)
 In this section we will demonstrate the workflow to use this package to explore
 the machine learning models(mlm) that are accessible through the PyCaret module
 in python. First we need to create a virtual environment for the PyCaret module
-to exist in. The first time you run this code will take a bit as it needs to 
+to exist in. The first time you run this code it will take a bit as it needs to 
 install the necessary modules into the virtual environment. Once installed the 
 following message will be shown after you execute the code indicating that you
 are now using the virtual environment. See the <a href=#troubleshoot>
@@ -89,10 +89,48 @@ we will demonstrate the use of standard cross validation as the rest stem from
 specifying parameters inside the `cv()` function.
 ```{r}
 mlm_cv <- cv(mlm_lm, lm_data, n_folds = 10, k_mult = NULL)
+lm_cv <- cv(lm_test, lm_data, n_folds = 10, k_mult = NULL)
 rmse(mlm_cv, lm_data$Y)
+rmse(lm_cv, lm_data$Y)
+```
+We can see that linear model fitted by `lm()` is still better than the mlm.
+
+## Real Data Example
+We will be using the Boston Housing Data that has been updated, we will also be
+ignoring spatial autocorrelation. The purpose of this data set is to show it's 
+use on the functions in this package. Specifically the cross validation 
+```{r eval=FALSE}
+data(boston)
+mlm_boston <- mlm_regressor(cmedv ~ ., boston)
+```
+
+```{r echo=FALSE}
+data(boston)
+mlm_boston <- mlm_regressor(cmedv ~ ., boston, silent = TRUE)
+mlm_boston$pred_accuracy
+```
+Observe the initial rmse values for the Boston data set. Now let's compare these
+to the cross validated rmse values.
+```{r}
+mlm_boston_cv <- cv(mlm_boston, boston, n_folds = 10)
+mlm_boston_rmse <- rmse(mlm_boston_cv, boston$cmedv)
+mlm_boston_rmse
+```
+Now how about compared to the clustered cross validation
+```{r}
+mlm_boston_clust_cv <- cv(mlm_boston, boston, n_folds = 10, k_mult = 5)
+mlm_boston_clust_rmse <- rmse(mlm_boston_clust_cv, boston$cmedv)
+mlm_boston_clust_rmse
 ```
 
 
 <div id="troubleshoot">
 ## Troubleshooting
+When instantiating the virtual environment you may receive some errors or 
+warnings. `reticulate` has done a nice job with the error handling of 
+instantiating.
+```{r error=TRUE}
+create_virtualenv()
+```
+
 </div>

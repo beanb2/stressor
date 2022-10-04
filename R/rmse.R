@@ -14,7 +14,7 @@
 #' @export
 rmse <- function(predictions, observed) {
   if (is.null(ncol(predictions))) {
-    rmse <- sqrt(sum((observed - predictions[, i])^2) / nrow(predictions))
+    rmse <- sqrt(sum((observed - predictions)^2) / length(predictions))
   } else {
     rmse <- vector("numeric", length = ncol(predictions))
     for (i in seq_len(ncol(predictions))) {

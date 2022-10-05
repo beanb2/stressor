@@ -3,8 +3,10 @@
 \docType{data}
 \name{mlm_vignette_boston_cv}
 \alias{mlm_vignette_boston_cv}
-\title{Machine Learning Models fitted to Boston data}
+\title{Machine Learning Models fitted to Boston data Cross Validated}
 \format{
+A data frame with 18 columns and 506 rows where each column represents a
+ different machine learning model.
 \describe{
   \item{ada}{AdaBoost Regressor}
   \item{br}{Bayesian Ridge}

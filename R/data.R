@@ -25,11 +25,13 @@
 #' @source mlbench package
 "boston"
 
-#' @title Machine Learning Models fitted to Boston data
+#' @title Machine Learning Models fitted to Boston data Cross Validated
 #' @description Fitted to the Boston data set in this package to save
 #'  computational time for the vignette.
 #' @usage data(mlm_vignette_boston_cv)
 #' @format
+#'  A data frame with 18 columns and 506 rows where each column represents a
+#'  different machine learning model.
 #' \describe{
 #'   \item{ada}{AdaBoost Regressor}
 #'   \item{br}{Bayesian Ridge}
@@ -52,3 +54,47 @@
 #' }
 #' @name mlm_vignette_boston_cv
 "mlm_vignette_boston_cv"
+
+#' @title Machine Learning Models fitted to Boston data with Clustering
+#' @description Fitted to the Boston data set in this package to save
+#'  computational time for the vignette.
+#'  @usage data(mlm_vignette_boston_cluster)
+#' @format
+#'  A data frame with 18 columns and 506 rows where each column represents a
+#'  different machine learning model.
+#' \describe{
+#'   \item{ada}{AdaBoost Regressor}
+#'   \item{br}{Bayesian Ridge}
+#'   \item{dt}{Decision Tree Regressor}
+#'   \item{dummy}{Dummy Regressor}
+#'   \item{en}{Elastic Net}
+#'   \item{et}{Extra Trees Regressor}
+#'   \item{gbr}{Gradient Boosting Regressor}
+#'   \item{huber}{Huber Regressor}
+#'   \item{knn}{K Neighbors Regressor}
+#'   \item{lar}{Least Angle Regression}
+#'   \item{lasso}{Lasso Regression}
+#'   \item{lightgbm}{Light Gradient Boosting Machine}
+#'   \item{llar}{Lasso Least Angle Regression}
+#'   \item{lr}{Linear Regression}
+#'   \item{omp}{Orthogonal Matching Pursuit}
+#'   \item{par}{Passive Aggressive Regressor}
+#'   \item{rf}{Random Forest Regressor}
+#'   \item{ridge}{Ridge Regression}
+#' }
+#' @name mlm_vignette_boston_cluster
+"mlm_vignette_boston_cluster"
+
+#' @title Test predictive accuracy of Machine Learning Models on Boston data
+#' @description Fitted to the Boston data set with the results from the
+#'   predictive accuracy data frame returned.
+#' @usage data(mlm_vignette_boston_pred)
+#' @format
+#'  A data frame with 2 columns and 18 rows where each row is a different
+#'    machine learning model.
+#' \describe{
+#'  \item{models}{Machine Learning Models}
+#'  \item{rmse}{Root mean square error}
+#' }
+#' @name mlm_vignette_boston_pred
+"mlm_vignette_boston_pred"

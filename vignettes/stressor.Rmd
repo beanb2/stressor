@@ -27,7 +27,7 @@ library(stressor)
 
 ## Data Generation
 
-In this section we will show an example of generating linear data with a epsilon
+In this section, we will show an example of generating linear data with a epsilon
 and intercept that we choose. We will generate 500 entries to a
 linear model that has five variables with equal weights, y-intercept of 0, and a
 response standard deviation of 1.
@@ -39,9 +39,9 @@ head(lm_data)
 
 ## Machine Learning Model Workflow
 
-In this section we will demonstrate the workflow to use this package to explore
+In this section, we will demonstrate the workflow to use this package to explore
 the machine learning models(mlm) that are accessible through the PyCaret module
-in python. First we need to create a virtual environment for the PyCaret module
+in python. First, we need to create a virtual environment for the PyCaret module
 to exist in. The first time you run this code it will take a bit as it needs to 
 install the necessary modules into the virtual environment. Once installed the 
 following message will be shown after you execute the code indicating that you
@@ -54,7 +54,7 @@ create_virtualenv()
 Next we need create all the mlm by running this command. This may take a moment
 the first time you run as the PyCaret module needs to be imported. Then
 depending on your data size it may take a moment to fit the data. Note you will
-be prompted
+be prompted to press the enter key.
 ```{r eval=FALSE}
 mlm_lm <- mlm_regressor(Y ~ ., lm_data)
 ```
@@ -97,40 +97,50 @@ We can see that linear model fitted by `lm()` is still better than the mlm.
 
 ## Real Data Example
 We will be using the Boston Housing Data that has been updated, we will also be
-ignoring spatial autocorrelation. The purpose of this data set is to show it's 
-use on the functions in this package. Specifically the cross validation 
+ignoring spatial autocorrelation. The purpose of this data set is to show its 
+use on the functions in this package. Specifically the cross validation. 
 ```{r eval=FALSE}
 data(boston)
 mlm_boston <- mlm_regressor(cmedv ~ ., boston)
+mlm_boston$pred_accuracy
 ```
 
 ```{r echo=FALSE}
 data(boston)
-mlm_boston <- mlm_regressor(cmedv ~ ., boston, silent = TRUE)
-mlm_boston$pred_accuracy
+mlm_boston_pred_accuracy <- stressor::mlm_vignette_boston_pred
+mlm_boston_pred_accuracy
 ```
 Observe the initial rmse values for the Boston data set. Now let's compare these
 to the cross validated rmse values.
-```{r}
+```{r eval=FALSE}
 mlm_boston_cv <- cv(mlm_boston, boston, n_folds = 10)
 mlm_boston_rmse <- rmse(mlm_boston_cv, boston$cmedv)
 mlm_boston_rmse
 ```
-Now how about compared to the clustered cross validation
-```{r}
+```{r echo=FALSE}
+data(mlm_vignette_boston_cv)
+mlm_boston_rmse <- rmse(mlm_vignette_boston_cv, boston$cmedv)
+mlm_boston_rmse
+```
+
+Now, compared to the clustered cross validation:
+```{r eval=FALSE}
 mlm_boston_clust_cv <- cv(mlm_boston, boston, n_folds = 10, k_mult = 5)
 mlm_boston_clust_rmse <- rmse(mlm_boston_clust_cv, boston$cmedv)
 mlm_boston_clust_rmse
 ```
-
+```{r echo=FALSE}
+data(mlm_vignette_boston_cluster)
+boston_clust_rmse <- rmse(mlm_vignette_boston_cluster, boston$cmedv)
+boston_clust_rmse
+```
 
 <div id="troubleshoot">
 ## Troubleshooting
 When instantiating the virtual environment you may receive some errors or 
 warnings. `reticulate` has done a nice job with the error handling of 
-instantiating.
-```{r error=TRUE}
-create_virtualenv()
-```
-
+instantiating the virtual environment. If you receive a warning and the warning
+states that it attaches to the same virtual environment that the message prints
+out you can ignore that warning. The error from `reticulate` will prompt you to 
+restart your R session.
 </div>

@@ -99,10 +99,12 @@ top_rmse <- min(acc$rmse)
 name_rmse <- acc$Model[acc$rmse == top_rmse]
 ```
 
-Now, we can look at the initial predictive Root Mean Squared Error (RMSE) of the various models. Currently RMSE is the only method supported at this time. The 
+Now, we can look at the initial predictive Root Mean Squared Error (RMSE) of the
+various models. Currently RMSE is the only method supported at this time. The 
 `mlm_lm` object is a list object where the first element is a list of all the
 models that were fitted. In that if I were to pass these models back to PyCaret
-they can be refitted or used again for predictions. The second element is a data frame of the initial RMSE values and the corresponding models. If you want to
+they can be refitted or used again for predictions. The second element is a data
+frame of the initial RMSE values and the corresponding models. If you want to
 specify the models that are fitted you can change the `fit_models` parameter to
 a character vector specifying the models to be fitted.
 ```{r}
@@ -142,6 +144,7 @@ We can see that the linear model fitted by `lm()` is still better than the mlm.
 
 ## Real Data Example
 We want to show how are functions apply to a real data example. We can simulate data but it is never quite like real observed data. The purpose of this data set is to show its use on the functions in this package, specifically the cross validation.
+
 We will be using the Boston Housing Data from the `mlbench` package. There are 
 two versions of this data, that has been updated. We will also be
 ignoring spatial autocorrelation.  

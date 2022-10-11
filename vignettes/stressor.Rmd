@@ -143,11 +143,20 @@ rmse(lm_cv, lm_data$Y)
 We can see that the linear model fitted by `lm()` is still better than the mlm.
 
 ## Real Data Example
-We want to show how are functions apply to a real data example. We can simulate data but it is never quite like real observed data. The purpose of this data set is to show its use on the functions in this package, specifically the cross validation.
+We want to show how are functions apply to a real data example. We can simulate 
+data but it is never quite like real observed data. The purpose of this data set
+is to show its use on the functions in this package, specifically the cross 
+validation. This is crucial to show how these work in comparison to existing 
+functions.
 
 We will be using the Boston Housing Data from the `mlbench` package. There are 
-two versions of this data, that has been updated. We will also be
-ignoring spatial autocorrelation.  
+two versions of this data, the second version includes a corrected `medv` value,
+standardizing the median income to USD 1000's. As some of the original data was 
+missing. This data version also has had the town, tract, longitude and latitude 
+added. For this analysis we are ignoring spatial autocorrelation, therefore, 
+will be removing these variables from the analysis.
+
+This next code chunk opens the cleaned Boston data set and fits the initial 
 ```{r eval=FALSE}
 data(boston)
 mlm_boston <- mlm_regressor(cmedv ~ ., boston)

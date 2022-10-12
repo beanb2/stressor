@@ -26,3 +26,9 @@ Either a vector of predictions for `"reg_sine", "reg_asym", "lm"` and
 The machinery to run cross validation in that it subsets the test and train
  set based on the groups it receives.
 }
+\examples{
+ t_groups <- sample.int(10)
+ mlm_lm <- mlm_regressor(Y ~ ., lm_test)
+ mlm_cv <- cv_core(mlm_lm, lm_test, t_groups)
+ mlm_cv
+}

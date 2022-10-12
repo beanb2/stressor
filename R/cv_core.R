@@ -11,7 +11,11 @@
 #' @param ... Additional arguments that are passed to the predict function.
 #' @return Either a vector of predictions for `"reg_sine", "reg_asym", "lm"` and
 #'   a data frame for `"mlm_stressor"`
-#' @export
+#' @examples
+#'  t_groups <- sample.int(10)
+#'  mlm_lm <- mlm_regressor(Y ~ ., lm_test)
+#'  mlm_cv <- cv_core(mlm_lm, lm_test, t_groups)
+#'  mlm_cv
 cv_core <- function(object, data, t_groups, ...) {
   curr_methods <- c("reg_sine", "reg_asym", "lm", "mlm_stressor")
   method <- class(object)[1]

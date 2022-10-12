@@ -156,7 +156,9 @@ missing. This data version also has had the town, tract, longitude and latitude
 added. For this analysis we are ignoring spatial autocorrelation, therefore, 
 will be removing these variables from the analysis.
 
-This next code chunk opens the cleaned Boston data set attached to this package and fits the initial machine learning models and then displays the initial RMSE values from the first fit.
+This next code chunk opens the cleaned Boston data set attached to this package 
+and fits the initial machine learning models and then displays the initial RMSE 
+values from the first fit.
 ```{r eval=FALSE}
 data(boston)
 mlm_boston <- mlm_regressor(cmedv ~ ., boston)
@@ -180,7 +182,8 @@ data(mlm_vignette_boston_cv)
 mlm_boston_rmse <- rmse(mlm_vignette_boston_cv, boston$cmedv)
 mlm_boston_rmse
 ```
-Clustered cross validation is subsetting the parameter space into groups that share similar attributes with one another so therefore if we fit on those groups
+Clustered cross validation is subsetting the parameter space into groups that 
+share similar attributes with one another so therefore if we fit on those groups
 the other groups should fit similarly across that missing group space.
 
 Now, compare to the clustered cross validation:
@@ -195,23 +198,38 @@ boston_clust_rmse <- rmse(mlm_vignette_boston_cluster, boston$cmedv)
 boston_clust_rmse
 ```
 
-What we notice about this result is we ignored spatial autocorrelation but when we compare the 10 fold cross validation with the clustered cross validation we see a general improvement in the RMSE values which gives reason to rise that
+What we notice about this result is we ignored spatial autocorrelation but when 
+we compare the 10 fold cross validation with the clustered cross validation we 
+see a general improvement in the RMSE values which gives reason to rise that
 maybe there is some other factor underlying, i.e. spatial relationships.
 
-In conclusion, with this package you were able to fit multiple machine learning models with a few lines of code. This package was also able to perform 10 fold cross validation and clustered cross validation from one line of code. Then with a simple command can return the RMSE values from the predictions. With this package you were able to compare multiple machine learning models on a data set to see how they compared against each other. This power to be able to explore is a compliment to the purpose of R.
+In conclusion, with this package you were able to fit multiple machine learning 
+models with a few lines of code. This package was also able to perform 10 fold 
+cross validation and clustered cross validation from one line of code. Then with
+a simple command can return the RMSE values from the predictions. With this 
+package you were able to compare multiple machine learning models on a data set 
+to see how they compared against each other. This power to be able to explore is
+a compliment to the purpose of R.
 
 <div id="troubleshoot">
 ## Troubleshooting
 When instantiating the virtual environment, you may receive some errors or 
 warnings. `reticulate` has done a nice job with the error handling of 
-instantiating the virtual environments. Reticulate is a package in R that handles the connection between R and python. 
+instantiating the virtual environments. Reticulate is a package in R that 
+handles the connection between R and python. 
 
 If you receive a warning that says
-<p style="text-align:center; color:darkred"> "Warning Message: Previous request to use_python() ... will be ignored. It is superseded by request to use_python()"</p> If the second `use_python` command has the matching virtual environment you can ignore this warning and continue with your analysis.
+<p style="text-align:center; color:darkred"> "Warning Message: Previous request 
+to use_python() ... will be ignored. It is superseded by request to 
+use_python()"</p> If the second `use_python` command has the matching virtual 
+environment you can ignore this warning and continue with your analysis.
 
 If you recieve an error stating 
 <p style="text-align:center; color:darkred">
-ERROR: The requested version of Python ... cannot be used, as another version of Python ... has already been initialized. Please restart the R session if you need to attach reticulate to a different version of Python.
+ERROR: The requested version of Python ... cannot be used, as another version of
+Python ... has already been initialized. Please restart the R session if you 
+need to attach reticulate to a different version of Python.
 </p>
-If this error appears restart your R session and run the `create_virtualenv()` function again and there should be no problems attaching it after that.
+If this error appears restart your R session and run the `create_virtualenv()` 
+function again and there should be no problems attaching it after that.
 </div>

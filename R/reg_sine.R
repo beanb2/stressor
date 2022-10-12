@@ -12,6 +12,10 @@
 #' @param ... Additional arguments passed to the optim function
 #' @return A "reg_sine" object is returned which contains the results from the
 #'  optim function that was returned.
+#' @importFrom stats model.frame terms
+#' @examples
+#'  sine_data <- data_gen_sine(10)
+#'  reg_sine(Y ~ ., sine_data)
 #' @export
 reg_sine <- function(formula, data, method = "BFGS",
                      init_guess = rep(1, ncol(data) * 3 - 2), ...){
@@ -110,6 +114,7 @@ sine_gradient <- function(estimated, X, Y) {
 #' @param ... Additional arguments passed to the \code{\link[stats]{optim}}
 #'   function.
 #' @inherit stats::optim return
+#' @importFrom stats optim
 sine_optimize <- function(init_guess, X, Y, method, ...) {
   opt <- optim(init_guess, fn = sine_function,
                gr = sine_gradient, method = method, X, Y, ...)

@@ -31,18 +31,30 @@
 #'   }
 #' @param n_models An integer value defaulted to a large integer value to
 #'   return all possible models.
+#' @param example A Boolean value used for checks for examples to run defaulted
+#'   to `FALSE`
+#' @param ... additional arguments passed onto [stressor::mlm_init()]
 #' @return A list object where the first entry is the models fitted and the
 #'   second is the initial predictive accuracy on the random test data. Returns
 #'   as two classes mlm_stressor and regressor
+#' @examples
+#'  lm_test <- data_gen_lm(10)
+#'  create_virtualenv()
+#'  mlm_lm <- mlm_regressor(Y ~ ., lm_test, example = TRUE)
 #' @export
 mlm_regressor <- function(formula, data,
                           fit_models = c('ada', 'et', 'lightgbm','gbr',
                                          'lr', 'rf', 'ridge', 'knn', 'dt',
                                          'dummy', 'lar', 'br', 'huber', 'omp',
                                          'lasso', 'en', 'llar', 'par'),
-                          n_models = 9999, ...) {
+                          n_models = 9999, example = FALSE, ...) {
   # Throw in a data_check/formula_check
-  obj <- mlm_init(formula, data, fit_models, n_models, ...)
+  if (example) {
+    silent = TRUE
+  } else {
+    silent = FALSE
+  }
+  obj <- mlm_init(formula, data, fit_models, n_models, silent = silent, ...)
   class(obj) <- c(class(obj), "regressor")
   obj
 }

@@ -4,4 +4,4 @@
 ^data-raw$
 ^R/scratch$
 ^logs.log$
-^vignette/logs.log$
+^vignettes/logs.log$

@@ -23,3 +23,8 @@ A vector of cross-validated predictions.
 \description{
 This is the cross validation wrapper for the lm method.
 }
+\examples{
+ lm_test <- data_gen_lm(10)
+ lm <- lm(Y ~ ., lm_test)
+ cv(lm, lm_test, n_folds = 5)
+}

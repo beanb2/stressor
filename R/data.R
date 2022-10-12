@@ -93,7 +93,7 @@
 #'  A data frame with 2 columns and 18 rows where each row is a different
 #'    machine learning model.
 #' \describe{
-#'  \item{models}{Machine Learning Models}
+#'  \item{Model}{Machine Learning Models}
 #'  \item{rmse}{Root mean square error}
 #' }
 #' @name mlm_vignette_boston_pred

@@ -27,6 +27,7 @@
 #'   }
 #' @param n_models An integer value defaulted to a large integer value to
 #'   return all possible models.
+#' @param ... additional arguments passed onto [stressor::mlm_init()]
 #' @return A list object where the first entry is the models fitted and the
 #'   second is the initial predictive accuracy on the random test data. Returns
 #'   as two classes mlm_stressor and classifier

@@ -23,3 +23,8 @@ A vector of cross-validated predictions.
 \description{
 This is the cross validation wrapper for the reg_sine method.
 }
+\examples{
+ sine_data <- data_gen_sine(10)
+ sine_fit <- reg_sine(Y ~ ., sine_data)
+ cv(sine_fit, sine_data, n_folds = 5)
+}

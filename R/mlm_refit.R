@@ -12,6 +12,14 @@
 #'   methods need to be used to refit the data.
 #' @return A matrix with the predictions of the various machine learning
 #'   methods.
+#' @examples
+#'  lm_train <- data_gen_lm(10)
+#'  train_idx <- sample.int(10, 2)
+#'  train <- lm_train[train_idx, ]
+#'  test <- lm_train[-train_idx, ]
+#'  create_virtualenv()
+#'  mlm_lm <- mlm_regressor(Y ~ ., lm_train, example = TRUE)
+#'  mlm_refit(mlm_lm, train, test, classification = FALSE)
 #' @export
 mlm_refit <- function(mlm_object, train_data, test_data,
                       classification = FALSE) {
@@ -32,6 +40,7 @@ mlm_refit <- function(mlm_object, train_data, test_data,
     reticulate::source_python(file)
     prediction_mlm[, i] <- predictions[, "Label"]
   }
+  refit_mlm_X <- refit_mlm_y <- refit_mlm_test <- refit_mlm_temp <- NULL
   prediction_mlm
 }
 

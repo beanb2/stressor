@@ -8,7 +8,7 @@
 }
 \arguments{
 \item{object}{A "reg_asym" object that has a formula attribute and parameter
-estimates from \code{\link{reg_asym}}}
+estimates from [stressor::reg_asym()]}
 
 \item{newdata}{Dataframe that has the same variables as the formula from
 "reg_asym".}
@@ -21,4 +21,9 @@ A vector with the predicted values.
 }
 \description{
 Predict values on an additive exponential model
+}
+\examples{
+ asym_data <- data_gen_asym(10)
+ asym_fit <- reg_asym(Y ~ ., asym_data)
+ predict(asym_fit, asym_data)
 }

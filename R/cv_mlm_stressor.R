@@ -9,6 +9,12 @@
 #'   to NULL.
 #' @return A data frame of cross-validated predictions where the columns are the
 #'   various methods of machine learning models.
+#' @importFrom stats formula
+#' @examples
+#'  lm_test <- data_gen_lm(10)
+#'  create_virtualenv()
+#'  mlm_lm <- mlm_regressor(Y ~ ., lm_test, example = TRUE)
+#'  cv(mlm_lm, lm_test, n_folds = 5)
 #' @export
 cv.mlm_stressor <- function(object, data, n_folds = 10, k_mult = NULL) {
   groups <- create_groups(formula(object), data, n_folds, k_mult)

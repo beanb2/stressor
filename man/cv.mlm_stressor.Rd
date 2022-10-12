@@ -24,3 +24,9 @@ A data frame of cross-validated predictions where the columns are the
 \description{
 This is the cross validation wrapper for the mlm_stressor method
 }
+\examples{
+ lm_test <- data_gen_lm(10)
+ create_virtualenv()
+ mlm_lm <- mlm_regressor(Y ~ ., lm_test, example = TRUE)
+ cv(mlm_lm, lm_test, n_folds = 5)
+}

@@ -65,7 +65,7 @@ specified but these are the default values for classification:
 \item{classification}{A boolean value tag to indicate if classification
 methods should be used.}
 
-\item{...}{Additional arguments passed to the setup function in pycaret}
+\item{...}{Additional arguments passed to the setup function in PyCaret}
 }
 \value{
 A list object that contains all the fitted models and the CV

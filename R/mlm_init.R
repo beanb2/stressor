@@ -49,11 +49,10 @@
 #' @param n_models A defaulted integer to return the maximum number of models
 #' @param classification A boolean value tag to indicate if classification
 #'   methods should be used.
-#' @param ... Additional arguments passed to the setup function in pycaret
+#' @param ... Additional arguments passed to the setup function in PyCaret
 #' @return A list object that contains all the fitted models and the CV
 #'   predictive accuracy.
-#'
-# Make into two separate functions and have a common function
+#' @importFrom stats model.frame terms
 mlm_init <- function(formula, data, fit_models, n_models = 9999,
                         classification = FALSE, ...) {
   # This broke when I added the models to it
@@ -74,7 +73,7 @@ mlm_init <- function(formula, data, fit_models, n_models = 9999,
   test <- data[data_test, ]
   data <- data[-data_test, ]
   # Need to take it off the parallel process to run -
-  #  Github reference from Pycaret
+  #  Github reference from PyCaret
   message("Setting up the data for fitting models. Please press return key.")
   exp_reg <- reg$setup(data = data, target = rr, n_jobs = as.integer(1), ...)
 

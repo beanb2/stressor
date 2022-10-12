@@ -1,6 +1,6 @@
 #' Data Generation Asymptotic
 #'
-#' Creates a synthetic dataset from various parameters that represent a simple
+#' Creates a synthetic data set from various parameters that represent a simple
 #'  example of an additive \eqn{y = -e^{-x}}.
 #' @param n The number of observations for each parameter.
 #' @param weight_mat The parameter coefficients where each column represents
@@ -12,9 +12,15 @@
 #'  noise.
 #' @param window Used to determine for any given X variable to get you within
 #'  distance to capture the asymptotic behavior.
-#' @return A dataframe object with the n rows and the response variable with
+#' @param ... additional arguments that are not currently implemented
+#' @return A data frame object with the n rows and the response variable with
 #'  the number of parameters being equal to the number of columns from the
 #'  weight matrix.
+#' @examples
+#'  # Generates 10 observations
+#'  asym_data <- data_gen_asym(10)
+#'  asym_data
+#' @importFrom stats rlnorm runif rnorm
 #' @export
 data_gen_asym <- function(n, weight_mat = matrix(rlnorm(10), nrow = 2,
                                                  ncol = 5),

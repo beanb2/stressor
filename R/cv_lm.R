@@ -8,6 +8,11 @@
 #' @param k_mult Used to specify if k-means clustering is to be used, defaulted
 #'   to NULL.
 #' @return A vector of cross-validated predictions.
+#' @examples
+#'  lm_test <- data_gen_lm(10)
+#'  lm <- lm(Y ~ ., lm_test)
+#'  cv(lm, lm_test, n_folds = 5)
+#' @importFrom stats formula
 #' @export
 cv.lm <- function(object, data, n_folds = 10, k_mult = NULL) {
   groups <- create_groups(formula(object), data, n_folds, k_mult)

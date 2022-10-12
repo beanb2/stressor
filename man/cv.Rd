@@ -27,3 +27,9 @@ If the object is of class mlm_stressor then a data frame will be
 This is core of cross validation both standard and using k-mean groups. This
  method is called by other cv methods of classes.
 }
+\examples{
+ lm_test <- data_gen_lm(10)
+ lm <- lm(Y ~ ., lm_test)
+ lm_cv <- cv(lm, lm_test)
+ lm_cv
+}

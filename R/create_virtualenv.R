@@ -7,7 +7,9 @@
 #' @param python Defaults to your install of python, prefer 3.8.10
 #' @param delete_env Boolean value to indicate if the environments need to be
 #'  deleted.
-#' @return A message indicating which environment is being used
+#' @return A message indicating which environment is being used.
+#' @examples
+#'  create_virtualenv()
 #' @export
 create_virtualenv <- function(python = Sys.which('python'),
                               delete_env = FALSE) {

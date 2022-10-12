@@ -14,7 +14,7 @@ create_groups(formula, data, n_folds = 10, k_mult = NULL)
 \item{n_folds}{An integer value defaulted to 10 fold cross-validation if NULL
 uses LOO instead.}
 
-\item{k_mult}{When specified is passed onto the \code{\link{cluster_part2}}
+\item{k_mult}{When specified is passed onto the [stressor::cv_cluster()]
 to fit the data into k_groups}
 }
 \value{
@@ -23,4 +23,18 @@ A vector of the assigned groups
 \description{
 Creates groups for the data by separating them either into 10 fold cross-
   validation, LOO cross-validation, or k-means grouping.
+}
+\examples{
+ # Data generation
+ lm_data <- data_gen_lm(20)
+
+ # 10 Fold CV group
+ create_groups(Y ~ ., lm_data)
+ create_groups(Y ~ ., lm_data, n_folds = 10, k_mult = NULL)
+
+ # LOO CV group
+ create_groups(Y ~ ., lm_data, n_folds = NULL)
+
+ # Clustered CV group
+ create_groups(Y ~ ., lm_data, n_folds = 10, k_mult = 5)
 }

@@ -8,6 +8,7 @@
 #'   data <- data_gen_lm(10)
 #'   dist <- dist_cent(Y ~ ., data)
 #'   dist
+#' @importFrom stats model.matrix model.response model.frame
 #' @export
 dist_cent <- function(formula, data){
   t_data <- model.matrix(formula, data = data)[, -1]

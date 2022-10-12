@@ -8,6 +8,11 @@
 #' @param k_mult Used to specify if k-means clustering is to be used, defaulted
 #'   to NULL.
 #' @return A vector of cross-validated predictions.
+#' @importFrom stats formula
+#' @examples
+#'  sine_data <- data_gen_sine(10)
+#'  sine_fit <- reg_sine(Y ~ ., sine_data)
+#'  cv(sine_fit, sine_data, n_folds = 5)
 #' @export
 cv.reg_sine <- function(object, data, n_folds = 10, k_mult = NULL) {
   groups <- create_groups(formula(object), data, n_folds, k_mult)

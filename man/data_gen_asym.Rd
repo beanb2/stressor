@@ -28,13 +28,20 @@ noise.}
 
 \item{window}{Used to determine for any given X variable to get you within
 distance to capture the asymptotic behavior.}
+
+\item{...}{additional arguments that are not currently implemented}
 }
 \value{
-A dataframe object with the n rows and the response variable with
+A data frame object with the n rows and the response variable with
  the number of parameters being equal to the number of columns from the
  weight matrix.
 }
 \description{
-Creates a synthetic dataset from various parameters that represent a simple
+Creates a synthetic data set from various parameters that represent a simple
  example of an additive \eqn{y = -e^{-x}}.
+}
+\examples{
+ # Generates 10 observations
+ asym_data <- data_gen_asym(10)
+ asym_data
 }

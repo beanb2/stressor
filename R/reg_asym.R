@@ -12,6 +12,10 @@
 #' @param ... Additional arguments passed to the optim function
 #' @return A "reg_asym" object is returned which contains the results from the
 #'  optim function that was returned.
+#' @importFrom stats model.frame terms
+#' @examples
+#'  asym_data <- data_gen_asym(10)
+#'  reg_asym(Y ~ ., asym_data)
 #' @export
 reg_asym <- function(formula, data, method = "BFGS",
                      init_guess = rep(1, ncol(data) * 2 - 1), ...) {
@@ -92,6 +96,7 @@ asym_yhat <- function(estimated, X) {
 #' @param ... Additional arguments passed to the \code{\link[stats]{optim}}
 #'   function.
 #' @inherit stats::optim return
+#' @importFrom stats optim
 asym_optimize <- function(init_guess, X, Y, method, ...) {
   opt <- optim(init_guess, fn = asym_function, gr = asym_gradient,
                method = method, X, Y, ...)

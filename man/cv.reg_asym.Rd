@@ -23,3 +23,8 @@ A vector of cross-validated predictions.
 \description{
 This is the cross validation wrapper for the reg_asym method.
 }
+\examples{
+ asym_data <- data_gen_asym(10)
+ asym_fit <- reg_asym(Y ~ ., asym_data)
+ cv(asym_fit, asym_data, n_folds = 5)
+}

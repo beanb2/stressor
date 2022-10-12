@@ -34,3 +34,7 @@ A simple example of sinusoidal regression that is in the form of
  \eqn{y = asin(b(x - c))} and is the sum of of multiple of these sine
  functions with a common intercept term.
 }
+\examples{
+ sine_data <- data_gen_sine(10)
+ reg_sine(Y ~ ., sine_data)
+}

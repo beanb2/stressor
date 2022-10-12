@@ -28,7 +28,8 @@ The machinery to run cross validation in that it subsets the test and train
 }
 \examples{
  t_groups <- sample.int(10)
- mlm_lm <- mlm_regressor(Y ~ ., lm_test)
- mlm_cv <- cv_core(mlm_lm, lm_test, t_groups)
- mlm_cv
+ lm_test <- data_gen_lm(10)
+ lm <- lm(Y ~ ., lm_test)
+ lm_cv <- cv_core(lm, lm_test, t_groups)
+ lm_cv
 }

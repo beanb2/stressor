@@ -23,13 +23,20 @@ parameters. Defaulted to be 15 random numbers from the normal distribution.}
 
 \item{resp_sd}{The standard deviation of the epsilon term to be added for
 noise.}
+
+\item{...}{additional arguments that are not currently implemented}
 }
 \value{
-A dataframe object with the n rows and the response variable with
+A data frame object with the n rows and the response variable with
  the number of parameters being equal to the number of columns from the
  weight matrix.
 }
 \description{
-Creates a synthetic dataset from various parameters that represent a simple
+Creates a synthetic data set from various parameters that represent a simple
  example of an additive \eqn{y = asin(b(x - c))}.
+}
+\examples{
+ # Generates 10 observations
+ sine_data <- data_gen_sine(10)
+ sine_data
 }

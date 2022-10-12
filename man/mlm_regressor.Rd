@@ -10,6 +10,7 @@ mlm_regressor(
   fit_models = c("ada", "et", "lightgbm", "gbr", "lr", "rf", "ridge", "knn", "dt",
     "dummy", "lar", "br", "huber", "omp", "lasso", "en", "llar", "par"),
   n_models = 9999,
+  example = FALSE,
   ...
 )
 }
@@ -44,6 +45,11 @@ them using a character vector.
 
 \item{n_models}{An integer value defaulted to a large integer value to
 return all possible models.}
+
+\item{example}{A Boolean value used for checks for examples to run defaulted
+to `FALSE`}
+
+\item{...}{additional arguments passed onto [stressor::mlm_init()]}
 }
 \value{
 A list object where the first entry is the models fitted and the
@@ -55,4 +61,9 @@ Through the pycaret module from python, this function fits many machine
   learning models simultaneously with little to no coding on the user
   part. The core function to fitting the initial models. This function is
   specifically designed for the regression models.
+}
+\examples{
+ lm_test <- data_gen_lm(10)
+ create_virtualenv()
+ mlm_lm <- mlm_regressor(Y ~ ., lm_test, example = TRUE)
 }

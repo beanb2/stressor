@@ -13,11 +13,14 @@ create_virtualenv(python = Sys.which("python"), delete_env = FALSE)
 deleted.}
 }
 \value{
-A message indicating which environment is being used
+A message indicating which environment is being used.
 }
 \description{
 Allows the user to create a stressor python environment with pycaret
   installed on the environment. This function takes into account that
   you have properly installed python. We recommend version 3.8.10. Uses
   existing stressor environments.
+}
+\examples{
+ create_virtualenv()
 }

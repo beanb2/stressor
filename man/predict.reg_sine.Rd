@@ -8,7 +8,7 @@
 }
 \arguments{
 \item{object}{A "reg_sine" object that has a formula attribute and parameter
-estimates from \link[reg_sine]{reg_sine}.}
+estimates from [stressor::reg_sine()].}
 
 \item{newdata}{Dataframe that has the same variables as the formula from
 "reg_sine".}
@@ -21,4 +21,9 @@ A vector with the predicted values.
 }
 \description{
 Predict values on an additive exponential model
+}
+\examples{
+ sine_data <- data_gen_sine(10)
+ sine_fit <- reg_sine(Y ~ ., sine_data)
+ predict(sine_fit, sine_data)
 }

@@ -40,6 +40,8 @@ them using a character vector.
 
 \item{n_models}{An integer value defaulted to a large integer value to
 return all possible models.}
+
+\item{...}{additional arguments passed onto [stressor::mlm_init()]}
 }
 \value{
 A list object where the first entry is the models fitted and the

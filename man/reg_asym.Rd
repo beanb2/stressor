@@ -34,3 +34,7 @@ A simple example of asymptotic regression that is in the form of
  \eqn{y = -e^{-x}} and is the sum of of multiple of these exponential
  functions with a common intercept term.
 }
+\examples{
+ asym_data <- data_gen_asym(10)
+ reg_asym(Y ~ ., asym_data)
+}

@@ -27,3 +27,12 @@ A matrix with the predictions of the various machine learning
 Refits models fitted in the [stressor::mlm_init()], and returns the
  predictions.
 }
+\examples{
+ lm_train <- data_gen_lm(10)
+ train_idx <- sample.int(10, 2)
+ train <- lm_train[train_idx, ]
+ test <- lm_train[-train_idx, ]
+ create_virtualenv()
+ mlm_lm <- mlm_regressor(Y ~ ., lm_train, example = TRUE)
+ mlm_refit(mlm_lm, train, test, classification = FALSE)
+}

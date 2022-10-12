@@ -1,6 +1,6 @@
 #' Data Generation for Linear Regression
 #'
-#' Creates a synthetic dataset from various parameters that represent a simple
+#' Creates a synthetic data set from various parameters that represent a simple
 #'  example of an additive \eqn{y = mx}.
 #' @param n The number of observations for each parameter.
 #' @param weight_vec The parameter coefficients where each entry represents the
@@ -8,9 +8,15 @@
 #' @param y_int The y-intercept term of the additive model.
 #' @param resp_sd The standard deviation of the epsilon term to be added for
 #'  noise.
-#' @return A dataframe object with the n rows and the response variable with
+#' @param ... additional arguments that are not currently implemented
+#' @return A data frame object with the n rows and the response variable with
 #'  the number of parameters being equal to the number of columns from the
 #'  weight matrix.
+#' @examples
+#'  # Generates 10 observations
+#'  lm_data <- data_gen_lm(10)
+#'  lm_data
+#' @importFrom stats rnorm
 #' @export
 data_gen_lm <- function(n, weight_vec = rep(1, 5), y_int = 0,
                         resp_sd = 1, ...) {

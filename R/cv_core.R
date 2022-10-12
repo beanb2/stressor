@@ -13,9 +13,12 @@
 #'   a data frame for `"mlm_stressor"`
 #' @examples
 #'  t_groups <- sample.int(10)
-#'  mlm_lm <- mlm_regressor(Y ~ ., lm_test)
-#'  mlm_cv <- cv_core(mlm_lm, lm_test, t_groups)
-#'  mlm_cv
+#'  lm_test <- data_gen_lm(10)
+#'  lm <- lm(Y ~ ., lm_test)
+#'  lm_cv <- cv_core(lm, lm_test, t_groups)
+#'  lm_cv
+#' @importFrom stats predict formula lm
+#' @export
 cv_core <- function(object, data, t_groups, ...) {
   curr_methods <- c("reg_sine", "reg_asym", "lm", "mlm_stressor")
   method <- class(object)[1]

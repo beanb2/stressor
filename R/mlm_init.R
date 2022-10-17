@@ -55,7 +55,6 @@
 #' @importFrom stats model.frame terms
 mlm_init <- function(formula, data, fit_models, n_models = 9999,
                         classification = FALSE, ...) {
-  # This broke when I added the models to it
   temp <- model.frame(formula = formula, data = data)
   vv <- attr(terms(formula(temp)), which = "variables")
   rr <- as.character(vv[[2]]) # The response variable name

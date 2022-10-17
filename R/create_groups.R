@@ -25,6 +25,8 @@
 #' @importFrom stats model.matrix
 #' @export
 create_groups <- function(formula, data, n_folds = 10, k_mult = NULL){
+  data_check(formula, data)
+
   x_data <- model.matrix(formula, data = data)[, -1]
   if (!is.null(n_folds)){
     xvs <- rep(1:n_folds,length = nrow(data))

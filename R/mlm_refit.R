@@ -4,9 +4,9 @@
 #'  predictions.
 #' @param mlm_object The returned object from either [stressor::mlm_regressor()]
 #'  or [stressor::mlm_classification].
-#' @param train_data A dataframe object used for refitting excludes the test
+#' @param train_data A data frame object used for refitting excludes the test
 #'   data, making sure that the response variable is first.
-#' @param test_data A dataframe object used for predictions, making sure that
+#' @param test_data A data frame object used for predictions, making sure that
 #'   the response variable is first.
 #' @param classification A boolean value used to represent if classification
 #'   methods need to be used to refit the data.
@@ -28,6 +28,7 @@ mlm_refit <- function(mlm_object, train_data, test_data,
   } else {
     file <- system.file("python", "refit.py", package = "stressor")
   }
+  # For the python file to execute
   refit_mlm_X <<- train_data[, -1]
   refit_mlm_y <<- train_data[, 1]
   refit_mlm_test <<- test_data
@@ -40,6 +41,7 @@ mlm_refit <- function(mlm_object, train_data, test_data,
     reticulate::source_python(file)
     prediction_mlm[, i] <- predictions[, "Label"]
   }
+  # Need this line to pass the CRAN Checks
   refit_mlm_X <- refit_mlm_y <- refit_mlm_test <- refit_mlm_temp <- NULL
   prediction_mlm
 }

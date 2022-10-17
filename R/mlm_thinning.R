@@ -1,4 +1,4 @@
-#' Thinning algorithim for Machine Learning Models
+#' Thinning algorithm for Machine Learning Models
 #'
 #' Fits various train size and test sizes.
 #' @param mlm_object a `"mlm_stressor"` object that has models in the first list

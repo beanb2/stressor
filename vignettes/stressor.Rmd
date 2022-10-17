@@ -14,42 +14,42 @@ knitr::opts_chunk$set(
 )
 ```
 
-This package is designed to allow the user to use multiple machine learning 
+This package is designed to allow the user to apply multiple machine learning 
 methods by calling simple commands for data exploration. Python has a library
-called PyCaret which is a pipeline process for fitting multiple models with a 
-few lines of codes. This package uses the `reticulate` package to allow python
-to be ran in R. Therefore giving the same tools that exist in python now in 
-your session of R. One of the strengths of R is exploration, this package gives 
-you the chance to explore the machine learning models side by side.
+called PyCaret which uses pipeline processes for fitting multiple models with a 
+few lines of codes. Stressor uses the `reticulate` package to allow python
+to be run in R, giving access to the same tools that exist in python. One of the
+strengths of R is exploration, stressor gives you the freedom to explore the 
+machine learning models side by side.
 
-To get started, this package requires that you have Python 3.8.10</a>
+To get started, stressor requires that you have Python 3.8.10</a>
 installed on your computer. To install Python, please follow the instructions provide at:
 <p style="text-align:center;"> <a href = https://www.python.org/downloads/release/python-3810/> https://www.python.org/downloads/release/python-3810/</a> </p>
 
 Once Python is installed, you can install stressor currently from github with
-hopes to being able to install it from CRAN. To use the python features of this
-package the package does not need to be attached with the `library` statement. 
-For convenience, we will attach it.
+future plans for it to be available on CRAN. For convenience, we have attached 
+stressor with the `library` statement to use the python features of stressor.
+
 ```{r setup}
 library(stressor)
 ```
 
 ## Data Generation
 
-It is convenient when testing new function or algorithms to be able to generate
-toy data sets. With these toy data sets we can choose what the distribution of
-the parameters as well as what the underlying model of the toy data set is. With
-this we can also choose the distribution of the error term.
+It is convenient when testing new functions or algorithms to be able to generate
+toy data sets. With these toy data sets we can choose the distribution of
+the parameters and of the error term as well as the underlying model of the toy 
+data set.
 
 In this section, we will show an example of generating linear data with an 
-epsilon and intercept that we choose. We will generate 500 observations from a
+epsilon and intercept that we chose. We will generate 500 observations from a
 linear model with five independent variables and a y-intercept of zero.
 Observations are simulated from this model assuming that the residuals follow a
 normal distribution with a mean of zero and a standard deviation of one. With 
 respect to the variables chosen, each variable is sampled from a normal
 distribution with mean zero and standard deviation of one. For this case, we 
-choose to let the coefficients on each term to be one as we wanted each 
-independent variable to be equally weighted. When we created the response
+chose to let the coefficients on each term be one as we wanted each 
+independent variable to be equally weighted. When we create the response
 variable, Y, it is the sum of each independent variable plus an epsilon term
 that is sampled from a standard normal distribution.
 ```{r}
@@ -66,28 +66,29 @@ through the PyCaret module in python. First, we need to create a virtual
 environment for the PyCaret module to exist in. The first time you run this code
 it will take some time (~ 5 min) as it needs to install the necessary modules 
 into the virtual environment. PyCaret recommends that its library be used in a 
-virtual environment. A virtual environment is a separate partition of the python
+virtual environment. A virtual environment is a separate partition of python
 that can have a specific python version installed, as well as other python
-libraries. This way all the tools needed are contained in a convenient way
-without messing with the main version of python installed.
+libraries. This enables the tools needed to be contained without disturbing the 
+main version of python installed.
 
 Once installed the following message will be shown after you execute the code 
-indicating that you are now using the virtual environment. See the <a 
-href=#troubleshoot>troubleshoot</a> section if other errors appear. You do not
-need to install a new environment for each R session, one time and you are done.
-The only time you will need to install a new environment is if you decide to 
-delete a stressor environment and need to instantiate a new one. These 
-environments are stored inside the python module on your computer. 
+indicating that you are now using the virtual environment. 
 ```{r}
 create_virtualenv()
 ```
+See the <a 
+href=#troubleshoot>troubleshoot</a> section if other errors appear. The only 
+time you will need to install a new environment is if you decide to delete a 
+stressor environment and need to initiate a new one. You do not
+need to install a new environment for each R session, one and done. These 
+environments are stored inside the python module on your computer. 
 
-Next, we need to create all the mlm by running this command. This may take a 
-moment (< 3 min) the first time you run it as the PyCaret module needs to be 
-imported. Then depending on your data size it may take a moment to fit the data.
-Note you will be prompted to press the enter key. This enter key press is for 
-PyCaret to setup the variables for the various models and get the data ready for
-fitting.
+To begin using, we need to create all the mlm. This may take a 
+moment (< 3 min). The first time you run it as the PyCaret module needs to be 
+imported. Then depending on your data size it may take a moment (5 - 10 min for 
+data <10,000) to fit the data. Note you will be prompted to press the enter key.
+This enter key press is for PyCaret to setup the variables for the various 
+models and get the data ready for fitting. Here is the command:
 ```{r eval=FALSE}
 mlm_lm <- mlm_regressor(Y ~ ., lm_data)
 ```
@@ -100,19 +101,19 @@ name_rmse <- acc$Model[acc$rmse == top_rmse]
 ```
 
 Now, we can look at the initial predictive Root Mean Squared Error (RMSE) of the
-various models. Currently RMSE is the only method supported at this time. The 
-`mlm_lm` object is a list object where the first element is a list of all the
-models that were fitted. In that if I were to pass these models back to PyCaret
+various models. RMSE is the only method supported at this time. The 
+`mlm_lm` is a list object where the first element is a list of all the
+models that were fitted. Example, if I were to pass these models back to PyCaret
 they can be refitted or used again for predictions. The second element is a data
-frame of the initial RMSE values and the corresponding models. If you want to
-specify the models that are fitted you can change the `fit_models` parameter to
-a character vector specifying the models to be fitted.
+frame for the initial RMSE values and the corresponding models. If you want to
+specify the models that are fitted, you can change the `fit_models` parameter --
+a character vector -- specifying the models to be used.
 ```{r}
 mlm_lm$pred_accuracy
 ```
 
-In comparison we can fit this data using the `lm()` function and check the 
-initial predictive accuracy with a simple test data.
+In comparison, we can fit this data using the `lm()` function and check the 
+initial predictive accuracy with simple test data.
 ```{r}
 test_index <- sample(1:nrow(lm_data), 50)
 test <- lm_data[test_index, ]
@@ -124,28 +125,25 @@ lm_rmse <- sqrt(sum((lm_test$residuals)^2)/ nrow(train))
 As we look at this initial result, we see that there are some comparable models 
 to the RMSE generated from `lm()` (which is `r trunc(lm_rmse * 100)/100` 
 compared to `r trunc(top_rmse * 100)/100` fitted by `r name_rmse`). We see that 
-the analytical model still outperforms the models that were fitted. However, it 
+the analytical model still outperforms the models that were fitted by `mlm_lm`. However, it 
 is not clear from this output alone whether the better performance observed from
-the lm model is statistically significant. A better practice will be performing 
-a cross validation. In this case we will demonstrate the use of cross validation
-as the other forms of cross-validation stem from specifying parameters inside 
-the `cv()` function, i.e. Leave-One-Out (LOO) and clustered cross validation.
+the lm model is statistically significant. A better practice would be performing
+a cross validation.
 
-In this code we are fitting the mlm to the `lm_data` using a 10 fold cross
-validation as well as using the `lm_test` object to also perform a 10 fold
-cross validation.
+In this code we are fitting the `mlm_lm` and `lm_test` to the `lm_data` using a 
+10 fold cross validation.
 ```{r}
 mlm_cv <- cv(mlm_lm, lm_data, n_folds = 10)
 lm_cv <- cv(lm_test, lm_data, n_folds = 10)
 rmse(mlm_cv, lm_data$Y)
 rmse(lm_cv, lm_data$Y)
 ```
-We can see that the linear model fitted by `lm()` is still better than the mlm.
+We can see that the linear model fitted by `lm()` is still better than all the machine learning models.
 
 ## Real Data Example
-We want to show how are functions apply to a real data example. We can simulate 
-data but it is never quite like real observed data. The purpose of this data set
-is to show its use on the functions in this package, specifically the cross 
+We want to show how our functions apply to a real data example. We can simulate 
+data but it is never quite like observed data. The purpose of this data set
+is to show the use of the functions in this package -- specifically cross 
 validation. This is crucial to show how these work in comparison to existing 
 functions.
 
@@ -157,7 +155,7 @@ added. For this analysis we are ignoring spatial autocorrelation, therefore,
 will be removing these variables from the analysis.
 
 This next code chunk opens the cleaned Boston data set attached to this package 
-and fits the initial machine learning models and then displays the initial RMSE 
+and fits the initial machine learning models. It then displays the initial RMSE 
 values from the first fit.
 ```{r eval=FALSE}
 data(boston)
@@ -183,8 +181,8 @@ mlm_boston_rmse <- rmse(mlm_vignette_boston_cv, boston$cmedv)
 mlm_boston_rmse
 ```
 Clustered cross validation is subsetting the parameter space into groups that 
-share similar attributes with one another so therefore if we fit on those groups
-the other groups should fit similarly across that missing group space.
+share similar attributes with one another.Therefore if we train on those groups
+the other group should fit similarly across the test group.
 
 Now, compare to the clustered cross validation:
 ```{r eval=FALSE}
@@ -198,24 +196,20 @@ boston_clust_rmse <- rmse(mlm_vignette_boston_cluster, boston$cmedv)
 boston_clust_rmse
 ```
 
-What we notice about this result is we ignored spatial autocorrelation but when 
-we compare the 10 fold cross validation with the clustered cross validation we 
-see a general improvement in the RMSE values which gives reason to rise that
-maybe there is some other factor underlying, i.e. spatial relationships.
+What we notice about this result is when we ignored spatial autocorrelation,
+we compare the 10 fold cross validation with the clustered cross validation, we 
+see a general improvement in the RMSE values. This suggests that maybe there is some other underlying factors, i.e. spatial relationships.
 
-In conclusion, with this package you were able to fit multiple machine learning 
-models with a few lines of code. This package was also able to perform 10 fold 
-cross validation and clustered cross validation from one line of code. Then with
-a simple command can return the RMSE values from the predictions. With this 
-package you were able to compare multiple machine learning models on a data set 
-to see how they compared against each other. This power to be able to explore is
-a compliment to the purpose of R.
+The power to be able to explore is a compliment to the purpose of R. With 
+stressor you are able to fit multiple machine learning models with a few lines 
+of code, perform 10 fold cross validation and clustered cross validation. With a
+simple command, you can return the RMSE values from the predictions.
 
 <div id="troubleshoot">
 ## Troubleshooting
-When instantiating the virtual environment, you may receive some errors or 
+When initiating the virtual environment, you may receive some errors or 
 warnings. `reticulate` has done a nice job with the error handling of 
-instantiating the virtual environments. Reticulate is a package in R that 
+initiating the virtual environments. `reticulate` is a package in R that 
 handles the connection between R and python. 
 
 If you receive a warning that says

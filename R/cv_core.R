@@ -36,7 +36,7 @@ cv_core <- function(object, data, t_groups, ...) {
     train <- data[-test_index, ]
     test <- data[test_index, ]
     if (method == "mlm_stressor") {
-      predictions[test_index, ] <- mlm_refit(object, train, test)
+      predictions[test_index, ] <- predict(object, train, test)
     } else if (method == "reg_sine") {
       predictions[test_index] <- predict(reg_sine(formula(object),
                                                        data = train), test, ...)

@@ -1,7 +1,7 @@
 #' Predict for Asymptotic Regression
 #'
 #' Predict values on an additive exponential model
-#' @param object A "reg_asym" object that has a formula attribute and parameter
+#' @param object A `"reg_asym"` object that has a formula attribute and parameter
 #'  estimates from [stressor::reg_asym()]
 #' @param newdata Dataframe that has the same variables as the formula from
 #'  "reg_asym".

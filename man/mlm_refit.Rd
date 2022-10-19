@@ -10,13 +10,13 @@ mlm_refit(mlm_object, train_data, test_data, classification = FALSE)
 \item{mlm_object}{The returned object from either [stressor::mlm_regressor()]
 or [stressor::mlm_classification].}
 
-\item{train_data}{A dataframe object used for refitting excludes the test
-data, making sure that the response variable is first.}
+\item{train_data}{A data.frame object used for refitting excludes the test
+data. Can be `NULL` to allow for predictions to be used on the current
+model.}
 
-\item{test_data}{A dataframe object used for predictions, making sure that
-the response variable is first.}
+\item{test_data}{A data.frame object used for predictions.}
 
-\item{classification}{A boolean value used to represent if classification
+\item{classification}{A Boolean value used to represent if classification
 methods need to be used to refit the data.}
 }
 \value{

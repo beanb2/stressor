@@ -7,7 +7,7 @@
 \method{predict}{reg_asym}(object, newdata, ...)
 }
 \arguments{
-\item{object}{A "reg_asym" object that has a formula attribute and parameter
+\item{object}{A `"reg_asym"` object that has a formula attribute and parameter
 estimates from [stressor::reg_asym()]}
 
 \item{newdata}{Dataframe that has the same variables as the formula from

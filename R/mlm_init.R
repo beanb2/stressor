@@ -59,9 +59,6 @@ mlm_init <- function(formula, data, fit_models, n_models = 9999,
   vv <- attr(terms(formula(temp)), which = "variables")
   rr <- as.character(vv[[2]]) # The response variable name
   if (classification) {
-    # fit_models = c('ada', 'et', 'lightgbm', 'gbr',
-    #                'lr', 'rf', 'ridge', 'knn', 'dt',
-    #                'dummy', 'svm', 'lda', 'nb', 'qda')
     message("Importing Pycaret Classification")
     reg <- reticulate::import("pycaret.classification")
   } else {

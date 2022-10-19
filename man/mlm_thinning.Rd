@@ -2,7 +2,7 @@
 % Please edit documentation in R/mlm_thinning.R
 \name{mlm_thinning}
 \alias{mlm_thinning}
-\title{Thinning algorithim for Machine Learning Models}
+\title{Thinning algorithm for Machine Learning Models}
 \usage{
 mlm_thinning(mlm_object, data, max = 0.95, min = 0.05, iter = 0.05)
 }

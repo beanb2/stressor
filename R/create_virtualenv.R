@@ -16,6 +16,11 @@ create_virtualenv <- function(python = Sys.which('python'),
   if (Sys.getenv("RETICULATE_PYTHON") != "") {
     Sys.setenv("RETICULATE_PYTHON" = "")
   }
+  if (is.null(python)) {
+    stop("No python found on this computer. If installed try testing your
+         `Sys.which(\"python\")` argument. May need to add `python` to your
+         path variable.")
+  }
   current_virtualenv <- reticulate::virtualenv_list()
   stressor_env <- grep("stressor", current_virtualenv)
   active_env <- vector(mode = "logical", length = length(stressor_env))

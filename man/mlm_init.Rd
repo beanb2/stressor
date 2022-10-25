@@ -16,7 +16,7 @@ mlm_init(
 \arguments{
 \item{formula}{The regression formula or classification formula}
 
-\item{data}{A dataframe object that includes the test data}
+\item{data}{A data.frame object that includes the test data}
 
 \item{fit_models}{A character vector with all the possible Machine Learning
  regressors that are currently being fit, the user may specify a subset of
@@ -62,7 +62,7 @@ specified but these are the default values for classification:
 
 \item{n_models}{A defaulted integer to return the maximum number of models}
 
-\item{classification}{A boolean value tag to indicate if classification
+\item{classification}{A Boolean value tag to indicate if classification
 methods should be used.}
 
 \item{...}{Additional arguments passed to the setup function in PyCaret}
@@ -72,7 +72,7 @@ A list object that contains all the fitted models and the CV
   predictive accuracy.
 }
 \description{
-Through the pycaret module from python, this function fits many machine
+Through the PyCaret module from python, this function fits many machine
   learning models simultaneously with little to no coding on the user
   part. The core function to fitting the initial models.
 }

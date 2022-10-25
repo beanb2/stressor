@@ -1,10 +1,10 @@
 #' Compare Machine Learning Models
 #'
-#' Through the pycaret module from python, this function fits many machine
+#' Through the PyCaret module from python, this function fits many machine
 #'   learning models simultaneously with little to no coding on the user
 #'   part. The core function to fitting the initial models.
 #' @param formula The regression formula or classification formula
-#' @param data A dataframe object that includes the test data
+#' @param data A data.frame object that includes the test data
 #' @param fit_models A character vector with all the possible Machine Learning
 #'   regressors that are currently being fit, the user may specify a subset of
 #'   them using a character vector.
@@ -47,7 +47,7 @@
 #'     svm \tab SVM - Linear Kernel
 #'   }
 #' @param n_models A defaulted integer to return the maximum number of models
-#' @param classification A boolean value tag to indicate if classification
+#' @param classification A Boolean value tag to indicate if classification
 #'   methods should be used.
 #' @param ... Additional arguments passed to the setup function in PyCaret
 #' @return A list object that contains all the fitted models and the CV
@@ -55,13 +55,31 @@
 #' @importFrom stats model.frame terms
 mlm_init <- function(formula, data, fit_models, n_models = 9999,
                         classification = FALSE, ...) {
-  temp <- model.frame(formula = formula, data = data)
-  vv <- attr(terms(formula(temp)), which = "variables")
+  # Declaring Constants
+  regress_models <- c('ada', 'br', 'dt', 'dummy', 'en', 'et', 'gbr', 'huber',
+                      'knn', 'lar', 'lasso', 'lightgbm', 'llar', 'lr', 'omp',
+                      'par', 'rf', 'ridge')
+  class_models <- c('ada', 'dt', 'dummy', 'et', 'gbr', 'knn', 'lda', 'lightgbm',
+                    'lr', 'nb', 'qda', 'rf', 'ridge', 'svm')
+  # Function input checks
+  data_check(formula, data)
+  integer_check(n_models)
+  boolean_check(classification)
+
+  # Function starts here
+  data <- model.frame(formula = formula, data = data)
+  vv <- attr(terms(formula(data)), which = "variables")
   rr <- as.character(vv[[2]]) # The response variable name
   if (classification) {
+    if (!all(is.element(fit_models, class_models))) {
+      stop("The current models are not supported.")
+    }
     message("Importing Pycaret Classification")
     reg <- reticulate::import("pycaret.classification")
   } else {
+    if (!all(is.element(fit_models, regress_models))) {
+      stop("The current models are not supported.")
+    }
     message("Importing Pycaret Regression")
     reg <- reticulate::import("pycaret.regression")
   }

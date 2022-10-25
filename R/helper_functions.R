@@ -36,3 +36,23 @@ data_check <- function(formula, data, train_data = NULL) {
     }
   }
 }
+
+#' @title Integer Check function
+#' @description A helper function to check if value is an integer
+#' @param integer An integer value
+#' @return Allows the function to run or returns a user friendly error message.
+integer_check <- function(integer) {
+  if (!is.integer(integer)) {
+    stop("Value provided is not an integer.")
+  }
+}
+
+#' @title Boolean Check function
+#' @description A helper function to check if value is a Boolean value.
+#' @param boolean A Boolean value
+#' @return Allows the function to run or returns a user friendly error message.
+boolean_check <- function(boolean) {
+  if (!is.logical(boolean)) {
+    stop("Value provided is not a Boolean value.")
+  }
+}

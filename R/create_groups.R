@@ -39,10 +39,10 @@ create_groups <- function(formula, data, n_folds = 10, k_mult = NULL){
   integer_check(n_folds)
   x_data <- model.matrix(formula, data = data)[, -1]
   if (!is.null(n_folds)){
-    integer_check(k_mult)
     xvs <- rep(1:n_folds,length = nrow(data))
     xvs <- sample(xvs)
   } else if (!is.null(k_mult)){
+    integer_check(k_mult)
     features <- scale(x_data)
     xvs <- cv_cluster(features, n_folds, k_mult)
   } else {

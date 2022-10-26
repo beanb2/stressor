@@ -62,9 +62,6 @@ mlm_init <- function(formula, data, fit_models, n_models = 9999,
   class_models <- c('ada', 'dt', 'dummy', 'et', 'gbr', 'knn', 'lda', 'lightgbm',
                     'lr', 'nb', 'qda', 'rf', 'ridge', 'svm')
   # Function input checks
-  data_check(formula, data)
-  integer_check(n_models)
-  boolean_check(classification)
 
   # Function starts here
   data <- model.frame(formula = formula, data = data)

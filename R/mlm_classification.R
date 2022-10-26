@@ -1,9 +1,11 @@
 #' Fit Machine Learning Regressor Models
 #'
-#' Through the PyCaret module from python, this function fits many machine
-#'   learning models simultaneously with little to no coding on the user
-#'   part. The core function to fitting the initial models. This function is
-#'   specifically designed for the classification models.
+#' Through the \href{https://pycaret.gitbook.io/docs/get-started/quickstart#classification}{PyCaret}
+#'   module from python, this function fits many machine
+#'   learning models simultaneously with without requiring any python programing
+#'   on the part of the user. The core function to fitting the initial models.
+#'   This function is specifically designed for the classification models fitted
+#'   by PyCaret.
 #' @param formula The classification formula, as a formula object
 #' @param data A data frame object that includes the test data
 #' @param fit_models A character vector with all the possible Machine Learning
@@ -31,6 +33,9 @@
 #' @return A list object where the first entry is the models fitted and the
 #'   second is the initial predictive accuracy on the random test data. Returns
 #'   as two classes mlm_stressor and classifier
+#' @details
+#'  PyCaret is a python module. Where machine learning models can be fitted with
+#'   little coding to the user. The pipeline that PyCaret uses is that it has a
 #' @export
 mlm_classification <- function(formula, data,
                                fit_models = c('ada', 'et', 'lightgbm','dummy',

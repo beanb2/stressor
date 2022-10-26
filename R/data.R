@@ -1,11 +1,12 @@
 #' Boston Housing Data
 #'
 #' A subset of data from the Housing data for 506 census tracts of Boston from
-#'  the 1970 Census.
+#'  the 1970 Census. Original data set can be found in the
+#'  \link[mlbench:BostonHousing2]{mlbench} package.
 #'
 #' @usage data(boston)
 #' @format
-#' A data frame with 506 rows and 13 columns:
+#' A data.frame with 506 rows and 13 columns:
 #' \describe{
 #'   \item{cmedv}{corrected median value of owner-occupied homes in USD 1000's}
 #'   \item{crim}{per capita crime rate by town}
@@ -26,11 +27,11 @@
 "boston"
 
 #' @title Machine Learning Models fitted to Boston data Cross Validated
-#' @description Fitted to the Boston data set in this package to save
-#'  computational time for the vignette.
+#' @description Results from the `cv()` function on the Boston data set to save
+#'  computational time during the compiling of the vignette.
 #' @usage data(mlm_vignette_boston_cv)
 #' @format
-#'  A data frame with 18 columns and 506 rows where each column represents a
+#'  A data.frame with 18 columns and 506 rows where each column represents a
 #'  different machine learning model.
 #' \describe{
 #'   \item{ada}{AdaBoost Regressor}
@@ -56,11 +57,12 @@
 "mlm_vignette_boston_cv"
 
 #' @title Machine Learning Models fitted to Boston data with Clustering
-#' @description Fitted to the Boston data set in this package to save
-#'  computational time for the vignette.
+#' @description Results from the `cv()` function on the Boston data set, where
+#'  the `k_mult` was set to 5 to indicate clustered cross validation, to save
+#'  computational time during the compiling of the vignette.
 #'  @usage data(mlm_vignette_boston_cluster)
 #' @format
-#'  A data frame with 18 columns and 506 rows where each column represents a
+#'  A data.frame with 18 columns and 506 rows where each column represents a
 #'  different machine learning model.
 #' \describe{
 #'   \item{ada}{AdaBoost Regressor}
@@ -86,11 +88,11 @@
 "mlm_vignette_boston_cluster"
 
 #' @title Test predictive accuracy of Machine Learning Models on Boston data
-#' @description Fitted to the Boston data set with the results from the
-#'   predictive accuracy data frame returned.
+#' @description The results from the `mlm_regressor()` function where we saved
+#'  the initial predictive accuracy from the object.
 #' @usage data(mlm_vignette_boston_pred)
 #' @format
-#'  A data frame with 2 columns and 18 rows where each row is a different
+#'  A data.frame with 2 columns and 18 rows where each row is a different
 #'    machine learning model.
 #' \describe{
 #'  \item{Model}{Machine Learning Models}

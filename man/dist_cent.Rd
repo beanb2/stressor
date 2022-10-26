@@ -9,13 +9,21 @@ dist_cent(formula, data)
 \arguments{
 \item{formula}{A formula object}
 
-\item{data}{A data frame object}
+\item{data}{A data.frame object}
 }
 \value{
 A vector of distances from the center.
 }
 \description{
-Calculates the distance from center of the X parameter space.
+Calculates the distance from center of the matrix of predictor variables
+ using a euclidean distance, or the average of all x-dimensions.
+}
+\details{
+Formula used to calculate the center point:
+ \deqn{\bar{x} = \frac{1}{N}\sum_{j = 1}^N x_{ij}}
+ Where \strong{\eqn{\bar{x}}} is a vector of the center of the x-dimensions,
+ \eqn{N} is the number of rows in the matrix, and \eqn{x_{ij}} is the
+ \eqn{i,j^{th}} entry in the matrix.
 }
 \examples{
   data <- data_gen_lm(10)

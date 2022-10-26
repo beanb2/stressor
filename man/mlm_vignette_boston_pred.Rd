@@ -5,7 +5,7 @@
 \alias{mlm_vignette_boston_pred}
 \title{Test predictive accuracy of Machine Learning Models on Boston data}
 \format{
-A data frame with 2 columns and 18 rows where each row is a different
+A data.frame with 2 columns and 18 rows where each row is a different
    machine learning model.
 \describe{
  \item{Model}{Machine Learning Models}
@@ -16,7 +16,7 @@ A data frame with 2 columns and 18 rows where each row is a different
 data(mlm_vignette_boston_pred)
 }
 \description{
-Fitted to the Boston data set with the results from the
-  predictive accuracy data frame returned.
+The results from the `mlm_regressor()` function where we saved
+ the initial predictive accuracy from the object.
 }
 \keyword{datasets}

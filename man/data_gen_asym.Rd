@@ -37,8 +37,16 @@ A data frame object with the n rows and the response variable with
  weight matrix.
 }
 \description{
-Creates a synthetic data set from various parameters that represent a simple
- example of an additive \eqn{y = -e^{-x}}.
+Creates a synthetic data set for an additive asymptotic model see the details
+ section for clarification.
+}
+\details{
+Observations are generated from the following model:
+  \deqn{y = \sum_{i = 1}^n -\alpha_ie^{-\beta_i \cdot x_i} + y_{int}}
+  Where `n` is the number of parameters to be used, \eqn{\alpha_i}'s
+  are the scaling parameter and the \eqn{\beta_i}'s are the weights
+  associated with each \eqn{x_i}. With the \eqn{y_{int}} being where it
+  crosses the y-axis.
 }
 \examples{
  # Generates 10 observations

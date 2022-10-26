@@ -18,8 +18,8 @@
 #'  lm_cv <- cv_core(lm, lm_test, t_groups)
 #'  lm_cv
 #' @importFrom stats predict formula lm
-#' @export
 cv_core <- function(object, data, t_groups, ...) {
+  data_check(formula(object), data)
   curr_methods <- c("reg_sine", "reg_asym", "lm", "mlm_stressor")
   method <- class(object)[1]
   if (!is.element(method, curr_methods)){

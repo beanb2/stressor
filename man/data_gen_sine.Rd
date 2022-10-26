@@ -32,8 +32,18 @@ A data frame object with the n rows and the response variable with
  weight matrix.
 }
 \description{
-Creates a synthetic data set from various parameters that represent a simple
- example of an additive \eqn{y = asin(b(x - c))}.
+Creates a synthetic data set for an additive sinusoidal regression model see
+ the details section for clarification.
+}
+\details{
+Observations are generated from the following model:
+  \deqn{y = \sum_{i = 1}^n \alpha_i \ \sin{(\beta_i(x_i - \gamma_i)))} +
+  y_{int}}
+  Where `n` is the number of parameters to be used, \eqn{\alpha_i}'s
+  are the amplitude of each sine wave, \eqn{\beta_i}'s are the periods for
+  each sine wave and indirectly the weight on each \eqn{x_i}, and the
+  \eqn{\gamma_i}'s are the phase shift associated with each sine wave. With
+  the \eqn{y_{int}} being where it crosses the y-axis.
 }
 \examples{
  # Generates 10 observations

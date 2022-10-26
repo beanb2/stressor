@@ -7,22 +7,34 @@
 create_groups(formula, data, n_folds = 10, k_mult = NULL)
 }
 \arguments{
-\item{formula}{A formula object that fits the data}
+\item{formula}{A formula object that specifies the}
 
 \item{data}{The data that will be separated into each group}
 
 \item{n_folds}{An integer value defaulted to 10 fold cross-validation if NULL
-uses LOO instead.}
+uses Leave One Out(LOO) instead.}
 
-\item{k_mult}{When specified is passed onto the [stressor::cv_cluster()]
+\item{k_mult}{When specified is passed onto the \link[stressor]{cv_cluster}
 to fit the data into k_groups}
 }
 \value{
-A vector of the assigned groups
+A vector of the length equal to number of rows of data.frame from the
+  data argument.
 }
 \description{
 Creates groups for the data by separating them either into 10 fold cross-
   validation, LOO cross-validation, or k-means grouping.
+}
+\details{
+If `k_mult` is specified as an integer the formula object will be
+  used to help determine the features specified by the user. Which will be
+  passed to the \link[stressor]{cv_cluster} function. Which takes a scaled
+  matrix of features.
+
+  This function is called by the \link[stressor]{cv} methods as it forms the
+   groups necessary to perform the cross validation. If you were wanting to
+   use for your own use. It is nice function that separates the `data` into
+   groups for training and testing.
 }
 \examples{
  # Data generation

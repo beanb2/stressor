@@ -1,7 +1,7 @@
 #' Data Generation for Linear Regression
 #'
-#' Creates a synthetic data set from various parameters that represent a simple
-#'  example of an additive \eqn{y = mx}.
+#' Creates a synthetic data set for an additive linear model see details for
+#'  clarification.
 #' @param n The number of observations for each parameter.
 #' @param weight_vec The parameter coefficients where each entry represents the
 #'  coefficients for the additive linear model.
@@ -12,6 +12,12 @@
 #' @return A data frame object with the n rows and the response variable with
 #'  the number of parameters being equal to the number of columns from the
 #'  weight matrix.
+#' @details
+#'  Observations are generated from the following model:
+#'   \deqn{y = \sum_{i = 1}^n \alpha_i\cdot x_i + y_{int}}
+#'   Where `n` is the number of parameters to be used and the \eqn{\alpha_i}'s
+#'   are the weights associated with each \eqn{x_i}. With the \eqn{y_{int}}
+#'   being where it crosses the y-axis.
 #' @examples
 #'  # Generates 10 observations
 #'  lm_data <- data_gen_lm(10)
@@ -20,6 +26,12 @@
 #' @export
 data_gen_lm <- function(n, weight_vec = rep(1, 5), y_int = 0,
                         resp_sd = 1, ...) {
+  # User input check
+  integer_check(n)
+  vector_check(weight_vec)
+  numeric_check(y_int)
+  numeric_check(resp_sd)
+
   # This chunk makes the predictor variables
   vec_1 <- rnorm(n * length(weight_vec))
   vec_1 <- matrix(vec_1, nrow = n, ncol = length(weight_vec))

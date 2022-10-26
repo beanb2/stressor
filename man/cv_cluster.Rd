@@ -8,7 +8,7 @@ cv_cluster(features, k, k_mult = 5, ...)
 }
 \arguments{
 \item{features}{A scaled matrix of features to be used in the clustering.
-Scaling usually done with [base::scale()] and should not include the
+Scaling usually done with \link[base]{scale} and should not include the
 predictor variable.}
 
 \item{k}{The number of partitions for k-fold cross validation.}
@@ -16,7 +16,7 @@ predictor variable.}
 \item{k_mult}{k*k_mult determines the number of subgroups that will be
 created as part of the balancing algorithm.}
 
-\item{...}{Additional arguments passed to [stats::kmeans()] as needed.}
+\item{...}{Additional arguments passed to \link[stats]{kmeans} as needed.}
 }
 \description{
 This function creates cluster-based partitions of a sample space based on
@@ -24,7 +24,7 @@ This function creates cluster-based partitions of a sample space based on
   to produce clusters of roughly equal size.
 }
 \examples{
- # Creating an X space
+ # Creating a matrix of predictor variables
  x_data <- base::scale(data_gen_lm(30)[, -1])
  groups <- cv_cluster(x_data, 5, k_mult = 5)
  groups

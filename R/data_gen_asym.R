@@ -1,7 +1,7 @@
 #' Data Generation Asymptotic
 #'
-#' Creates a synthetic data set from various parameters that represent a simple
-#'  example of an additive \eqn{y = -e^{-x}}.
+#' Creates a synthetic data set for an additive asymptotic model see the details
+#'  section for clarification.
 #' @param n The number of observations for each parameter.
 #' @param weight_mat The parameter coefficients where each column represents
 #'  the coefficients and is two rows as each additive equation contains two
@@ -16,6 +16,13 @@
 #' @return A data frame object with the n rows and the response variable with
 #'  the number of parameters being equal to the number of columns from the
 #'  weight matrix.
+#' @details
+#'  Observations are generated from the following model:
+#'   \deqn{y = \sum_{i = 1}^n -\alpha_ie^{-\beta_i \cdot x_i} + y_{int}}
+#'   Where `n` is the number of parameters to be used, \eqn{\alpha_i}'s
+#'   are the scaling parameter and the \eqn{\beta_i}'s are the weights
+#'   associated with each \eqn{x_i}. With the \eqn{y_{int}} being where it
+#'   crosses the y-axis.
 #' @examples
 #'  # Generates 10 observations
 #'  asym_data <- data_gen_asym(10)
@@ -25,6 +32,13 @@
 data_gen_asym <- function(n, weight_mat = matrix(rlnorm(10), nrow = 2,
                                                  ncol = 5),
                           y_int = 0, resp_sd = 1, window = .00001, ...) {
+  # User input checks
+  integer_check(n)
+  matrix_check(weight_mat)
+  numeric_check(y_int)
+  numeric_check(resp_sd)
+  numeric_check(window)
+
   # Produce the Predictor variables
   vec_1 <- matrix(0, nrow = n, ncol = ncol(weight_mat))
   # Include the window parameter to capture

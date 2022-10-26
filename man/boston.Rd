@@ -5,7 +5,7 @@
 \alias{boston}
 \title{Boston Housing Data}
 \format{
-A data frame with 506 rows and 13 columns:
+A data.frame with 506 rows and 13 columns:
 \describe{
   \item{cmedv}{corrected median value of owner-occupied homes in USD 1000's}
   \item{crim}{per capita crime rate by town}
@@ -30,6 +30,7 @@ data(boston)
 }
 \description{
 A subset of data from the Housing data for 506 census tracts of Boston from
- the 1970 Census.
+ the 1970 Census. Original data set can be found in the
+ \link[mlbench:BostonHousing2]{mlbench} package.
 }
 \keyword{datasets}

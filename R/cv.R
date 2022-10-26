@@ -12,13 +12,10 @@
 #'   to NULL.
 #' @return If the object is of class mlm_stressor then a data frame will be
 #'   returned otherwise a vector of the predictions will be returned.
-#' @examples
-#'  lm_test <- data_gen_lm(10)
-#'  lm <- lm(Y ~ ., lm_test)
-#'  lm_cv <- cv(lm, lm_test)
-#'  lm_cv
 #' @export
 cv <- function(object, data, n_folds = 10, k_mult = NULL) {
+  data_check(formula(object), data)
+  integer_check(n_folds)
   UseMethod("cv")
 }
 

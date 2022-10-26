@@ -5,7 +5,7 @@
 \alias{mlm_vignette_boston_cluster}
 \title{Machine Learning Models fitted to Boston data with Clustering}
 \format{
-A data frame with 18 columns and 506 rows where each column represents a
+A data.frame with 18 columns and 506 rows where each column represents a
  different machine learning model.
 \describe{
   \item{ada}{AdaBoost Regressor}
@@ -32,8 +32,9 @@ A data frame with 18 columns and 506 rows where each column represents a
 mlm_vignette_boston_cluster
 }
 \description{
-Fitted to the Boston data set in this package to save
- computational time for the vignette.
+Results from the `cv()` function on the Boston data set, where
+ the `k_mult` was set to 5 to indicate clustered cross validation, to save
+ computational time during the compiling of the vignette.
  @usage data(mlm_vignette_boston_cluster)
 }
 \keyword{datasets}

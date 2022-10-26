@@ -4,15 +4,15 @@
 #'   k-means clustering. Included in the function are algorithms that attempt
 #'   to produce clusters of roughly equal size.
 #' @param features A scaled matrix of features to be used in the clustering.
-#'   Scaling usually done with [base::scale()] and should not include the
+#'   Scaling usually done with \link[base]{scale} and should not include the
 #'   predictor variable.
 #' @param k The number of partitions for k-fold cross validation.
 #' @param k_mult k*k_mult determines the number of subgroups that will be
 #'   created as part of the balancing algorithm.
-#' @param ... Additional arguments passed to [stats::kmeans()] as needed.
+#' @param ... Additional arguments passed to \link[stats]{kmeans} as needed.
 #' @importFrom stats kmeans
 #' @examples
-#'  # Creating an X space
+#'  # Creating a matrix of predictor variables
 #'  x_data <- base::scale(data_gen_lm(30)[, -1])
 #'  groups <- cv_cluster(x_data, 5, k_mult = 5)
 #'  groups
@@ -26,6 +26,7 @@ cv_cluster <- function(features, k, k_mult = 5, ...){
   if(k_mult < 2){
     stop("k_mult must be 2 or greater (and preferably at least 5")
   }
+  matrix_check(features)
 
   n <- nrow(features)
 

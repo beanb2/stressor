@@ -7,7 +7,9 @@
 create_virtualenv(python = Sys.which("python"), delete_env = FALSE)
 }
 \arguments{
-\item{python}{Defaults to your install of python, prefer 3.8.10}
+\item{python}{Defaults to your install of python, prefer 3.8.10. This is
+assuming that you installed python from python.org. Currently Anaconda
+installations of python are not implemented.}
 
 \item{delete_env}{Boolean value to indicate if the environments need to be
 deleted.}
@@ -16,10 +18,14 @@ deleted.}
 A message indicating which environment is being used.
 }
 \description{
-Allows the user to create a stressor python environment with pycaret
-  installed on the environment. This function takes into account that
+Allows the user to create a stressor python environment with PyCaret
+  installed on the environment. This function assumes that
   you have properly installed python. We recommend version 3.8.10. Uses
   existing stressor environments.
+}
+\details{
+To install python, It is recommended using Python version 3.8.10 from
+ \href{https://www.python.org/downloads/release/python-3810/}{python.org}.
 }
 \examples{
  create_virtualenv()

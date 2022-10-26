@@ -25,8 +25,15 @@ A data frame object with the n rows and the response variable with
  weight matrix.
 }
 \description{
-Creates a synthetic data set from various parameters that represent a simple
- example of an additive \eqn{y = mx}.
+Creates a synthetic data set for an additive linear model see details for
+ clarification.
+}
+\details{
+Observations are generated from the following model:
+  \deqn{y = \sum_{i = 1}^n \alpha_i\cdot x_i + y_{int}}
+  Where `n` is the number of parameters to be used and the \eqn{\alpha_i}'s
+  are the weights associated with each \eqn{x_i}. With the \eqn{y_{int}}
+  being where it crosses the y-axis.
 }
 \examples{
  # Generates 10 observations

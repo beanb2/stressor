@@ -12,7 +12,9 @@
 #' @return A message indicating which environment is being used.
 #' @details
 #'  To install python, It is recommended using Python version 3.8.10 from
-#'  \href{https://www.python.org/downloads/release/python-3810/}{python.org}.
+#'  \href{https://www.python.org/downloads/release/python-3810/}{python.org}, as
+#'  this is the same version recommended by PyCaret as it is the most stable.
+#'  Users have reported troubles using the Anaconda distribution of python.
 #' @examples
 #'  create_virtualenv()
 #' @export

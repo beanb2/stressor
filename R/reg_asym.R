@@ -43,6 +43,7 @@ asym_function <- function(estimated, X, Y) {
   error <- sum((Y_pred - Y)^2, na.rm=TRUE)
   error
 }
+# Check to see if there is a command to exclude from the help page
 
 #' @title Gradient Asymptotic Function used for Optim
 #' @description This is the gradient function used for the [stats::optim()] for

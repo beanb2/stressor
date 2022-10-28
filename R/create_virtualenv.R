@@ -21,7 +21,7 @@
 create_virtualenv <- function(python = Sys.which('python'),
                               delete_env = FALSE) {
   if (Sys.getenv("RETICULATE_PYTHON") != "") {
-    Sys.setenv("RETICULATE_PYTHON" = "")
+    python = Sys.getenv("RETICULATE_PYTHON")
   }
   if (is.null(python)) {
     stop("No python found on this computer. If installed try testing your

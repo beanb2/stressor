@@ -42,7 +42,7 @@ data_check <- function(formula, data, train_data = NULL) {
 #' @param integer An integer value
 #' @return Allows the function to run or returns a user friendly error message.
 integer_check <- function(integer) {
-  if (!is.integer(integer)) {
+  if (integer %% 1 != 0) {
     stop("Value provided is not an integer.")
   }
 }

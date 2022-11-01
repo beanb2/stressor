@@ -1,7 +1,7 @@
 #' Asymptotic Regression
 #'
 #' A simple example of asymptotic regression that is in the form of
-#'  \eqn{y = -e^{-x}} and is the sum of of multiple of these exponential
+#'  \eqn{y = -e^{-x}} and is the sum of multiple of these exponential
 #'  functions with a common intercept term.
 #' @param formula A formula object to describe the relationship.
 #' @param data The response and predictor variables.
@@ -30,26 +30,30 @@ reg_asym <- function(formula, data, method = "BFGS",
   obj
 }
 
-#' @title Asymptotic function for the optimize function
-#' @description It returns the loss of the additive sinusoidal function for the
-#'   [stats::optim()] function.
+#' @title Asymptotic function for an optimize function
+#' @description It returns the loss of the additive asymptotic function for the
+#'   \link[stats]{optim} function.
 #' @inheritParams asym_yhat
 #' @param Y A vector of the observed results used to calculate the Loss
 #'   function.
 #' @return A numeric value representing the error with the current parameter
-#'   estimates.
+#'   estimates. Evaluates the \eqn{\sum_{i = 1}^n y_i - \hat{y_i}}, which is the
+#'   mean squared error.
+#' @details This function can be used if you believe that your data has
+#'   asymptotic behavior.
+#' @noRd
 asym_function <- function(estimated, X, Y) {
   Y_pred <- asym_yhat(estimated, X)
-  error <- sum((Y_pred - Y)^2, na.rm=TRUE)
+  error <- sum((Y - Y_pred)^2, na.rm=TRUE)
   error
 }
-# Check to see if there is a command to exclude from the help page
 
 #' @title Gradient Asymptotic Function used for Optim
-#' @description This is the gradient function used for the [stats::optim()] for
-#'  the `"BFGS"` optimization of optim.
+#' @description This is the gradient function used for the \link[stats]{optim}
+#'  for the `"BFGS"` optimization of optim.
 #' @inheritParams asym_function
 #' @return The gradient of the loss with the current parameter estimates
+#' @noRd
 asym_gradient <- function(estimated, X, Y) {
   Y_pred <- asym_yhat(estimated, X)
   vec_2 <- vector(length = length(estimated))
@@ -67,11 +71,15 @@ asym_gradient <- function(estimated, X, Y) {
 
 #' @title Predictions for the Additive Asymptotic Model
 #' @description Fits the Additive Sinusoidal model with the current coefficients
-#'   and the current predictor space.
+#'   and the current predictor variables
 #' @param estimated A vector of the current guesses on the coefficients of the
 #'   model.
-#' @param X A matrix of the predictor space
+#' @param X A matrix of the predictor variables
 #' @return A vector of predictions from the model
+#' @details When you want predictions from the model use `asym_yhat` if you want
+#'  the loss then use the `asym_func` as `optim` requires that function returns
+#'  the loss value.
+#' @noRd
 asym_yhat <- function(estimated, X) {
   vec_2 <- X
   est_mat <- matrix(estimated[-length(estimated)], nrow = 2, ncol = ncol(X))

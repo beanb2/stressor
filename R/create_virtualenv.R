@@ -80,3 +80,6 @@ create_virtualenv <- function(python = Sys.which('python'),
     stop("ERROR:: No Virtual Environments exist!")
   }
 }
+
+# MAC users need an additional package to install a package from PyCaret. Might
+#  could leverage Sys.info() function.

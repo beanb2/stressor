@@ -58,8 +58,8 @@
 
 #' @title Machine Learning Models fitted to Boston data with Clustering
 #' @description Results from the `cv()` function on the Boston data set, where
-#'  the `k_mult` was set to 5 to indicate clustered cross validation, to save
-#'  computational time during the compiling of the vignette.
+#'  the `k_mult` was set to 5 to indicate clustered cross validation with five
+#'  groups, to save computational time during the compiling of the vignette.
 #'  @usage data(mlm_vignette_boston_cluster)
 #' @format
 #'  A data.frame with 18 columns and 506 rows where each column represents a

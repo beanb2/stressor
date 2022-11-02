@@ -8,6 +8,7 @@
 #'  as inputs.
 #' @returns Stops the function from continuing it's output by displaying an
 #'  error message or nothing is returned.
+#' @noRd
 data_check <- function(formula, data, train_data = NULL) {
   if (!inherits(formula, "formula")) {
     stop("The formula object must be of class formula and in the form
@@ -41,6 +42,7 @@ data_check <- function(formula, data, train_data = NULL) {
 #' @description A helper function to check if value is an integer
 #' @param integer An integer value
 #' @return Allows the function to run or returns a user friendly error message.
+#' @noRd
 integer_check <- function(integer) {
   if (integer %% 1 != 0) {
     stop("Value provided is not an integer.")
@@ -51,6 +53,7 @@ integer_check <- function(integer) {
 #' @description A helper function to check if value is an numeric
 #' @param numeric A numeric value
 #' @return Allows the function to run or returns a user friendly error message.
+#' @noRd
 numeric_check <- function(numeric) {
   if (!is.numeric(numeric)) {
     stop("Value provided is not a numeric value")
@@ -61,6 +64,7 @@ numeric_check <- function(numeric) {
 #' @description A helper function to check if the matrix is properly formatted
 #' @param matrix A matrix
 #' @return Allows the function to run or returns a user friendly error message.
+#' @noRd
 matrix_check <- function(matrix) {
   if (!inherits(matrix, "matrix")) {
     stop("Not a matrix object.")
@@ -74,6 +78,7 @@ matrix_check <- function(matrix) {
 #' @description A helper function to check if the vector is properly formatted
 #' @param vector A vector
 #' @return Allows the function to run or returns a user friendly error message.
+#' @noRd
 vector_check <- function(vector) {
   if (!is.vector(vector)) {
     stop("Not a vector.")
@@ -87,6 +92,7 @@ vector_check <- function(vector) {
 #' @description A helper function to check if value is a Boolean value.
 #' @param boolean A Boolean value
 #' @return Allows the function to run or returns a user friendly error message.
+#' @noRd
 boolean_check <- function(boolean) {
   if (!is.logical(boolean)) {
     stop("Value provided is not a Boolean value.")

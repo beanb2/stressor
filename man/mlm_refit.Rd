@@ -7,8 +7,7 @@
 mlm_refit(mlm_object, train_data, test_data, classification = FALSE)
 }
 \arguments{
-\item{mlm_object}{The returned object from either [stressor::mlm_regressor()]
-or [stressor::mlm_classification].}
+\item{mlm_object}{A `"mlm_stressor"` object.}
 
 \item{train_data}{A data.frame object used for refitting excludes the test
 data. Can be `NULL` to allow for predictions to be used on the current
@@ -21,10 +20,11 @@ methods need to be used to refit the data.}
 }
 \value{
 A matrix with the predictions of the various machine learning
-  methods.
+  methods. Will also declare global variables with the heading of
+  `"refit_mlm_`, these are needed for the python code to execute.
 }
 \description{
-Refits models fitted in the [stressor::mlm_init()], and returns the
+Refits models fitted in the \link[stressor]{mlm_init()}, and returns the
  predictions.
 }
 \examples{

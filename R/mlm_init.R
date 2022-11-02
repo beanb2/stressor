@@ -1,9 +1,12 @@
 #' Compare Machine Learning Models
 #'
-#' Through the PyCaret module from python, this function fits many machine
-#'   learning models simultaneously with little to no coding on the user
-#'   part. The core function to fitting the initial models.
-#' @param formula The regression formula or classification formula
+#' Through the \href{https://pycaret.gitbook.io/docs/get-started/quickstart}{PyCaret}
+#'   module from python, this function fits many machine
+#'   learning models simultaneously with without requiring any python
+#'   programming on the part of the user. The core function to fitting the
+#'   initial models. This function is the backbone to fitting all the models.
+#' @param formula The regression formula or classification formula. This formula
+#'  should be linear.
 #' @param data A data.frame object that includes the test data
 #' @param fit_models A character vector with all the possible Machine Learning
 #'   regressors that are currently being fit, the user may specify a subset of
@@ -28,7 +31,7 @@
 #'     rf \tab Random Forest Regressor\cr
 #'     ridge \tab Ridge Regression
 #'   }
-#'  If classification is set to TRUE, these models can be used depending on user
+#'  If classification is set to `TRUE`, these models can be used depending on user
 #'  specified but these are the default values for classification:
 #'   \tabular{rl}{
 #'     ada \tab AdaBoost Classifier \cr
@@ -51,7 +54,17 @@
 #'   methods should be used.
 #' @param ... Additional arguments passed to the setup function in PyCaret
 #' @return A list object that contains all the fitted models and the CV
-#'   predictive accuracy.
+#'   predictive accuracy. With a class attribute of `"mlm_stressor"`
+#' @details The formula should be linear, however, that does not imply a linear
+#'   fit. The formula is a simply a convenient way to separate predictor
+#'   variables from explanatory variables.
+#'
+#'   PyCaret is a python module. Where machine learning models can be fitted with
+#'   little coding by the user. The pipeline that PyCaret uses is that it has a
+#'   setup function to parameterize the data that is easy for all the models to
+#'   fit on. Then compare models function is executed which fits all the models
+#'   that are currently available. This process takes less than five minutes for
+#'   data.frame objects that are less than 10,000 rows.
 #' @importFrom stats model.frame terms
 mlm_init <- function(formula, data, fit_models, n_models = 9999,
                         classification = FALSE, ...) {

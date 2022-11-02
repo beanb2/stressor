@@ -34,13 +34,12 @@ reg_asym <- function(formula, data, method = "BFGS",
 #' @description It returns the loss of the additive asymptotic function for the
 #'   \link[stats]{optim} function.
 #' @inheritParams asym_yhat
-#' @param Y A vector of the observed results used to calculate the Loss
+#' @param Y A vector of the observed results used to calculate the loss
 #'   function.
 #' @return A numeric value representing the error with the current parameter
 #'   estimates. Evaluates the \eqn{\sum_{i = 1}^n y_i - \hat{y_i}}, which is the
 #'   mean squared error.
-#' @details This function can be used if you believe that your data has
-#'   asymptotic behavior.
+#' @details This function is solely for the purpose of optim function.
 #' @noRd
 asym_function <- function(estimated, X, Y) {
   Y_pred <- asym_yhat(estimated, X)
@@ -106,6 +105,7 @@ asym_yhat <- function(estimated, X) {
 #'   function.
 #' @inherit stats::optim return
 #' @importFrom stats optim
+#' @noRd
 asym_optimize <- function(init_guess, X, Y, method, ...) {
   opt <- optim(init_guess, fn = asym_function, gr = asym_gradient,
                method = method, X, Y, ...)

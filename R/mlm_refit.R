@@ -1,9 +1,8 @@
 #' Refit Machine Learning Models
 #'
-#' Refits models fitted in the [stressor::mlm_init()], and returns the
+#' Refits models fitted in the \link[stressor]{mlm_init()}, and returns the
 #'  predictions.
-#' @param mlm_object The returned object from either [stressor::mlm_regressor()]
-#'  or [stressor::mlm_classification].
+#' @param mlm_object A `"mlm_stressor"` object.
 #' @param train_data A data.frame object used for refitting excludes the test
 #'   data. Can be `NULL` to allow for predictions to be used on the current
 #'   model.
@@ -11,7 +10,8 @@
 #' @param classification A Boolean value used to represent if classification
 #'   methods need to be used to refit the data.
 #' @return A matrix with the predictions of the various machine learning
-#'   methods.
+#'   methods. Will also declare global variables with the heading of
+#'   `"refit_mlm_`, these are needed for the python code to execute.
 #' @examples
 #'  lm_train <- data_gen_lm(10)
 #'  train_idx <- sample.int(10, 2)

@@ -1,11 +1,13 @@
 #' Fit Machine Learning Regressor Models
 #'
-#' Through the pycaret module from python, this function fits many machine
-#'   learning models simultaneously with little to no coding on the user
-#'   part. The core function to fitting the initial models. This function is
+#' Through the \href{https://pycaret.gitbook.io/docs/get-started/quickstart#regression}{PyCaret}
+#'   module from python, this function fits many machine
+#'   learning models simultaneously with without requiring any python
+#'   programming on the part of the user. The core function to fitting the
+#'   initial models. This function is
 #'   specifically designed for the regression models.
-#' @param formula The regression formula, as a formula object
-#' @param data A data frame object that includes the test data
+#' @param formula A linear formula object
+#' @param data A data.frame object that includes the test data
 #' @param fit_models A character vector with all the possible Machine Learning
 #'   regressors that are currently being fit, the user may specify a subset of
 #'   them using a character vector.
@@ -33,14 +35,15 @@
 #'   return all possible models.
 #' @param example A Boolean value used for checks for examples to run defaulted
 #'   to `FALSE`
-#' @param ... additional arguments passed onto [stressor::mlm_init()]
+#' @param ... additional arguments passed onto \link[stressor]{mlm_init()}
 #' @return A list object where the first entry is the models fitted and the
 #'   second is the initial predictive accuracy on the random test data. Returns
-#'   as two classes mlm_stressor and regressor
+#'   as two classes `"mlm_stressor"` and `"regressor"`
 #' @examples
 #'  lm_test <- data_gen_lm(10)
 #'  create_virtualenv()
 #'  mlm_lm <- mlm_regressor(Y ~ ., lm_test, example = TRUE)
+#' @inherit mlm_classification details
 #' @export
 mlm_regressor <- function(formula, data,
                           fit_models = c('ada', 'et', 'lightgbm','gbr',

@@ -1,11 +1,11 @@
-#' Fit Machine Learning Regressor Models
+#' Fit Machine Learning Classification Models
 #'
 #' Through the \href{https://pycaret.gitbook.io/docs/get-started/quickstart#classification}{PyCaret}
 #'   module from python, this function fits many machine
-#'   learning models simultaneously with without requiring any python programing
-#'   on the part of the user. The core function to fitting the initial models.
-#'   This function is specifically designed for the classification models fitted
-#'   by PyCaret.
+#'   learning models simultaneously with without requiring any python
+#'   programming on the part of the user. The core function to fitting the
+#'   initial models. This function is specifically designed for the
+#'   classification models fitted by PyCaret.
 #' @param formula The classification formula, as a formula object
 #' @param data A data frame object that includes the test data
 #' @param fit_models A character vector with all the possible Machine Learning
@@ -32,10 +32,14 @@
 #' @param ... additional arguments passed onto \link[stressor]{mlm_init}
 #' @return A list object where the first entry is the models fitted and the
 #'   second is the initial predictive accuracy on the random test data. Returns
-#'   as two classes mlm_stressor and classifier
+#'   as two classes `"mlm_stressor"` and `"classifier"`
 #' @details
 #'  PyCaret is a python module. Where machine learning models can be fitted with
-#'   little coding to the user. The pipeline that PyCaret uses is that it has a
+#'   little coding by the user. The pipeline that PyCaret uses is that it has a
+#'   setup function to parameterize the data that is easy for all the models to
+#'   fit on. Then compare models function is executed which fits all the models
+#'   that are currently available. This process takes less than five minutes for
+#'   data.frame objects that are less than 10,000 rows.
 #' @export
 mlm_classification <- function(formula, data,
                                fit_models = c('ada', 'et', 'lightgbm','dummy',

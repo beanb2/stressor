@@ -31,7 +31,7 @@ A "reg_asym" object is returned which contains the results from the
 }
 \description{
 A simple example of asymptotic regression that is in the form of
- \eqn{y = -e^{-x}} and is the sum of of multiple of these exponential
+ \eqn{y = -e^{-x}} and is the sum of multiple of these exponential
  functions with a common intercept term.
 }
 \examples{

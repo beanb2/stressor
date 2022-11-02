@@ -2,7 +2,7 @@
 % Please edit documentation in R/mlm_classification.R
 \name{mlm_classification}
 \alias{mlm_classification}
-\title{Fit Machine Learning Regressor Models}
+\title{Fit Machine Learning Classification Models}
 \usage{
 mlm_classification(
   formula,
@@ -46,11 +46,21 @@ return all possible models.}
 \value{
 A list object where the first entry is the models fitted and the
   second is the initial predictive accuracy on the random test data. Returns
-  as two classes mlm_stressor and classifier
+  as two classes `"mlm_stressor"` and `"classifier"`
 }
 \description{
-Through the PyCaret module from python, this function fits many machine
-  learning models simultaneously with little to no coding on the user
-  part. The core function to fitting the initial models. This function is
-  specifically designed for the classification models.
+Through the \href{https://pycaret.gitbook.io/docs/get-started/quickstart#classification}{PyCaret}
+  module from python, this function fits many machine
+  learning models simultaneously with without requiring any python
+  programming on the part of the user. The core function to fitting the
+  initial models. This function is specifically designed for the
+  classification models fitted by PyCaret.
+}
+\details{
+PyCaret is a python module. Where machine learning models can be fitted with
+  little coding by the user. The pipeline that PyCaret uses is that it has a
+  setup function to parameterize the data that is easy for all the models to
+  fit on. Then compare models function is executed which fits all the models
+  that are currently available. This process takes less than five minutes for
+  data.frame objects that are less than 10,000 rows.
 }

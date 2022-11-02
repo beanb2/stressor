@@ -15,9 +15,9 @@ mlm_regressor(
 )
 }
 \arguments{
-\item{formula}{The regression formula, as a formula object}
+\item{formula}{A linear formula object}
 
-\item{data}{A data frame object that includes the test data}
+\item{data}{A data.frame object that includes the test data}
 
 \item{fit_models}{A character vector with all the possible Machine Learning
 regressors that are currently being fit, the user may specify a subset of
@@ -49,18 +49,28 @@ return all possible models.}
 \item{example}{A Boolean value used for checks for examples to run defaulted
 to `FALSE`}
 
-\item{...}{additional arguments passed onto [stressor::mlm_init()]}
+\item{...}{additional arguments passed onto \link[stressor]{mlm_init()}}
 }
 \value{
 A list object where the first entry is the models fitted and the
   second is the initial predictive accuracy on the random test data. Returns
-  as two classes mlm_stressor and regressor
+  as two classes `"mlm_stressor"` and `"regressor"`
 }
 \description{
-Through the pycaret module from python, this function fits many machine
-  learning models simultaneously with little to no coding on the user
-  part. The core function to fitting the initial models. This function is
+Through the \href{https://pycaret.gitbook.io/docs/get-started/quickstart#regression}{PyCaret}
+  module from python, this function fits many machine
+  learning models simultaneously with without requiring any python
+  programming on the part of the user. The core function to fitting the
+  initial models. This function is
   specifically designed for the regression models.
+}
+\details{
+PyCaret is a python module. Where machine learning models can be fitted with
+  little coding by the user. The pipeline that PyCaret uses is that it has a
+  setup function to parameterize the data that is easy for all the models to
+  fit on. Then compare models function is executed which fits all the models
+  that are currently available. This process takes less than five minutes for
+  data.frame objects that are less than 10,000 rows.
 }
 \examples{
  lm_test <- data_gen_lm(10)

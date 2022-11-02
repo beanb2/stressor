@@ -31,12 +31,14 @@ reg_sine <- function(formula, data, method = "BFGS",
 
 #' @title Sine function for the optimize function
 #' @description It returns the loss of the additive sinusoidal function for the
-#'   [stats::optim()] function.
+#'   \link[stats]{optim()} function.
 #' @inheritParams sine_yhat
-#' @param Y A vector of the observed results used to calculate the Loss
+#' @param Y A vector of the observed results used to calculate the loss
 #'   function.
 #' @return A numeric value representing the error with the current parameter
 #'   estimates.
+#' @details This function is solely for the purpose of optim function.
+#' @noRd
 sine_function <- function(estimated, X, Y) {
   Y_pred <- sine_yhat(estimated, X)
   error <- sum((Y_pred - Y)^2, na.rm=TRUE)
@@ -48,8 +50,12 @@ sine_function <- function(estimated, X, Y) {
 #'   and the current predictor space.
 #' @param estimated A vector of the current guesses on the coefficients of the
 #'   model.
-#' @param X A matrix of the predictor space
+#' @param X A matrix of the predictor variables
 #' @return A vector of predictions from the model
+#' @details When you want predictions from the model use `sine_yhat` if you want
+#'  the loss then use the `sine_func` as `optim` requires that function returns
+#'  the loss value.
+#' @noRd
 sine_yhat <- function(estimated, X) {
   vec_2 <- X
   cols <- ncol(X)
@@ -79,10 +85,11 @@ sine_yhat <- function(estimated, X) {
 }
 
 #' @title Gradient Sine Function used for Optim
-#' @description This is the gradient function used for the [stats::optim()] for
-#'  the `"BFGS"` optimization of optim.
+#' @description This is the gradient function used for the \link[stats]{optim()}
+#'  for the `"BFGS"` optimization of optim.
 #' @inheritParams sine_function
-#' @return The gradient of the loss with the current parameter estimates
+#' @return The gradient of the loss with the current parameter estimates.
+#' @noRd
 sine_gradient <- function(estimated, X, Y) {
   vec_2 <- vector("numeric", length = length(estimated))
   Y_pred <- sine_yhat(estimated, X)
@@ -102,19 +109,19 @@ sine_gradient <- function(estimated, X, Y) {
 }
 
 #' @title Optim function for the Additive Sinusoidal Regression Model
-#' @description Utilizes the [stats::optim()] function to perform the
+#' @description Utilizes the \link[stats]{optim()} function to perform the
 #'   optimization of the curve.
 #' @param init_guess The initial parameter guesses for the optim function, by
 #'  default it is all ones.
-#' @param X A matrix of the predictor space
+#' @param X A matrix of the predictor variables
 #' @param Y A vector of the observed results used to calculate the Loss
 #'   function.
 #' @param method The method to be used. See method in
-#'   \code{\link[stats]{optim}}.
-#' @param ... Additional arguments passed to the \code{\link[stats]{optim}}
-#'   function.
+#'   \link[stats]{optim}.
+#' @param ... Additional arguments passed to the \link[stats]{optim} function.
 #' @inherit stats::optim return
 #' @importFrom stats optim
+#' @noRd
 sine_optimize <- function(init_guess, X, Y, method, ...) {
   opt <- optim(init_guess, fn = sine_function,
                gr = sine_gradient, method = method, X, Y, ...)

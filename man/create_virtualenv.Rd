@@ -28,6 +28,12 @@ To install python, It is recommended using Python version 3.8.10 from
  \href{https://www.python.org/downloads/release/python-3810/}{python.org}, as
  this is the same version recommended by PyCaret as it is the most stable.
  Users have reported troubles using the Anaconda distribution of python.
+
+ For MacOS and Linux Users note that in order to run this package, `LightGBM`
+ package on python requires the install of an additional compiler `cmake` and
+ the `libomp` (Open Multi-Processing interface). Troubleshoot link from the
+ `LightGBM`documentation
+ \href{https://lightgbm.readthedocs.io/en/latest/Installation-Guide.html}{here}.
 }
 \examples{
  create_virtualenv()

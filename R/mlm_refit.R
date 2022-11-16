@@ -45,9 +45,9 @@ mlm_refit <- function(mlm_object, train_data, test_data,
     train_data <- model.frame(formula(mlm_object), train_data)
 
     # For the python file to execute
-    refit_mlm_X <<- train_data[, -1]
-    refit_mlm_y <<- train_data[, 1]
-    refit_mlm_test <<- test_data
+    refit_mlm_X <<- as.matrix(train_data[, -1])
+    refit_mlm_y <<- as.matrix(train_data[, 1])
+    refit_mlm_test <<- test_data[, -1]
     for (i in seq_len(length(mlm_object$models))) {
       refit_mlm_temp <<- mlm_object$models[[i]]
       reticulate::source_python(file)

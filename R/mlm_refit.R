@@ -51,7 +51,7 @@ mlm_refit <- function(mlm_object, train_data, test_data,
     for (i in seq_len(length(mlm_object$models))) {
       refit_mlm_temp <<- mlm_object$models[[i]]
       reticulate::source_python(file)
-      prediction_mlm[, i] <- predictions[, "Label"]
+      prediction_mlm[, i] <- predictions
     }
   } else {
     # Import PyCaret Predict

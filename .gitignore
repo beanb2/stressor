@@ -41,3 +41,5 @@ vignettes/*.pdf
 # PyCaret Files
 *.pkl
 inst/doc
+catboost_info
+lightgbm.model

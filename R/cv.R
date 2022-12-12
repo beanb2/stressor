@@ -10,10 +10,12 @@
 #'   NULL, it will run LOO cross validation.
 #' @param k_mult Used to specify if k-means clustering is to be used, defaulted
 #'   to NULL.
+#' @param repl A Boolean value defaulted to `FALSE`, change to `TRUE` when
+#'   replicates need to be included in the same group.
 #' @return If the object is of class mlm_stressor then a data frame will be
 #'   returned otherwise a vector of the predictions will be returned.
 #' @export
-cv <- function(object, data, n_folds = 10, k_mult = NULL) {
+cv <- function(object, data, n_folds = 10, k_mult = NULL, repl = FALSE) {
   data_check(formula(object), data)
   integer_check(n_folds)
   UseMethod("cv")

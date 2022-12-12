@@ -102,6 +102,8 @@ cv_cluster <- function(features, k, k_mult = 5, ...){
 
 }
 
+# TODO: Give user option to submit a custom dist matrix
+
 
 
 # TODO: Current Approach leaves one group out of balance, the rest above average.

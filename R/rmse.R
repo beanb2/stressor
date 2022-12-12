@@ -18,7 +18,7 @@ rmse <- function(predictions, observed) {
   } else {
     rmse <- vector("numeric", length = ncol(predictions))
     for (i in seq_len(ncol(predictions))) {
-      rmse[i] <- sqrt(sum((observed - predictions[, i])^2) / nrow(predictions))
+      rmse[i] <- sqrt(mean((observed - predictions[, i])^2))
     }
     models <- colnames(predictions)
     rmse <- data.frame(models, rmse)

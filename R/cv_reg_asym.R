@@ -7,10 +7,11 @@
 #'  cv(asym_fit, asym_data, n_folds = 5)
 #'
 #' @export
-cv.reg_asym <- function(object, data, n_folds = 10, k_mult = NULL) {
+cv.reg_asym <- function(object, data, n_folds = 10, k_mult = NULL,
+                        repl = FALSE) {
   data_check(formula(object), data)
   integer_check(n_folds)
-  groups <- create_groups(formula(object), data, n_folds, k_mult)
+  groups <- create_groups(formula(object), data, n_folds, k_mult, repl)
   predictions <- cv_core(object, data, groups)
   predictions
 }

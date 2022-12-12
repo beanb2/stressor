@@ -9,15 +9,15 @@
 \alias{cv.reg_sine}
 \title{Cross Validation}
 \usage{
-cv(object, data, n_folds = 10, k_mult = NULL)
+cv(object, data, n_folds = 10, k_mult = NULL, repl = FALSE)
 
-\method{cv}{lm}(object, data, n_folds = 10, k_mult = NULL)
+\method{cv}{lm}(object, data, n_folds = 10, k_mult = NULL, repl = FALSE)
 
-\method{cv}{mlm_stressor}(object, data, n_folds = 10, k_mult = NULL)
+\method{cv}{mlm_stressor}(object, data, n_folds = 10, k_mult = NULL, repl = FALSE)
 
-\method{cv}{reg_asym}(object, data, n_folds = 10, k_mult = NULL)
+\method{cv}{reg_asym}(object, data, n_folds = 10, k_mult = NULL, repl = FALSE)
 
-\method{cv}{reg_sine}(object, data, n_folds = 10, k_mult = NULL)
+\method{cv}{reg_sine}(object, data, n_folds = 10, k_mult = NULL, repl = FALSE)
 }
 \arguments{
 \item{object}{One of the four objects that is accepted mlm_stressor,
@@ -31,6 +31,9 @@ NULL, it will run LOO cross validation.}
 
 \item{k_mult}{Used to specify if k-means clustering is to be used, defaulted
 to NULL.}
+
+\item{repl}{A Boolean value defaulted to `FALSE`, change to `TRUE` when
+replicates need to be included in the same group.}
 }
 \value{
 If the object is of class mlm_stressor then a data frame will be

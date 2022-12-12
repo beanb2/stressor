@@ -43,3 +43,9 @@ vignettes/*.pdf
 inst/doc
 catboost_info
 lightgbm.model
+
+# Do not share this
+data-raw/apmc.RDS
+data-raw/CS_data_construction.html
+data-raw/true-rain.RDS
+data-raw/tl_2019_us_county

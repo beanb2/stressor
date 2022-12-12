@@ -35,6 +35,11 @@ To install python, It is recommended using Python version 3.8.10 from
  `LightGBM`documentation
  \href{https://lightgbm.readthedocs.io/en/latest/Installation-Guide.html}{here}.
 }
+\section{Troubleshoot}{
+
+ If python is not being found properly
+}
+
 \examples{
  create_virtualenv()
 }

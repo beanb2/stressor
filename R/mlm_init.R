@@ -72,7 +72,7 @@ mlm_init <- function(formula, data, fit_models, n_models = 9999,
   regress_models <- c('ada', 'br', 'dt', 'dummy', 'en', 'et', 'gbr', 'huber',
                       'knn', 'lar', 'lasso', 'lightgbm', 'llar', 'lr', 'omp',
                       'par', 'rf', 'ridge')
-  class_models <- c('ada', 'dt', 'dummy', 'et', 'gbr', 'knn', 'lda', 'lightgbm',
+  class_models <- c('ada', 'dt', 'dummy', 'et', 'gbc', 'knn', 'lda', 'lightgbm',
                     'lr', 'nb', 'qda', 'rf', 'ridge', 'svm')
   # Function input checks
 
@@ -104,9 +104,10 @@ mlm_init <- function(formula, data, fit_models, n_models = 9999,
   message("Fitting Machine Learning Models")
   # Through the fugue package there is a possibility to parallelization
   #  I will have to dive deeper into the documentation into how to do it.
-  # par <- reticulate::import('pycaret.parallel')
+  # par <- reticulate::import('pycaret.parallel') include = fit_models,
   models <- reg$compare_models(include = fit_models,
-                               n_select = as.integer(n_models))
+                               n_select = as.integer(n_models),
+                               errors = 'raise')
   Model <- reg$pull()$Model
 
   if (classification) {

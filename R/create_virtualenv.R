@@ -21,7 +21,7 @@
 #'  the `libomp` (Open Multi-Processing interface). Troubleshoot link from the
 #'  `LightGBM`documentation
 #'  \href{https://lightgbm.readthedocs.io/en/latest/Installation-Guide.html}{here}.
-#' @section Troubleshoot
+#' @section Troubleshoot:
 #'  If python is not being found properly
 #' @examples
 #'  create_virtualenv()

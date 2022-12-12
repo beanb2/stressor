@@ -4,7 +4,7 @@
 \alias{create_groups}
 \title{Create groups for CV}
 \usage{
-create_groups(formula, data, n_folds = 10, k_mult = NULL)
+create_groups(formula, data, n_folds = 10, k_mult = NULL, repl = FALSE)
 }
 \arguments{
 \item{formula}{A formula object that specifies the}
@@ -16,6 +16,9 @@ uses Leave One Out(LOO) instead.}
 
 \item{k_mult}{When specified is passed onto the \link[stressor]{cv_cluster}
 to fit the data into k_groups}
+
+\item{repl}{A Boolean value defaulted to `FALSE`, change to `TRUE` when
+replicates need to be included in the same group.}
 }
 \value{
 A vector of the length equal to number of rows of data.frame from the

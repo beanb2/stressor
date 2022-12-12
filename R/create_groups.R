@@ -48,6 +48,13 @@ create_groups <- function(formula, data, n_folds = 10, k_mult = NULL,
     x_data <- as.data.frame(x_data)
     x_data <- dplyr::distinct(x_data)
   }
+  if (!is.null(group_by)) {
+    x_data_copy <- as.data.frame(x_data)
+    x_data <- as.data.frame(x_data)
+    x_data
+
+
+  }
   if (!is.null(n_folds)){
     xvs <- rep(1:n_folds,length = nrow(x_data))
     xvs <- sample(xvs)

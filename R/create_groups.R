@@ -10,6 +10,8 @@
 #'   to fit the data into k_groups
 #' @param repl A Boolean value defaulted to `FALSE`, change to `TRUE` when
 #'   replicates need to be included in the same group.
+#' @param grouping_formula A formula object that specifies how the groups will
+#'   be gathered.
 #' @return A vector of the length equal to number of rows of data.frame from the
 #'   data argument.
 #' @details If `k_mult` is specified as an integer the formula object will be
@@ -38,7 +40,7 @@
 #' @importFrom dplyr distinct left_join
 #' @export
 create_groups <- function(formula, data, n_folds = 10, k_mult = NULL,
-                          repl = FALSE, group_by = NULL){
+                          repl = FALSE, grouping_formula = NULL){
   data_check(formula, data)
   integer_check(n_folds)
   boolean_check(repl)
@@ -48,26 +50,24 @@ create_groups <- function(formula, data, n_folds = 10, k_mult = NULL,
     x_data <- as.data.frame(x_data)
     x_data <- dplyr::distinct(x_data)
   }
-  if (!is.null(group_by)) {
-    x_data_copy <- as.data.frame(x_data)
-    x_data <- as.data.frame(x_data)
-    x_data
-
-
+  if (!is.null(grouping_formula)) {
+    data_check(grouping_formula, data)
+    x_data_copy <- model.matrix(grouping_formula, data)[, -1]
+    x_data <- dplyr::distinct(as.data.frame(x_data_copy))
   }
-  if (!is.null(n_folds)){
+  if (!is.null(n_folds) && is.null(k_mult)){
     xvs <- rep(1:n_folds,length = nrow(x_data))
     xvs <- sample(xvs)
-  } else if (!is.null(k_mult)){
+  } else if (!is.null(n_folds) && !is.null(k_mult)){
     integer_check(k_mult)
     features <- scale(as.matrix(x_data))
     xvs <- cv_cluster(features, n_folds, k_mult)
   } else {
     xvs <- seq_len(nrow(x_data))
   }
-  if (repl) {
+  if (repl || !is.null(grouping_formula)) {
     x_data$xvs <- xvs
-    x_data <- dplyr::left_join(x_data_copy, x_data)
+    x_data <- dplyr::left_join(as.data.frame(x_data_copy), x_data)
     xvs <- x_data$xvs
   }
   xvs

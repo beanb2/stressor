@@ -12,10 +12,13 @@
 #'   to NULL.
 #' @param repl A Boolean value defaulted to `FALSE`, change to `TRUE` when
 #'   replicates need to be included in the same group.
+#' @param grouping_formula A formula object that specifies how the groups will
+#'   be gathered.
 #' @return If the object is of class mlm_stressor then a data frame will be
 #'   returned otherwise a vector of the predictions will be returned.
 #' @export
-cv <- function(object, data, n_folds = 10, k_mult = NULL, repl = FALSE) {
+cv <- function(object, data, n_folds = 10, k_mult = NULL, repl = FALSE,
+               grouping_formula = NULL) {
   data_check(formula(object), data)
   integer_check(n_folds)
   UseMethod("cv")

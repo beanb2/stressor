@@ -24,12 +24,12 @@ A matrix with the predictions of the various machine learning
   `"refit_mlm_`, these are needed for the python code to execute.
 }
 \description{
-Refits models fitted in the \link[stressor]{mlm_init()}, and returns the
+Refits models fitted in the \link[stressor]{mlm_init}, and returns the
  predictions.
 }
 \examples{
- lm_train <- data_gen_lm(10)
- train_idx <- sample.int(10, 2)
+ lm_train <- data_gen_lm(20)
+ train_idx <- sample.int(20, 5)
  train <- lm_train[train_idx, ]
  test <- lm_train[-train_idx, ]
  create_virtualenv()

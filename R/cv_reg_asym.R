@@ -4,7 +4,7 @@
 #'  # Asymptotic example
 #'  asym_data <- data_gen_asym(10)
 #'  asym_fit <- reg_asym(Y ~ ., asym_data)
-#'  cv(asym_fit, asym_data, n_folds = 5)
+#'  cv(asym_fit, asym_data, n_folds = 2)
 #'
 #' @export
 cv.reg_asym <- function(object, data, n_folds = 10, k_mult = NULL,

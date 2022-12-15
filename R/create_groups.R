@@ -23,8 +23,8 @@
 #'    groups necessary to perform the cross validation. If you were wanting to
 #'    use for your own use. It is nice function that separates the `data` into
 #'    groups for training and testing.
-#' @examples
-#'  # Data generation
+#' @examples#'
+#'  # data generation
 #'  lm_data <- data_gen_lm(20)
 #'
 #'  # 10 Fold CV group
@@ -33,16 +33,12 @@
 #'
 #'  # LOO CV group
 #'  create_groups(Y ~ ., lm_data, n_folds = NULL)
-#'
-#'  # Clustered CV group
-#'  create_groups(Y ~ ., lm_data, n_folds = 10, k_mult = 5)
 #' @importFrom stats model.matrix
 #' @importFrom dplyr distinct left_join
 #' @export
 create_groups <- function(formula, data, n_folds = 10, k_mult = NULL,
                           repl = FALSE, grouping_formula = NULL){
   data_check(formula, data)
-  integer_check(n_folds)
   boolean_check(repl)
   x_data <- model.matrix(formula, data = data)[, -1]
   if (repl) {
@@ -56,9 +52,11 @@ create_groups <- function(formula, data, n_folds = 10, k_mult = NULL,
     x_data <- dplyr::distinct(as.data.frame(x_data_copy))
   }
   if (!is.null(n_folds) && is.null(k_mult)){
+    integer_check(n_folds)
     xvs <- rep(1:n_folds,length = nrow(x_data))
     xvs <- sample(xvs)
   } else if (!is.null(n_folds) && !is.null(k_mult)){
+    integer_check(n_folds)
     integer_check(k_mult)
     features <- scale(as.matrix(x_data))
     xvs <- cv_cluster(features, n_folds, k_mult)

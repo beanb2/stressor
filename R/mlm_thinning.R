@@ -11,7 +11,7 @@
 #' @return a list object where each item in the list is one step in the thinning
 #'  process and is a data frame of predictions.
 #' @examples
-#'  lm_test <- data_gen_lm(10)
+#'  lm_test <- data_gen_lm(20)
 #'  create_virtualenv()
 #'  mlm_lm <- mlm_regressor(Y ~ ., lm_test, example = TRUE)
 #'  thin <- mlm_thinning(mlm_lm, lm_test, max = .8, min = .7, iter = .05)

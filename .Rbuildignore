@@ -7,3 +7,4 @@
 ^vignettes/logs.log$
 ^lightgbm.model$
 ^catboost_info$
+^scripts$

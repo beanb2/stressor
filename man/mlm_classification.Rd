@@ -8,7 +8,7 @@ mlm_classification(
   formula,
   data,
   fit_models = c("ada", "et", "lightgbm", "dummy", "lr", "rf", "ridge", "knn", "dt",
-    "gbr", "svm", "lda", "nb", "qda"),
+    "gbc", "svm", "lda", "nb", "qda"),
   n_models = 9999,
   ...
 )

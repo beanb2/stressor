@@ -2,10 +2,10 @@
 #' @importFrom stats formula
 #' @examples
 #'  # Machine Learning Models example
-#'  lm_test <- data_gen_lm(10)
+#'  lm_test <- data_gen_lm(20)
 #'  create_virtualenv()
 #'  mlm_lm <- mlm_regressor(Y ~ ., lm_test, example = TRUE)
-#'  cv(mlm_lm, lm_test, n_folds = 5)
+#'  cv(mlm_lm, lm_test, n_folds = 2)
 #'
 #' @export
 cv.mlm_stressor <- function(object, data, n_folds = 10, k_mult = NULL,

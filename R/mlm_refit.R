@@ -1,6 +1,6 @@
 #' Refit Machine Learning Models
 #'
-#' Refits models fitted in the \link[stressor]{mlm_init()}, and returns the
+#' Refits models fitted in the \link[stressor]{mlm_init}, and returns the
 #'  predictions.
 #' @param mlm_object A `"mlm_stressor"` object.
 #' @param train_data A data.frame object used for refitting excludes the test
@@ -13,8 +13,8 @@
 #'   methods. Will also declare global variables with the heading of
 #'   `"refit_mlm_`, these are needed for the python code to execute.
 #' @examples
-#'  lm_train <- data_gen_lm(10)
-#'  train_idx <- sample.int(10, 2)
+#'  lm_train <- data_gen_lm(20)
+#'  train_idx <- sample.int(20, 5)
 #'  train <- lm_train[train_idx, ]
 #'  test <- lm_train[-train_idx, ]
 #'  create_virtualenv()

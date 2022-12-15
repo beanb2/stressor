@@ -49,7 +49,7 @@ return all possible models.}
 \item{example}{A Boolean value used for checks for examples to run defaulted
 to `FALSE`}
 
-\item{...}{additional arguments passed onto \link[stressor]{mlm_init()}}
+\item{...}{additional arguments passed onto \link[stressor]{mlm_init}}
 }
 \value{
 A list object where the first entry is the models fitted and the
@@ -73,7 +73,7 @@ PyCaret is a python module. Where machine learning models can be fitted with
   data.frame objects that are less than 10,000 rows.
 }
 \examples{
- lm_test <- data_gen_lm(10)
+ lm_test <- data_gen_lm(20)
  create_virtualenv()
  mlm_lm <- mlm_regressor(Y ~ ., lm_test, example = TRUE)
 }

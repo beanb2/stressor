@@ -35,12 +35,12 @@
 #'   return all possible models.
 #' @param example A Boolean value used for checks for examples to run defaulted
 #'   to `FALSE`
-#' @param ... additional arguments passed onto \link[stressor]{mlm_init()}
+#' @param ... additional arguments passed onto \link[stressor]{mlm_init}
 #' @return A list object where the first entry is the models fitted and the
 #'   second is the initial predictive accuracy on the random test data. Returns
 #'   as two classes `"mlm_stressor"` and `"regressor"`
 #' @examples
-#'  lm_test <- data_gen_lm(10)
+#'  lm_test <- data_gen_lm(20)
 #'  create_virtualenv()
 #'  mlm_lm <- mlm_regressor(Y ~ ., lm_test, example = TRUE)
 #' @inherit mlm_classification details

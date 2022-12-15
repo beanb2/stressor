@@ -4,7 +4,7 @@
 #'  asym_data <- data_gen_asym(10)
 #'  asym_fit <- reg_asym(Y ~ ., asym_data)
 #'  predict(asym_fit, asym_data)
-#'
+#' @importFrom stats delete.response
 #' @export
 predict.reg_asym <- function(object, newdata, ...) {
   par <- object$par

@@ -11,12 +11,6 @@
 #' @param ... Additional arguments that are passed to the predict function.
 #' @return Either a vector of predictions for `"reg_sine", "reg_asym", "lm"` and
 #'   a data frame for `"mlm_stressor"`
-#' @examples
-#'  t_groups <- sample.int(10)
-#'  lm_test <- data_gen_lm(10)
-#'  lm <- lm(Y ~ ., lm_test)
-#'  lm_cv <- cv_core(lm, lm_test, t_groups)
-#'  lm_cv
 #' @importFrom stats predict formula lm
 cv_core <- function(object, data, t_groups, ...) {
   data_check(formula(object), data)

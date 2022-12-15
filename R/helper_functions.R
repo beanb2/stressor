@@ -19,21 +19,9 @@ data_check <- function(formula, data, train_data = NULL) {
              inherits(train_data, "data.frame"))) {
       stop("Data must be inheritted from data.frame or be a data.frame.")
     }
-    if (!all(is.element(all.vars(attr(terms(formula), "variables")),
-                        colnames(data)),
-             is.element(all.vars(attr(terms(formula), "variables")),
-                        colnames(train_data)))){
-      stop("There are not matching variable names in the data.frame from the
-         specified formula call.")
-    }
   } else {
     if (!inherits(data, "data.frame")) {
       stop("Data must be inheritted from data.frame or be a data.frame.")
-    }
-    if (!all(is.element(all.vars(attr(terms(formula), "variables")),
-                       colnames(data)))){
-      stop("There are not matching variable names in the data.frame from the
-           specified formula call.")
     }
   }
 }

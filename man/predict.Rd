@@ -31,20 +31,18 @@ A data.frame of predictions if `mlm_stressor` object or vector of
 }
 \description{
 Predict values on `mlm_stressor`, `reg_asym`, or `reg_sine`
- objects. That expand the \link[stats]{predict()} function.
+ objects. That expand the \link[stats]{predict} function.
 }
 \examples{
  # mlm_stressor example
- lm_test <- data_gen_lm(10)
+ lm_test <- data_gen_lm(20)
  create_virtualenv()
  mlm_lm <- mlm_regressor(Y ~ ., lm_test, example = TRUE)
  predict(mlm_lm, lm_test)
-
  # Asymptotic Examples
  asym_data <- data_gen_asym(10)
  asym_fit <- reg_asym(Y ~ ., asym_data)
  predict(asym_fit, asym_data)
-
  # Sinusoidal Examples
  sine_data <- data_gen_sine(10)
  sine_fit <- reg_sine(Y ~ ., sine_data)

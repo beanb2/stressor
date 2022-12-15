@@ -3,7 +3,7 @@
 #'  # lm example
 #'  lm_test <- data_gen_lm(10)
 #'  lm <- lm(Y ~ ., lm_test)
-#'  cv(lm, lm_test, n_folds = 5)
+#'  cv(lm, lm_test, n_folds = 2)
 #'
 #' @importFrom stats formula
 #' @export

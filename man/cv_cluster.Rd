@@ -23,6 +23,11 @@ This function creates cluster-based partitions of a sample space based on
   k-means clustering. Included in the function are algorithms that attempt
   to produce clusters of roughly equal size.
 }
+\details{
+More information regarding spatial cross validation can be found in
+ Robin Lovelace explanation of spatial cross validation in his
+ \href{https://geocompr.robinlovelace.net/spatial-cv.html?q=cross\%20validation#intro-cv}{textbook}
+}
 \examples{
  # Creating a matrix of predictor variables
  x_data <- base::scale(data_gen_lm(30)[, -1])

@@ -4,7 +4,14 @@
 \alias{create_groups}
 \title{Create groups for CV}
 \usage{
-create_groups(formula, data, n_folds = 10, k_mult = NULL, repl = FALSE)
+create_groups(
+  formula,
+  data,
+  n_folds = 10,
+  k_mult = NULL,
+  repl = FALSE,
+  grouping_formula = NULL
+)
 }
 \arguments{
 \item{formula}{A formula object that specifies the}
@@ -19,6 +26,9 @@ to fit the data into k_groups}
 
 \item{repl}{A Boolean value defaulted to `FALSE`, change to `TRUE` when
 replicates need to be included in the same group.}
+
+\item{grouping_formula}{A formula object that specifies how the groups will
+be gathered.}
 }
 \value{
 A vector of the length equal to number of rows of data.frame from the
@@ -40,7 +50,8 @@ If `k_mult` is specified as an integer the formula object will be
    groups for training and testing.
 }
 \examples{
- # Data generation
+#'
+ # data generation
  lm_data <- data_gen_lm(20)
 
  # 10 Fold CV group
@@ -49,7 +60,4 @@ If `k_mult` is specified as an integer the formula object will be
 
  # LOO CV group
  create_groups(Y ~ ., lm_data, n_folds = NULL)
-
- # Clustered CV group
- create_groups(Y ~ ., lm_data, n_folds = 10, k_mult = 5)
 }

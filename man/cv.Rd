@@ -9,15 +9,50 @@
 \alias{cv.reg_sine}
 \title{Cross Validation}
 \usage{
-cv(object, data, n_folds = 10, k_mult = NULL, repl = FALSE)
+cv(
+  object,
+  data,
+  n_folds = 10,
+  k_mult = NULL,
+  repl = FALSE,
+  grouping_formula = NULL
+)
 
-\method{cv}{lm}(object, data, n_folds = 10, k_mult = NULL, repl = FALSE)
+\method{cv}{lm}(
+  object,
+  data,
+  n_folds = 10,
+  k_mult = NULL,
+  repl = FALSE,
+  grouping_formula = NULL
+)
 
-\method{cv}{mlm_stressor}(object, data, n_folds = 10, k_mult = NULL, repl = FALSE)
+\method{cv}{mlm_stressor}(
+  object,
+  data,
+  n_folds = 10,
+  k_mult = NULL,
+  repl = FALSE,
+  grouping_formula = NULL
+)
 
-\method{cv}{reg_asym}(object, data, n_folds = 10, k_mult = NULL, repl = FALSE)
+\method{cv}{reg_asym}(
+  object,
+  data,
+  n_folds = 10,
+  k_mult = NULL,
+  repl = FALSE,
+  grouping_formula = NULL
+)
 
-\method{cv}{reg_sine}(object, data, n_folds = 10, k_mult = NULL, repl = FALSE)
+\method{cv}{reg_sine}(
+  object,
+  data,
+  n_folds = 10,
+  k_mult = NULL,
+  repl = FALSE,
+  grouping_formula = NULL
+)
 }
 \arguments{
 \item{object}{One of the four objects that is accepted mlm_stressor,
@@ -34,6 +69,9 @@ to NULL.}
 
 \item{repl}{A Boolean value defaulted to `FALSE`, change to `TRUE` when
 replicates need to be included in the same group.}
+
+\item{grouping_formula}{A formula object that specifies how the groups will
+be gathered.}
 }
 \value{
 If the object is of class mlm_stressor then a data frame will be
@@ -58,21 +96,21 @@ This is core of cross validation both standard and using k-mean groups. This
  # lm example
  lm_test <- data_gen_lm(10)
  lm <- lm(Y ~ ., lm_test)
- cv(lm, lm_test, n_folds = 5)
+ cv(lm, lm_test, n_folds = 2)
 
  # Machine Learning Models example
- lm_test <- data_gen_lm(10)
+ lm_test <- data_gen_lm(20)
  create_virtualenv()
  mlm_lm <- mlm_regressor(Y ~ ., lm_test, example = TRUE)
- cv(mlm_lm, lm_test, n_folds = 5)
+ cv(mlm_lm, lm_test, n_folds = 2)
 
  # Asymptotic example
  asym_data <- data_gen_asym(10)
  asym_fit <- reg_asym(Y ~ ., asym_data)
- cv(asym_fit, asym_data, n_folds = 5)
+ cv(asym_fit, asym_data, n_folds = 2)
 
  # Sine example
  sine_data <- data_gen_sine(10)
  sine_fit <- reg_sine(Y ~ ., sine_data)
- cv(sine_fit, sine_data, n_folds = 5)
+ cv(sine_fit, sine_data, n_folds = 2)
 }

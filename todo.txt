@@ -1,1 +1,6 @@
-##TODO: Need to fix the link with classification process in stressor
+## TODO: 
+- Need to fix the link with classification process in stressor (done)
+- Talk with brennan about which variables to keep in model, lots of NA's
+- Finish getting cv to work with classification
+- Accuracy function?
+- Defense Proposal

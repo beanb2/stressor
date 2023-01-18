@@ -1,6 +1,9 @@
 library(tidyverse)
 # testing classification
 apmc <- readRDS("data-raw/apmc.RDS")
+
+apmc_imp <- sf::st_drop_geometry(apmc)
+
 apmc_nogeom <- dplyr::select(apmc, -GEOID, -FID, -STATE_NAME, -STATE_FIPS,
                              -FREQ, -CROP, -PHASE1) %>%
   sf::st_drop_geometry()

@@ -1,3 +1,4 @@
+library(tidyverse)
 # testing classification
 apmc <- readRDS("data-raw/apmc.RDS")
 apmc_nogeom <- dplyr::select(apmc, -GEOID, -FID, -STATE_NAME, -STATE_FIPS,

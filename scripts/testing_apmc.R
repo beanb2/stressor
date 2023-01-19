@@ -6,15 +6,16 @@ apmc_imp <- sf::st_drop_geometry(apmc)
 
 apmc_nogeom <- dplyr::select(apmc, -GEOID, -FID, -STATE_NAME, -STATE_FIPS,
                              -FREQ, -CROP, -PHASE1) %>%
-  sf::st_drop_geometry()
-apmc_500 <- apmc_nogeom[sample(136620, 500), ]
+  sf::st_drop_geometry() %>%
+  na.omit()
+apmc_10000 <- apmc_nogeom[sample(136620, 10000), ]
 apmc_train <- apmc_nogeom[sample(136620, 500), ]
 
 Sys.unsetenv("RETICULATE_PYTHON")
 library(stressor)
 create_virtualenv()
 Sys.time()
-mlm_apmc <- mlm_classification(AP ~ ., apmc_500)
+mlm_apmc <- mlm_classification(AP ~ ., apmc_10000)
 Sys.time()
 
 

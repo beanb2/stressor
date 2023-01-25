@@ -116,9 +116,8 @@ mlm_init <- function(formula, data, fit_models, n_models = 9999,
     row.names(pred_accuracy) <- row.names(reg$pull())
     for (i in seq_len(length(models))) {
       pred_results <- reg$predict_model(models[[i]], data = test)
-      if (!is.numeric(pred_results$Label[1])) {
-        pred_results$Label <- as.integer(pred_results$Label)
-      }
+      # if (!is.numeric(pred_results$Label[1])) {
+      pred_results$Label <- as.integer(pred_results$Label)
       pred_accuracy[i, 2] <- sum(test[, rr] == pred_results$Label) /
                                      nrow(test)
     }

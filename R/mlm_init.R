@@ -38,7 +38,7 @@
 #'     dt \tab Decision Tree Classifier\cr
 #'     dummy \tab Dummy Classifier\cr
 #'     et \tab Extra Trees Classifier \cr
-#'     gbr \tab Gradient Boosting Classifier\cr
+#'     gbc \tab Gradient Boosting Classifier\cr
 #'     knn \tab K Neighbors Classifier\cr
 #'     lda \tab Linear Discriminant Analysis\cr
 #'     lightgbm \tab Light Gradient Boosting Machine\cr

@@ -41,7 +41,7 @@ reg_sine <- function(formula, data, method = "BFGS",
 #' @noRd
 sine_function <- function(estimated, X, Y) {
   Y_pred <- sine_yhat(estimated, X)
-  error <- sum((Y_pred - Y)^2, na.rm=TRUE)
+  error <- sum((Y - Y_pred)^2, na.rm=TRUE)
   error
 }
 

@@ -52,6 +52,7 @@ data_cv <- merge(blue[[1]], blue[[2]], by = "models") %>%
   merge(., blue[[5]], by = "models")
 data_cv2 <- bind_rows(blue)
 data_cv2$models <- as.factor(data_cv2$models)
+data_cv2$Method <- rep("CV", nrow(data_cv2))
 
 colnames(data_cv) <- c("models", "V1", "V2", "V3", "V4", "V5")
 
@@ -62,16 +63,54 @@ data_scv <- merge(red[[1]], red[[2]], by = "models") %>%
 
 data_scv2 <- bind_rows(red)
 data_scv2$models <- as.factor(data_scv2$models)
+data_scv2$Method <- rep("SCV", nrow(data_scv2))
+
+data_joint <- bind_rows(data_cv2, data_scv2, data_scv_latlon)
 
 colnames(data_scv) <- c("models", "V1", "V2", "V3", "V4", "V5")
 
 pdf("scripts/cv5.pdf")
 ggplot(data_cv2, aes(x = models, y = rmse)) +
-  geom_boxplot(fill = "skyblue", notch = FALSE) +
+  geom_boxplot(fill = "#F8766D", notch = FALSE) +
   ggtitle("Repeated 10-fold CV")
 dev.off()
+
 pdf("scripts/scv5.pdf")
 ggplot(data_scv2, aes(x = models, y = rmse)) +
-  geom_boxplot(fill = "chartreuse4", notch = FALSE) +
+  geom_boxplot(fill = "#00BA38", notch = FALSE) +
   ggtitle("Repeated 10-fold SCV")
 dev.off()
+
+pdf("scripts/scv5_latlon.pdf")
+ggplot(data_scv_latlon, aes(x = models, y = rmse)) +
+  geom_boxplot(fill = "#619CFF") +
+  ggtitle("Repeated 10-fold SCV with Grouping")
+dev.off()
+
+pdf("scripts/joint_cv.pdf")
+ggplot(data_joint, aes(x = models, y = rmse, fill = Method)) +
+  geom_boxplot() +
+  scale_y_continuous(name = "RMSE", breaks = seq(15, 60, 5),
+                     limits = c(15, 60)) +
+  ggtitle("Repeated 10-fold CV on Various Techniques")
+dev.off()
+
+mlm_yield <- mlm_regressor(formula, corn_yield)
+
+it2 <- cv(mlm_yield, corn_yield, 10, 5,
+          grouping_formula = ~ lat + lon)
+it3 <- cv(mlm_yield, corn_yield, 10, 5,
+          grouping_formula = ~ lat + lon)
+it4 <- cv(mlm_yield, corn_yield, 10, 5,
+          grouping_formula = ~ lat + lon)
+it5 <- cv(mlm_yield, corn_yield, 10, 5,
+          grouping_formula = ~ lat + lon)
+rmse1 <- rmse(mlm_yield_scv, corn_yield$YIELD)
+rmse2 <- rmse(it2, corn_yield$YIELD)
+rmse3 <- rmse(it3, corn_yield$YIELD)
+rmse4 <- rmse(it4, corn_yield$YIELD)
+rmse5 <- rmse(it5, corn_yield$YIELD)
+
+data_scv_latlon <- bind_rows(rmse1, rmse2, rmse3, rmse4, rmse5)
+data_scv_latlon$models <- as.factor(data_scv_latlon$models)
+data_scv_latlon$Method <- rep("SCV_latlon", nrow(data_scv_latlon))

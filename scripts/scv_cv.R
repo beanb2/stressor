@@ -46,3 +46,32 @@ red <- validation_rep(formula, corn_yield, n_folds = 10, k_mult = 5,
 green <- validation_rep(formula, corn_yield, n_folds = 10, k_mult = 5,
                         grouping_formula = ~ lat + lon, times = 5)
 
+data_cv <- merge(blue[[1]], blue[[2]], by = "models") %>%
+  merge(., blue[[3]], by = "models") %>%
+  merge(., blue[[4]], by = "models") %>%
+  merge(., blue[[5]], by = "models")
+data_cv2 <- bind_rows(blue)
+data_cv2$models <- as.factor(data_cv2$models)
+
+colnames(data_cv) <- c("models", "V1", "V2", "V3", "V4", "V5")
+
+data_scv <- merge(red[[1]], red[[2]], by = "models") %>%
+  merge(., red[[3]], by = "models") %>%
+  merge(., red[[4]], by = "models") %>%
+  merge(., red[[5]], by = "models")
+
+data_scv2 <- bind_rows(red)
+data_scv2$models <- as.factor(data_scv2$models)
+
+colnames(data_scv) <- c("models", "V1", "V2", "V3", "V4", "V5")
+
+pdf("scripts/cv5.pdf")
+ggplot(data_cv2, aes(x = models, y = rmse)) +
+  geom_boxplot(fill = "skyblue", notch = FALSE) +
+  ggtitle("Repeated 10-fold CV")
+dev.off()
+pdf("scripts/scv5.pdf")
+ggplot(data_scv2, aes(x = models, y = rmse)) +
+  geom_boxplot(fill = "chartreuse4", notch = FALSE) +
+  ggtitle("Repeated 10-fold SCV")
+dev.off()

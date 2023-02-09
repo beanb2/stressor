@@ -32,13 +32,11 @@ mlm_refit <- function(mlm_object, train_data, test_data,
   # Check the input
   data_check(formula(mlm_object), test_data, train_data)
 
-  print(nrow(test_data))
   test_data <- model.frame(formula(mlm_object), test_data)
-  print(nrow(test_data))
 
   prediction_mlm <- matrix(0, nrow = nrow(test_data),
                            ncol = length(mlm_object$models))
-  print(nrow(prediction_mlm))
+
   modelnames <- row.names(mlm_object$pred_accuracy)
   colnames(prediction_mlm) <- modelnames
 

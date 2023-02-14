@@ -1,9 +1,6 @@
 # Script to run 50 evaluations of CV and SCV
 library(foreach)
-library(doParallel)
-total_cores <- detectCores()
-cluster <- makeCluster(total_cores[1] / 2)
-registerDoParallel(cluster)
+
 validation_rep <- function(formula, data, n_folds = 10, k_mult = NULL,
                            repl = FALSE, grouping_formula = NULL, times = 10) {
   rmse_list <- vector(mode = "list", length = times)
@@ -69,32 +66,6 @@ data_joint <- bind_rows(data_cv2, data_scv2, data_scv_latlon)
 
 colnames(data_scv) <- c("models", "V1", "V2", "V3", "V4", "V5")
 
-pdf("scripts/cv5.pdf")
-ggplot(data_cv2, aes(x = models, y = rmse)) +
-  geom_boxplot(fill = "#F8766D", notch = FALSE) +
-  ggtitle("Repeated 10-fold CV")
-dev.off()
-
-pdf("scripts/scv5.pdf")
-ggplot(data_scv2, aes(x = models, y = rmse)) +
-  geom_boxplot(fill = "#00BA38", notch = FALSE) +
-  ggtitle("Repeated 10-fold SCV")
-dev.off()
-
-pdf("scripts/scv5_latlon.pdf")
-ggplot(data_scv_latlon, aes(x = models, y = rmse)) +
-  geom_boxplot(fill = "#619CFF") +
-  ggtitle("Repeated 10-fold SCV with Grouping")
-dev.off()
-
-pdf("scripts/joint_cv.pdf")
-ggplot(data_joint, aes(x = models, y = rmse, fill = Method)) +
-  geom_boxplot() +
-  scale_y_continuous(name = "RMSE", breaks = seq(15, 60, 5),
-                     limits = c(15, 60)) +
-  ggtitle("Repeated 10-fold CV on Various Techniques")
-dev.off()
-
 mlm_yield <- mlm_regressor(formula, corn_yield)
 
 it2 <- cv(mlm_yield, corn_yield, 10, 5,
@@ -114,3 +85,45 @@ rmse5 <- rmse(it5, corn_yield$YIELD)
 data_scv_latlon <- bind_rows(rmse1, rmse2, rmse3, rmse4, rmse5)
 data_scv_latlon$models <- as.factor(data_scv_latlon$models)
 data_scv_latlon$Method <- rep("SCV_latlon", nrow(data_scv_latlon))
+
+# Plots
+# Create Color Scheme
+cblindcol <- RColorBrewer::brewer.pal(3, "Dark2")
+
+# ReOrder on Median
+data_cv2$models <- with(data_cv2, reorder(models, rmse, median))
+data_joint$models <- with(data_joint, reorder(models, rmse, median))
+
+pdf("scripts/cv5.pdf")
+ggplot(data_cv2, aes(x = models, y = rmse)) +
+  geom_boxplot(fill = cblindcol[1], notch = FALSE) +
+  scale_y_continuous(name = "RMSE", breaks = seq(15, 55, 5),
+                     limits = c(15, 55)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 12),
+        axis.title = element_text(size = 12, face = "bold")) +
+  xlab("Models")
+dev.off()
+
+pdf("scripts/scv5.pdf")
+ggplot(data_scv2, aes(x = models, y = rmse)) +
+  geom_boxplot(fill = cblindcol[2], notch = FALSE) +
+  ggtitle("Repeated 10-fold SCV")
+dev.off()
+
+pdf("scripts/scv5_latlon.pdf")
+ggplot(data_scv_latlon, aes(x = models, y = rmse)) +
+  geom_boxplot(fill = cblindcol[3]) +
+  ggtitle("Repeated 10-fold SCV with Grouping")
+dev.off()
+
+pdf("scripts/joint_cv.pdf")
+ggplot(data_joint, aes(x = models, y = rmse, fill = Method)) +
+  geom_boxplot() +
+  scale_y_continuous(name = "RMSE", breaks = seq(15, 60, 5),
+                     limits = c(15, 60)) +
+  # ggtitle("Repeated 10-fold CV on Various Techniques") +
+  scale_fill_brewer(palette = "Dark2") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 12),
+        axis.title = element_text(size = 12, face = "bold")) +
+  xlab("Models")
+dev.off()

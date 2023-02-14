@@ -96,103 +96,77 @@ mat_sine <- matrix(rep(1, 15), nrow = 3, ncol = 5)
 sine_accuracy_res <- simulation(n, eps, mat_sine, "reg_sine", lab,
                                 test_size = 500)
 sine_accuracy <- sine_accuracy_res[[1]]
-
-g1 <- ggplot(sine_accuracy) +
-  geom_point(aes(x = eps, y = n100)) +
-  geom_line(aes(x = eps, y = eps), color = "red") +
-  scale_x_continuous(breaks = seq(.1, 1, by = .1), limits = c(0, 1.1))
-g2 <- ggplot(sine_accuracy) +
-  geom_point(aes(x = eps, y = n300)) +
-  geom_line(aes(x = eps, y = eps), color = "red") +
-  scale_x_continuous(breaks = seq(.1, 1, by = .1), limits = c(0, 1.1))
-g3 <- ggplot(sine_accuracy) +
-  geom_point(aes(x = eps, y = n500)) +
-  geom_line(aes(x = eps, y = eps), color = "red") +
-  scale_x_continuous(breaks = seq(.1, 1, by = .1), limits = c(0, 1.1))
-g4 <- ggplot(sine_accuracy) +
-  geom_point(aes(x = eps, y = n700)) +
-  geom_line(aes(x = eps, y = eps), color = "red") +
-  scale_x_continuous(breaks = seq(.1, 1, by = .1), limits = c(0, 1.1))
-g5 <- ggplot(sine_accuracy) +
-  geom_point(aes(x = eps, y = n900)) +
-  geom_line(aes(x = eps, y = eps), color = "red") +
-  scale_x_continuous(breaks = seq(.1, 1, by = .1), limits = c(0, 1.1))
-g6 <- ggplot(sine_accuracy) +
-  geom_point(aes(x = eps, y = n1000)) +
-  geom_line(aes(x = eps, y = eps), color = "red") +
-  scale_x_continuous(breaks = seq(.1, 1, by = .1), limits = c(0, 1.1))
-grid.arrange(g1, g2, g3, g4, g5, g6, nrow = 2)
+sine_results <- as.data.frame(eps2)
+rmse <- c(sine_accuracy$`n = 100`, sine_accuracy$`n = 300`,
+          sine_accuracy$`n = 500`, sine_accuracy$`n = 700`,
+          sine_accuracy$`n = 900`, sine_accuracy$`n = 1000`)
+sine_results$rmse <- rmse
+sine_results$groups <- c(rep("n = 100", 10), rep("n = 300", 10),
+                          rep("n = 500", 10), rep("n = 700", 10),
+                          rep("n = 900", 10), rep("n = 1000", 10))
+sine_results$groups <- factor(sine_results$groups, levels = lab)
 
 # Asymptotic Regression
 eps <- seq(from = .1, to = 1, by = .1)
 n <- c(100, 300, 500, 700, 900, 1000) # add in 5000
-lab <- c("n100", "n300", "n500", "n700",
-  "n900", "n1000")
+lab <- c("n = 100", "n = 300", "n = 500", "n = 700",
+  "n = 900", "n = 1000")
 mat_asym <- matrix(rep(1, 10), nrow = 2, ncol = 5)
 asym_accuracy2 <- simulation(n, eps, mat_asym, "reg_asym", lab, test_size = 100)
 asym_results <- asym_accuracy2[[1]]
 
+eps2 <- rep(seq(.1, 1, .1), 6)
+asym_results2 <- as.data.frame(eps2)
+rmse <- c(asym_results$`n = 100`, asym_results$`n = 300`,
+          asym_results$`n = 500`, asym_results$`n = 700`,
+          asym_results$`n = 900`, asym_results$`n = 1000`)
+asym_results2$rmse <- rmse
+asym_results2$groups <- c(rep("n = 100", 10), rep("n = 300", 10),
+                          rep("n = 500", 10), rep("n = 700", 10),
+                          rep("n = 900", 10), rep("n = 1000", 10))
+asym_results2$groups <- factor(asym_results2$groups, levels = lab)
+# Linear model
+weight_vec <- c(1, 3, 4, 5, 7)
+lm_accuracy_res <- simulation(n, eps, weight_vec, "linear", lab)
+lm_accuracy <- lm_accuracy_res[[1]]
 
-g1 <- ggplot(asym_results) +
-  geom_point(aes(x = eps, y = n100)) +
-  geom_line(aes(x = eps, y = eps), color = "red") +
-  scale_x_continuous(breaks = seq(.1, 1, by = .1), limits = c(0, 1.1))
-g2 <- ggplot(asym_results) +
-  geom_point(aes(x = eps, y = n300)) +
-  geom_line(aes(x = eps, y = eps), color = "red") +
-  scale_x_continuous(breaks = seq(.1, 1, by = .1), limits = c(0, 1.1))
-g3 <- ggplot(asym_results) +
-  geom_point(aes(x = eps, y = n500)) +
-  geom_line(aes(x = eps, y = eps), color = "red") +
-  scale_x_continuous(breaks = seq(.1, 1, by = .1), limits = c(0, 1.1))
-g4 <- ggplot(asym_results) +
-  geom_point(aes(x = eps, y = n700)) +
-  geom_line(aes(x = eps, y = eps), color = "red") +
-  scale_x_continuous(breaks = seq(.1, 1, by = .1), limits = c(0, 1.1))
-g5 <- ggplot(asym_results) +
-  geom_point(aes(x = eps, y = n900)) +
-  geom_line(aes(x = eps, y = eps), color = "red") +
-  scale_x_continuous(breaks = seq(.1, 1, by = .1), limits = c(0, 1.1))
-g6 <- ggplot(asym_results) +
-  geom_point(aes(x = eps, y = n1000)) +
-  geom_line(aes(x = eps, y = eps), color = "red") +
-  scale_x_continuous(breaks = seq(.1, 1, by = .1), limits = c(0, 1.1))
-pdf(file = "scripts/asym_verification.pdf")
-grid.arrange(g1, g2, g3, g4, g5, g6, nrow = 2,
-             top = textGrob("Asymptotic Regression"))
-dev.off()
-# lm Regression
-eps <- seq(from = .1, to = 1, by = .1)
-n <- c(10, 100, 1000, 5000, 10000) # add in 5000
-mat_lm <- c(1, 3, 2, 7, 4)
-lm_accuracy <- simulation(n, eps, mat_lm, "lm", lab, test_size = 300)
-lm_accuracy <- lm_accuracy[[1]]
+lm_results <- as.data.frame(eps2)
+rmse <- c(lm_accuracy$`n = 100`, lm_accuracy$`n = 300`,
+          lm_accuracy$`n = 500`, lm_accuracy$`n = 700`,
+          lm_accuracy$`n = 900`, lm_accuracy$`n = 1000`)
+lm_results$rmse <- rmse
+lm_results$groups <- c(rep("n = 100", 10), rep("n = 300", 10),
+                          rep("n = 500", 10), rep("n = 700", 10),
+                          rep("n = 900", 10), rep("n = 1000", 10))
+lm_results$groups <- factor(lm_results$groups, levels = lab)
 
-g1 <- ggplot(lm_accuracy) +
-  geom_point(aes(x = eps, y = n100)) +
+pdf("scripts/asym_verification.pdf")
+ggplot(asym_results2, aes(x = eps, y = rmse)) +
+  geom_point() +
   geom_line(aes(x = eps, y = eps), color = "red") +
-  scale_x_continuous(breaks = seq(.1, 1, by = .1), limits = c(0, 1.1))
-g2 <- ggplot(lm_accuracy) +
-  geom_point(aes(x = eps, y = n300)) +
-  geom_line(aes(x = eps, y = eps), color = "red") +
-  scale_x_continuous(breaks = seq(.1, 1, by = .1), limits = c(0, 1.1))
-g3 <- ggplot(lm_accuracy) +
-  geom_point(aes(x = eps, y = n500)) +
-  geom_line(aes(x = eps, y = eps), color = "red") +
-  scale_x_continuous(breaks = seq(.1, 1, by = .1), limits = c(0, 1.1))
-g4 <- ggplot(lm_accuracy) +
-  geom_point(aes(x = eps, y = n700)) +
-  geom_line(aes(x = eps, y = eps), color = "red") +
-  scale_x_continuous(breaks = seq(.1, 1, by = .1), limits = c(0, 1.1))
-g5 <- ggplot(lm_accuracy) +
-  geom_point(aes(x = eps, y = n900)) +
-  geom_line(aes(x = eps, y = eps), color = "red") +
-  scale_x_continuous(breaks = seq(.1, 1, by = .1), limits = c(0, 1.1))
-g6 <- ggplot(lm_accuracy) +
-  geom_point(aes(x = eps, y = n1000)) +
-  geom_line(aes(x = eps, y = eps), color = "red") +
-  scale_x_continuous(breaks = seq(.1, 1, by = .1), limits = c(0, 1.1))
-pdf(file = "scripts/linear_verification.pdf")
-grid.arrange(g1, g2, g3, g4, g5, g6, nrow = 2,
-             top = textGrob("Linear Regression"))
+  scale_x_continuous(breaks = seq(0, 1, by = .2), limits = c(0.0, 1.05)) +
+  scale_y_continuous(breaks = seq(0, 1.2, by = .2), limits = c(0, 1.2))+
+  facet_wrap(~ groups, nrow = 2) +
+  theme(axis.title=element_text(size=14,face="bold"))
 dev.off()
+
+pdf("scripts/lm_verification.pdf")
+ggplot(lm_results, aes(x = eps2, y = rmse)) +
+  geom_point() +
+  geom_line(aes(x = eps2, y = eps2), color = "red") +
+  scale_x_continuous(name = "eps", breaks = seq(0, 1, by = .2), limits = c(0.0, 1.05)) +
+  scale_y_continuous(breaks = seq(0, 1.2, by = .2), limits = c(0, 1.2)) +
+  facet_wrap(~ groups, nrow = 2) +
+  theme(axis.title=element_text(size=14,face="bold"))
+dev.off()
+
+pdf("scripts/sine_verification.pdf")
+ggplot(sine_results, aes(x = eps2, y = rmse)) +
+  geom_point() +
+  geom_line(aes(x = eps2, y = eps2), color = "red") +
+  facet_wrap(~ groups, nrow = 2) +
+  scale_x_continuous(name = "eps", breaks = seq(0, 1, by = .2), limits = c(0.0, 1.05)) +
+  scale_y_continuous(breaks = seq(0, 650, by = 50), limits = c(0, 650)) +
+  theme(axis.title=element_text(size=14,face="bold"))
+dev.off()
+

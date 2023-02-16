@@ -161,12 +161,12 @@ ggplot(lm_results, aes(x = eps2, y = rmse)) +
 dev.off()
 
 pdf("scripts/sine_verification.pdf")
-ggplot(sine_results, aes(x = eps2, y = rmse)) +
+ggplot(sine_results, aes(x = eps2, y = log(rmse))) +
   geom_point() +
   geom_line(aes(x = eps2, y = eps2), color = "red") +
   facet_wrap(~ groups, nrow = 2) +
   scale_x_continuous(name = "eps", breaks = seq(0, 1, by = .2), limits = c(0.0, 1.05)) +
-  scale_y_continuous(breaks = seq(0, 650, by = 50), limits = c(0, 650)) +
+  scale_y_continuous(breaks = seq(0, 6.5, by = .5), limits = c(0, 6.5)) +
   theme(axis.title=element_text(size=14,face="bold"))
 dev.off()
 

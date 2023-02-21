@@ -3,11 +3,12 @@ Type: Package
 Title: Algorithms for testing models under stress 
 Version: 0.1.0
 Authors@R: c(
-    person("Brennan", "Bean", , "brennan.bean@usu.edu", 
+    person("Samuel", "Haycock", "sam.haycock@usu.edu",
     role = c("aut", "cre")),
-    person("Samuel", "Haycock", role = "aut")
+    person("Brennan", "Bean", , "brennan.bean@usu.edu", 
+    role = "aut",
   )
-Maintainer: Brennan Bean <brennan.bean@usu.edu>
+Maintainer: Sam Haycock <sam.haycock@usu.edu>
 Description: Traditional model evaluation metrics fail to capture model 
     performance under less than ideal conditions. This package employs 
     techniques to evaluate models "under-stress". This includes testing 

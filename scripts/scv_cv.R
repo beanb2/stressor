@@ -62,7 +62,7 @@ data_scv2 <- bind_rows(red)
 data_scv2$models <- as.factor(data_scv2$models)
 data_scv2$Method <- rep("SCV", nrow(data_scv2))
 
-data_joint <- bind_rows(data_cv2, data_scv2, data_scv_latlon)
+data_joint <- dplyr::bind_rows(data_cv2, data_scv2, data_scv_latlon)
 
 colnames(data_scv) <- c("models", "V1", "V2", "V3", "V4", "V5")
 

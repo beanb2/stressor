@@ -15,7 +15,7 @@ Sys.unsetenv("RETICULATE_PYTHON")
 library(stressor)
 create_virtualenv()
 Sys.time()
-mlm_apmc3 <- mlm_classification(AP ~ ., apmc_train)
+mlm_apmc3 <- mlm_classification(AP ~ ., apmc_nogeom)
 Sys.time()
 
 

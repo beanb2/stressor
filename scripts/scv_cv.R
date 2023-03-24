@@ -117,13 +117,60 @@ ggplot(data_scv_latlon, aes(x = models, y = rmse)) +
 dev.off()
 
 pdf("scripts/joint_cv.pdf")
-ggplot(data_joint, aes(x = models, y = rmse, fill = Method)) +
+ggplot(data_joint, aes(x = Method, y = rmse, fill = Method)) +
   geom_boxplot() +
-  scale_y_continuous(name = "RMSE", breaks = seq(15, 60, 5),
-                     limits = c(15, 60)) +
+  #scale_y_continuous(name = "RMSE", breaks = seq(15, 60, 5),
+  #                   limits = c(15, 60)) +
   # ggtitle("Repeated 10-fold CV on Various Techniques") +
   scale_fill_brewer(palette = "Dark2") +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 12),
+  theme(axis.text.x = element_blank(),
         axis.title = element_text(size = 12, face = "bold")) +
-  xlab("Models")
+  xlab("Models") +
+  facet_wrap(~ models, ncol = 3, scales = "free")
+dev.off()
+
+ind1 <- c("et", "lightgbm", "rf", "gbr", "ada", "ridge")
+ind2 <- c("br", "lr", "lar", "lasso", "en", "knn")
+ind3 <- c("dt", "huber", "dummy", "llar", "omp", "par")
+plot1 <- data_joint[which(data_joint$models %in% ind1 == TRUE), ]
+plot2 <- data_joint[which(data_joint$models %in% ind2 == TRUE), ]
+plot3 <- data_joint[which(data_joint$models %in% ind3 == TRUE), ]
+
+pdf("scripts/presentation/joint_1.pdf", width = 5, height = 3)
+ggplot(plot1, aes(x = Method, y = rmse, fill = Method)) +
+  geom_boxplot() +
+  #scale_y_continuous(name = "RMSE", breaks = seq(15, 60, 5),
+  #                   limits = c(15, 60)) +
+  # ggtitle("Repeated 10-fold CV on Various Techniques") +
+  scale_fill_brewer(palette = "Dark2") +
+  theme(axis.text.x = element_blank(),
+        axis.title.x = element_blank(),
+        axis.title = element_text(size = 12, face = "bold")) +
+  facet_wrap(~ models, ncol = 3, scales = "free")
+dev.off()
+
+pdf("scripts/presentation/joint_2.pdf", width = 5, height = 3)
+ggplot(plot2, aes(x = Method, y = rmse, fill = Method)) +
+  geom_boxplot() +
+  #scale_y_continuous(name = "RMSE", breaks = seq(15, 60, 5),
+  #                   limits = c(15, 60)) +
+  # ggtitle("Repeated 10-fold CV on Various Techniques") +
+  scale_fill_brewer(palette = "Dark2") +
+  theme(axis.text.x = element_blank(),
+        axis.title.x = element_blank(),
+        axis.title = element_text(size = 12, face = "bold")) +
+  facet_wrap(~ models, ncol = 3, scales = "free")
+dev.off()
+
+pdf("scripts/presentation/joint_3.pdf", width = 5, height = 3)
+ggplot(plot3, aes(x = Method, y = rmse, fill = Method)) +
+  geom_boxplot() +
+  #scale_y_continuous(name = "RMSE", breaks = seq(15, 60, 5),
+  #                   limits = c(15, 60)) +
+  # ggtitle("Repeated 10-fold CV on Various Techniques") +
+  scale_fill_brewer(palette = "Dark2") +
+  theme(axis.text.x = element_blank(),
+        axis.title.x = element_blank(),
+        axis.title = element_text(size = 12, face = "bold")) +
+  facet_wrap(~ models, ncol = 3, scales = "free")
 dev.off()

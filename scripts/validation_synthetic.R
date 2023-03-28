@@ -254,3 +254,78 @@ ggplot(df, aes(x = x1, y = x2, col = groups, pch = groups)) +
   geom_point(size = 3) +
   scale_color_brewer(palette = "Set2")
 dev.off()
+
+library(randomForest)
+# Random Forest Validation
+eps <- seq(from = .1, to = 1, by = .1)
+n <- c(100, 300, 500, 700, 900, 1000) # add in 5000
+lab <- c("n = 100", "n = 300", "n = 500", "n = 700",
+         "n = 900", "n = 1000")
+weight_vec <- c(1, 3, 4, 5, 7)
+test_size <- 500
+rf_pred_lm <- matrix(0, nrow = length(eps), ncol = length(n))
+for (i in seq_len(length(n))) {
+  for (j in seq_len(length(eps))) {
+    all_lm_data <- data_gen_lm(n[i] + test_size, weight_vec, y_int = 0,
+                               sd = eps[j])
+    index <- sample(seq_len(n[i] + test_size), n[i])
+    lm_data <- all_lm_data[index, ]
+    lm_test <- all_lm_data[-index, ]
+    rf <- randomForest::randomForest(Y ~ ., data = lm_data)
+    pred_rf <- predict(rf, newdata = lm_test)
+    rf_pred_lm[j, i] <- rmse(pred_rf, lm_test$Y)
+  }
+}
+
+mat_sine <- matrix(rep(1, 15), nrow = 3, ncol = 5)
+
+rf_pred_sine <- matrix(0, nrow = length(eps), ncol = length(n))
+for (i in seq_len(length(n))) {
+  for (j in seq_len(length(eps))) {
+    all_lm_data <- data_gen_sine(n[i] + test_size, mat_sine, y_int = 0,
+                               sd = eps[j])
+    index <- sample(seq_len(n[i] + test_size), n[i])
+    lm_data <- all_lm_data[index, ]
+    lm_test <- all_lm_data[-index, ]
+    rf <- randomForest::randomForest(Y ~ ., data = lm_data)
+    pred_rf <- predict(rf, newdata = lm_test)
+    rf_pred_sine[j, i] <- rmse(pred_rf, lm_test$Y)
+  }
+}
+
+mat_asym <- matrix(rep(1, 10), nrow = 2, ncol = 5)
+
+rf_pred_asym <- matrix(0, nrow = length(eps), ncol = length(n))
+for (i in seq_len(length(n))) {
+  for (j in seq_len(length(eps))) {
+    all_lm_data <- data_gen_asym(n[i] + test_size, mat_asym, y_int = 0,
+                                 sd = eps[j])
+    index <- sample(seq_len(n[i] + test_size), n[i])
+    lm_data <- all_lm_data[index, ]
+    lm_test <- all_lm_data[-index, ]
+    rf <- randomForest::randomForest(Y ~ ., data = lm_data)
+    pred_rf <- predict(rf, newdata = lm_test)
+    rf_pred_asym[j, i] <- rmse(pred_rf, lm_test$Y)
+  }
+}
+
+eps <- rep(seq(.1, 1, by = .1), 18)
+groups <- rep(c(rep("n = 100", 10), rep("n = 300", 10),
+            rep("n = 500", 10), rep("n = 700", 10),
+            rep("n = 900", 10), rep("n = 1000", 10)), 3)
+data_from <- rep(c("lm", "sine", "asym"), each = 60)
+rmse <- c(as.vector(rf_pred_lm), as.vector(rf_pred_sine),
+          as.vector(rf_pred_asym))
+rf_df <- data.frame(rmse, eps, groups, data_from)
+
+pdf(file = "scripts/rf_verification.pdf")
+ggplot(rf_df, aes(x = eps, y = rmse, color = data_from)) +
+  geom_point(alpha = .8) +
+  geom_line(aes(x = eps, y = eps), color = "red") +
+  facet_wrap(~ groups, nrow = 2) +
+  scale_x_continuous(name = "eps", breaks = seq(0, 1, by = .2), limits = c(0.0, 1.05)) +
+  scale_y_continuous(breaks = seq(0, 6, by = .5), limits = c(0, 6)) +
+  scale_color_brewer(palette = "Dark2") +
+  theme(axis.title=element_text(size=14,face="bold")) +
+  guides(color=guide_legend(title="Data\nGeneration\nMethod"))
+dev.off()

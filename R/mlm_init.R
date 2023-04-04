@@ -106,6 +106,7 @@ mlm_init <- function(formula, data, fit_models, n_models = 9999,
   #  I will have to dive deeper into the documentation into how to do it.
   # par <- reticulate::import('pycaret.parallel') include = fit_models,
   models <- reg$compare_models(include = fit_models,
+                               sort = 'RMSE',
                                n_select = as.integer(n_models),
                                errors = 'raise')
   Model <- reg$pull()$Model

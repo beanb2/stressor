@@ -259,15 +259,20 @@ library(randomForest)
 # Random Forest Validation
 eps <- seq(from = .1, to = 1, by = .1)
 n <- c(100, 300, 500, 700, 900, 1000) # add in 5000
+# 100, 1000
+# Quantify how hungry RF is in recovering linear dataset.
 lab <- c("n = 100", "n = 300", "n = 500", "n = 700",
          "n = 900", "n = 1000")
+n <- 1000
+eps <- c(0.1, 1)
 weight_vec <- c(1, 3, 4, 5, 7)
+weight_vec <- c(1, 1, 1, 1, 1)
 test_size <- 500
 rf_pred_lm <- matrix(0, nrow = length(eps), ncol = length(n))
 for (i in seq_len(length(n))) {
   for (j in seq_len(length(eps))) {
     all_lm_data <- data_gen_lm(n[i] + test_size, weight_vec, y_int = 0,
-                               sd = eps[j])
+                               resp_sd = eps[j])
     index <- sample(seq_len(n[i] + test_size), n[i])
     lm_data <- all_lm_data[index, ]
     lm_test <- all_lm_data[-index, ]

@@ -17,7 +17,7 @@ Description: Traditional model evaluation metrics fail to capture model
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.3
 SystemRequirements: python(>=3.8.10)
 Suggests: 
     knitr,

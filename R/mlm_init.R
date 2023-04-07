@@ -81,12 +81,14 @@ mlm_init <- function(formula, data, fit_models, n_models = 9999,
   vv <- attr(terms(formula(data)), which = "variables")
   rr <- as.character(vv[[2]]) # The response variable name
   if (classification) {
+    sortv <- 'Accuracy'
     if (!all(is.element(fit_models, class_models))) {
       stop("The current models are not supported.")
     }
     message("Importing Pycaret Classification")
     reg <- reticulate::import("pycaret.classification")
   } else {
+    sortv <- 'RMSE'
     if (!all(is.element(fit_models, regress_models))) {
       stop("The current models are not supported.")
     }
@@ -106,7 +108,7 @@ mlm_init <- function(formula, data, fit_models, n_models = 9999,
   #  I will have to dive deeper into the documentation into how to do it.
   # par <- reticulate::import('pycaret.parallel') include = fit_models,
   models <- reg$compare_models(include = fit_models,
-                               sort = 'RMSE',
+                               sort = sortv,
                                n_select = as.integer(n_models),
                                errors = 'raise')
   Model <- reg$pull()$Model

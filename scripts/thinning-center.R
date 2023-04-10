@@ -33,24 +33,36 @@ ggplot(data = g_df, aes(x = thin_amt, y = RMSE, color = Models)) +
 dev.off()
 
 # Distance vs Residuals
-data <- data_gen_asym(1000, resp_sd = 1)
-asym_model <- reg_asym(Y ~., data = data)
-dist_asym <- dist_cent(Y ~., data)
-cv_asym <- cv(asym_model, data = data)
-resids <- residual(cv_asym, data$Y)
+data_asym <- data_gen_asym(1000, resp_sd = 1)
+asym_model <- reg_asym(Y ~., data = data_asym)
+dist_asym <- dist_cent(Y ~., data_asym)
+cv_asym <- cv(asym_model, data = data_asym)
+resids <- residual(cv_asym, data_asym$Y)
 asym_df <- data.frame(dist_asym, resids)
 
+pdf("scripts/asym_dist.pdf", width = 2.75, height = 3.25)
 ggplot(data = asym_df, aes(x = dist_asym, y = resids)) +
-  geom_point()
+  geom_point() +
+  scale_x_continuous(name = "Distance from Center", breaks = seq(2, 12, 1),
+                     limits = c(2, 12)) +
+  scale_y_continuous(name = "Residuals", breaks = seq(-7, 4, 1),
+                     limits = c(-7, 4.03))
+dev.off()
 
-data <- data_gen_lm(1000, weight_vec = c(1, 3, 4, 5, 7), resp_sd = 1)
-lm_model <- lm(Y ~., data = data)
-dist_lm <- dist_cent(Y ~., data)
-cv_lm <- cv(lm_model, data = data)
-resids_lm <- residual(cv_asym, data$Y)
+data_lm <- data_gen_lm(1000, weight_vec = c(1, 3, 4, 5, 7), resp_sd = 1)
+lm_model <- lm(Y ~., data = data_lm)
+dist_lm <- dist_cent(Y ~., data_lm)
+cv_lm <- cv(lm_model, data = data_lm)
+resids_lm <- residual(cv_asym, data_lm$Y)
 lm_df <- data.frame(dist_lm, resids_lm)
 
+pdf("scripts/lm_dist.pdf", width = 2.75, height = 3.25)
 ggplot(data = lm_df, aes(x = dist_lm, y = resids_lm)) +
-  geom_point()
+  geom_point() +
+  scale_x_continuous(name = "Distance from Center", breaks = seq(0, 35, 5),
+                     limits = c(0, 35)) +
+  scale_y_continuous(name = "Residuals", breaks = seq(-35, 35, 5),
+                     limits = c(-35, 35))
+dev.off()
 
 rf_model <- randomForest::randomForest(Y ~ ., data = data)

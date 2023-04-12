@@ -3,9 +3,9 @@ Type: Package
 Title: Algorithms for testing models under stress 
 Version: 0.1.0
 Authors@R: c(
-    person("Samuel", "Haycock", "sam.haycock@usu.edu",
+    person("Samuel", "Haycock", email = "sam.haycock@usu.edu",
     role = c("aut", "cre")),
-    person("Brennan", "Bean", , "brennan.bean@usu.edu", 
+    person("Brennan", "Bean", email = "brennan.bean@usu.edu", 
     role = c("aut"))
   )
 Maintainer: Sam Haycock <sam.haycock@usu.edu>

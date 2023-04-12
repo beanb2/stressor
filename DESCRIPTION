@@ -6,7 +6,7 @@ Authors@R: c(
     person("Samuel", "Haycock", "sam.haycock@usu.edu",
     role = c("aut", "cre")),
     person("Brennan", "Bean", , "brennan.bean@usu.edu", 
-    role = "aut",
+    role = c("aut"))
   )
 Maintainer: Sam Haycock <sam.haycock@usu.edu>
 Description: Traditional model evaluation metrics fail to capture model 

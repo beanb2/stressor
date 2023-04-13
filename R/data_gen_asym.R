@@ -6,7 +6,7 @@
 #' @param weight_mat The parameter coefficients where each column represents
 #'  the coefficients and is two rows as each additive equation contains two
 #'  parameters. Defaulted to be 10 random numbers from the log-normal
-#'  distribution.
+#'  distribution. Where the second row of the matrix needs to be positive.
 #' @param y_int The y-intercept term of the additive model.
 #' @param resp_sd The standard deviation of the epsilon term to be added for
 #'  noise.

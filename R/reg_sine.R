@@ -79,7 +79,7 @@ sine_yhat <- function(estimated, X) {
         shift <- est_mat[3, i]
         vec_2[, i] <- amp * sin(per * (X[, i] - shift))
       }
-      Y_pred <- colSums(vec_2) + estimated[length(estimated)]
+      Y_pred <- rowSums(vec_2) + estimated[length(estimated)]
   }
   Y_pred
 }

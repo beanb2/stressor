@@ -4,10 +4,11 @@
 \alias{thinning}
 \title{Thinning algorithm for Models with Predict function}
 \usage{
-thinning(object, data, max = 0.95, min = 0.05, iter = 0.05)
+thinning(model, data, max = 0.95, min = 0.05, iter = 0.05)
 }
 \arguments{
-\item{object}{a model that has a predict function defined.}
+\item{model}{a model that is currently of class type "reg_sine", "reg_asym",
+"lm", or "mlm_stressor".}
 
 \item{data}{a data frame with all the data}
 

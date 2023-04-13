@@ -17,23 +17,33 @@
 #'  thin <- thinning(mlm_lm, lm_test, max = .8, min = .7, iter = .05)
 #'  thin
 #' @export
-thinning <- function(model, data, max = .95, min = .05, iter = .05) {
+thinning <- function(model, data, max = .95, min = .05, iter = .05,
+                     classification = FALSE) {
   train_size <- seq(min, max, iter)
   curr_methods <- c("reg_sine", "reg_asym", "lm", "mlm_stressor")
   method <- class(model)[1]
+  data <- model.frame(formula = formula(model), data = data)
+  vv <- attr(terms(formula(data)), which = "variables")
+  rr <- as.character(vv[[2]])
   if (!is.element(method, curr_methods)){
     stop("Not a supported method at this time!")
   }
   predictions <- vector("list", length = length(train_size))
-  pred_rmse <- vector("numeric", length = length(train_size))
+  if (method == "mlm_stressor") {
+    pred_rmse <- matrix(0, nrow = length(model$models),
+                        ncol = length(train_size))
+  } else {
+    pred_rmse <- vector("numeric", length = length(train_size))
+  }
   for (i in seq_len(length(train_size))) {
+    print(i)
     train_index <- sample(1:nrow(data), train_size[i] * nrow(data))
     test <- data[-train_index, ]
     train <- data[train_index, ]
     if (method == "mlm_stressor") {
       classification = FALSE
       if (class(model)[2] == "classifier") {classification = TRUE}
-      predictions[test_index, ] <- mlm_refit(model, train, test,
+      predictions[[i]] <- mlm_refit(model, train, test,
                                              classification)
     } else if (method == "reg_sine") {
       predictions[[i]] <- predict(reg_sine(formula(model),
@@ -47,8 +57,31 @@ thinning <- function(model, data, max = .95, min = .05, iter = .05) {
     } else {
       stop("Current method is unsupported at this time.")
     }
-    pred_rmse[i] <- rmse(predictions[[i]], test$Y)
+    if (classification) {
+      if (method == "mlm_stressor") {
+        for (j in seq_len(ncol(predictions[[i]]))){
+          if (!all(suppressWarnings(is.na(as.integer(predictions[[i]][, j]))))) {
+            predictions[[i]][, j] <- as.integer(predictions[[i]][, j])
+          }
+          pred_rmse[j, i] <- sum(test[, rr] == predictions[[i]][, j]) /
+            nrow(test)
+        }
+      } else {
+        pred_rmse[i] <- sum(test[, rr] == predictions[[i]]) / nrow(test)
+      }
+    } else {
+      if (method == "mlm_stressor") {
+        pred_rmse[, i] <- rmse(predictions[[i]], test[, rr])[, 2]
+      } else {
+        pred_rmse[i] <- rmse(predictions[[i]], test[, rr])
+      }
+    }
+
   }
-  rtn_list <- list(RMSE = pred_rmse, predictions = predictions)
+  if (classification) {
+    rtn_list <- list(PCC = pred_rmse, predictions = predictions)
+  } else {
+    rtn_list <- list(RMSE = pred_rmse, predictions = predictions)
+  }
   rtn_list
 }

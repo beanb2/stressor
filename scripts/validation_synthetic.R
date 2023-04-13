@@ -145,7 +145,7 @@ rmse <- c(asym_results$`n = 100`, asym_results$`n = 1000`)
 as_df <- data.frame(rmse, eps, groups)
 
 # Sinusoidal
-rmse <- log(c(sine_accuracy$`n = 100`, sine_accuracy$`n = 1000`), 10)
+rmse <- c(sine_accuracy$`n = 100`, sine_accuracy$`n = 1000`)
 sine_df <- data.frame(rmse, eps, groups)
 
 # Linear
@@ -167,17 +167,18 @@ jt_df <- data.frame(rmse, eps, groups, method)
 library(ggplot2)
 library(grid)
 library(gridExtra)
+library(ggh4x)
 # Using ggh4x package to get facet scales to differ.
 scales_y <- list(
   method == "Asymptotic" ~ scale_y_continuous(breaks = seq(0, 1.4, .2),
                                               limits = c(0, 1.4)),
   method == "Linear" ~ scale_y_continuous(breaks = seq(0, 1.2, .2),
                                           limits = c(0, 1.1)),
-  method == "Sinusoidal" ~ scale_y_continuous(breaks = seq(0, 4, 1),
-                                              limits = c(0, 4))
+  method == "Sinusoidal" ~ scale_y_continuous(breaks = seq(0, 1.6, .2),
+                                              limits = c(0, 1.6))
 )
 pdf("scripts/jnt_verification.pdf", width = 6, height = 4)
-p <- ggplot(jt_df, aes(x = eps, y = rmse)) +
+ggplot(jt_df, aes(x = eps, y = rmse)) +
   geom_point() +
   geom_line(aes(x = eps, y = eps), color = "red") +
   facet_grid(rows = vars(method), cols = vars(groups), scales = "free_y") +
@@ -185,13 +186,6 @@ p <- ggplot(jt_df, aes(x = eps, y = rmse)) +
   facetted_pos_scales(y = scales_y) +
   scale_x_continuous(breaks = seq(0, 1, by = .2), limits = c(0, 1)) +
   theme(axis.title=element_text(size=14,face="bold"))
-
-g <- ggplotGrob(p)
-yax <- which(g$layout$name == "ylab-l")
-g[["grobs"]][[yax]]$children[[1]]$label <- c("RMSE", "log(RMSE)", "RMSE")
-g[["grobs"]][[yax]]$children[[1]]$y <- grid::unit(seq(0.15, 0.85, length =3),
-                                                  "npc")
-grid.draw(g)
 dev.off()
 
 # Visualization for Spatial Cross Validation

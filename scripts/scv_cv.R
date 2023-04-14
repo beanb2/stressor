@@ -129,14 +129,59 @@ ggplot(data_joint, aes(x = Method, y = rmse, fill = Method)) +
   facet_wrap(~ models, ncol = 3, scales = "free")
 dev.off()
 
-ind1 <- c("et", "lightgbm", "rf", "gbr", "ada", "ridge")
-ind2 <- c("br", "lr", "lar", "lasso", "en", "knn")
-ind3 <- c("dt", "huber", "dummy", "llar", "omp", "par")
-plot1 <- data_joint[which(data_joint$models %in% ind1 == TRUE), ]
-plot2 <- data_joint[which(data_joint$models %in% ind2 == TRUE), ]
-plot3 <- data_joint[which(data_joint$models %in% ind3 == TRUE), ]
+ind1 <- c("et", "rf", "lightgbm", "gbr", "knn", "dt")
+ind2 <- c("ada", "lr", "ridge", "br", "lasso",  "lar")
+ind3 <- c("en", "huber", "omp", "dummy", "llar", "par")
+plot1 <- data_joint[which(data_joint$models %in% ind1), ]
+plot2 <- data_joint[which(data_joint$models %in% ind2), ]
+plot3 <- data_joint[which(data_joint$models %in% ind3), ]
 
-pdf("scripts/presentation/joint_1.pdf", width = 5, height = 3)
+plot1_scales <- list(
+  models == "et" ~ scale_y_continuous(breaks = seq(16, 24, 1),
+                                              limits = c(16, 24)),
+  models == "rf" ~ scale_y_continuous(breaks = seq(17, 26, 1),
+                                          limits = c(17, 26)),
+  models == "lightgbm" ~ scale_y_continuous(breaks = seq(18, 26, 1),
+                                              limits = c(18, 26)),
+  models == "gbr" ~ scale_y_continuous(breaks = seq(22, 27, 1),
+                                            limits = c(22, 27)),
+  models == "knn" ~ scale_y_continuous(breaks = seq(23, 36, 1),
+                                            limits = c(23, 36.1)),
+  models == "dt" ~ scale_y_continuous(breaks = seq(25, 36, 1),
+                                            limits = c(25, 36))
+)
+
+plot2_scales <- list(
+  models == "ada" ~ scale_y_continuous(breaks = seq(28, 31, 1),
+                                      limits = c(28, 31)),
+  models == "lr" ~ scale_y_continuous(breaks = seq(29, 32, 1),
+                                      limits = c(29, 32)),
+  models == "ridge" ~ scale_y_continuous(breaks = seq(29, 32, 1),
+                                            limits = c(29, 32)),
+  models == "br" ~ scale_y_continuous(breaks = seq(29, 32, 1),
+                                      limits = c(29, 32)),
+  models == "lasso" ~ scale_y_continuous(breaks = seq(29, 33, 1),
+                                       limits = c(29, 33)),
+  models == "lar" ~ scale_y_continuous(breaks = seq(29, 34, 1),
+                                      limits = c(29, 34))
+)
+
+plot3_scales <- list(
+  models == "en" ~ scale_y_continuous(breaks = seq(30, 44, 1),
+                                      limits = c(30, 34)),
+  models == "huber" ~ scale_y_continuous(breaks = seq(33, 37, 1),
+                                      limits = c(33, 37)),
+  models == "omp" ~ scale_y_continuous(breaks = seq(37, 45, 1),
+                                            limits = c(37, 45)),
+  models == "dummy" ~ scale_y_continuous(breaks = seq(39, 41, 1),
+                                       limits = c(39, 41)),
+  models == "llar" ~ scale_y_continuous(breaks = seq(39, 41, 1),
+                                        limits = c(39, 41)),
+  models == "par" ~ scale_y_continuous(breaks = seq(39, 59, 2),
+                                      limits = c(39, 59))
+)
+
+pdf("scripts/jcv1.pdf", width = 6, height = 4)
 ggplot(plot1, aes(x = Method, y = rmse, fill = Method)) +
   geom_boxplot() +
   #scale_y_continuous(name = "RMSE", breaks = seq(15, 60, 5),
@@ -146,10 +191,12 @@ ggplot(plot1, aes(x = Method, y = rmse, fill = Method)) +
   theme(axis.text.x = element_blank(),
         axis.title.x = element_blank(),
         axis.title = element_text(size = 12, face = "bold")) +
-  facet_wrap(~ models, ncol = 3, scales = "free")
+  facet_wrap(~ models, ncol = 3, scales = "free") +
+  facetted_pos_scales(y = plot1_scales) +
+  ylab("RMSE")
 dev.off()
 
-pdf("scripts/presentation/joint_2.pdf", width = 5, height = 3)
+pdf("scripts/jcv2.pdf", width = 6, height = 4)
 ggplot(plot2, aes(x = Method, y = rmse, fill = Method)) +
   geom_boxplot() +
   #scale_y_continuous(name = "RMSE", breaks = seq(15, 60, 5),
@@ -159,10 +206,12 @@ ggplot(plot2, aes(x = Method, y = rmse, fill = Method)) +
   theme(axis.text.x = element_blank(),
         axis.title.x = element_blank(),
         axis.title = element_text(size = 12, face = "bold")) +
-  facet_wrap(~ models, ncol = 3, scales = "free")
+  facet_wrap(~ models, ncol = 3, scales = "free") +
+  facetted_pos_scales(y = plot2_scales) +
+  ylab("RMSE")
 dev.off()
 
-pdf("scripts/presentation/joint_3.pdf", width = 5, height = 3)
+pdf("scripts/jcv3.pdf", width = 6, height = 4)
 ggplot(plot3, aes(x = Method, y = rmse, fill = Method)) +
   geom_boxplot() +
   #scale_y_continuous(name = "RMSE", breaks = seq(15, 60, 5),
@@ -172,5 +221,7 @@ ggplot(plot3, aes(x = Method, y = rmse, fill = Method)) +
   theme(axis.text.x = element_blank(),
         axis.title.x = element_blank(),
         axis.title = element_text(size = 12, face = "bold")) +
-  facet_wrap(~ models, ncol = 3, scales = "free")
+  facet_wrap(~ models, ncol = 3, scales = "free") +
+  ylab("RMSE") +
+  facetted_pos_scales(y = plot3_scales)
 dev.off()

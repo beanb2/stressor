@@ -23,9 +23,10 @@ dist_cent <- function(formula, data){
   scaled_data <- scale(t_data)
   center <- apply(scaled_data, 2, mean)
   dist <- vector("numeric", length = nrow(data))
-  for (i in seq_len(length(dist))){
-    dist[i] <- euclid_dist(center, data[i, ])
-  }
+  dist <- apply(scaled_data, 1, function(x) {
+    euclid <- euclid_dist(center, x)
+    euclid
+  })
   dist
 }
 

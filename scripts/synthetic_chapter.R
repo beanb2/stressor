@@ -151,7 +151,6 @@ thin_df_F <- thin_df[thin_df$models %in% c("asym", "gbr", "lightgbm", "rf", "et"
 
 col_palette <- RColorBrewer::brewer.pal(12, "Paired")
 new_palette <- col_palette[c(6, 2, 4, 10, 12)]
-my_palette <- c(new_palette, rep("lightgray", 14))
 new_palette1 <- col_palette[c(6, 2, 4, 8, 10, 12)]
 
 pdf("scripts/synth_thin1.pdf", width = 6, height = 4)

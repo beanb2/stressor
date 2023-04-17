@@ -29,7 +29,7 @@ cv.rmse <- c(sine_rmse, ml_rmse$rmse)
 scv.rmse <- c(sine_scv_rmse, ml_scv_rmse$rmse)
 cv_df <- data.frame(code, Models, cv.rmse, scv.rmse)
 
-knitr::kable(cv_df, "latex")
+knitr::kable(cv_df, "latex", digits = 2)
 
 # distance from center
 distances <- dist_cent(Y ~ ., data_sine)
@@ -44,12 +44,12 @@ dist <- rep(distances, 19)
 resids <- c(residual(sine_cv, data_sine$Y), as.vector(as.matrix(ml_resids)))
 dist_df <- data.frame(resids, dist, models)
 dist_df <- dist_df[dist_df$models %in% row.names(ml_models$pred_accuracy), ]
-dist_df_F <- dist_df[dist_df$models %in% c("gbr", "lightgbm", "et"), ]
-dist_df_F1 <- dist_df[dist_df$models %in% c("rf", "ada", "dt"), ]
-dist_df_F2 <- dist_df[dist_df$models %in% c("knn", "lr", "ridge"), ]
-dist_df_F3 <- dist_df[dist_df$models %in% c("lar", "br", "huber"), ]
-dist_df_F4 <- dist_df[dist_df$models %in% c("omp", "en", "dummy"), ]
-dist_df_F5 <- dist_df[dist_df$models %in% c("lasso", "llar", "par"), ]
+dist_df_F <- dist_df[dist_df$models %in% c("sine", "gbr", "lightgbm", "et"), ]
+dist_df_F1 <- dist_df[dist_df$models %in% c("sine", "rf", "ada", "dt"), ]
+dist_df_F2 <- dist_df[dist_df$models %in% c("sine", "knn", "lr", "ridge"), ]
+dist_df_F3 <- dist_df[dist_df$models %in% c("sine", "lar", "br", "huber"), ]
+dist_df_F4 <- dist_df[dist_df$models %in% c("sine", "omp", "en", "dummy"), ]
+dist_df_F5 <- dist_df[dist_df$models %in% c("sine", "lasso", "llar", "par"), ]
 
 pdf("scripts/dist1_sine.pdf", width = 6, height = 4)
 ggplot(mapping = aes(x = dist, y = resids)) +
@@ -57,10 +57,10 @@ ggplot(mapping = aes(x = dist, y = resids)) +
   geom_point(aes(group = models, color = models, pch = models), data = dist_df_F, alpha = .7) +
   scale_shape_manual(values = c(16, 15, 17, 13))+
   scale_color_manual(values = new_palette) +
-  scale_x_continuous(name = "Distance from Center", breaks = seq(0, 9, 1),
-                    limits = c(0, 9)) +
-  scale_y_continuous(name = "Residuals", breaks = seq(-15, 15, 1),
-                    limits = c(-15, 15)) +
+  scale_x_continuous(name = "Distance from Center", breaks = seq(0, 5, 1),
+                    limits = c(0, 5)) +
+  scale_y_continuous(name = "Residuals", breaks = seq(-12, 13, 1),
+                    limits = c(-12, 13)) +
   labs(color = "Models", pch = "Models")
 dev.off()
 
@@ -70,10 +70,10 @@ ggplot(mapping = aes(x = dist, y = resids)) +
   geom_point(aes(group = models, color = models, pch = models), data = dist_df_F1, alpha = .7) +
   scale_shape_manual(values = c(16, 15, 17, 13))+
   scale_color_manual(values = new_palette) +
-  scale_x_continuous(name = "Distance from Center", breaks = seq(0, 9, 1),
-                     limits = c(0, 9)) +
-  scale_y_continuous(name = "Residuals", breaks = seq(-15, 15, 1),
-                     limits = c(-15, 15)) +
+  scale_x_continuous(name = "Distance from Center", breaks = seq(0, 5, 1),
+                     limits = c(0, 5)) +
+  scale_y_continuous(name = "Residuals", breaks = seq(-12, 13, 1),
+                     limits = c(-12, 13)) +
   labs(color = "Models", pch = "Models")
 dev.off()
 
@@ -83,10 +83,10 @@ ggplot(mapping = aes(x = dist, y = resids)) +
   geom_point(aes(group = models, color = models, pch = models), data = dist_df_F2, alpha = .7) +
   scale_shape_manual(values = c(16, 15, 17, 13))+
   scale_color_manual(values = new_palette) +
-  scale_x_continuous(name = "Distance from Center", breaks = seq(0, 9, 1),
-                     limits = c(0, 9)) +
-  scale_y_continuous(name = "Residuals", breaks = seq(-15, 15, 1),
-                     limits = c(-15, 15)) +
+  scale_x_continuous(name = "Distance from Center", breaks = seq(0, 5, 1),
+                     limits = c(0, 5)) +
+  scale_y_continuous(name = "Residuals", breaks = seq(-12, 13, 1),
+                     limits = c(-12, 13)) +
   labs(color = "Models", pch = "Models")
 dev.off()
 
@@ -96,10 +96,10 @@ ggplot(mapping = aes(x = dist, y = resids)) +
   geom_point(aes(group = models, color = models, pch = models), data = dist_df_F3, alpha = .7) +
   scale_shape_manual(values = c(16, 15, 17, 13))+
   scale_color_manual(values = new_palette) +
-  scale_x_continuous(name = "Distance from Center", breaks = seq(0, 9, 1),
-                     limits = c(0, 9)) +
-  scale_y_continuous(name = "Residuals", breaks = seq(-15, 15, 1),
-                     limits = c(-15, 15)) +
+  scale_x_continuous(name = "Distance from Center", breaks = seq(0, 5, 1),
+                     limits = c(0, 5)) +
+  scale_y_continuous(name = "Residuals", breaks = seq(-12, 13, 1),
+                     limits = c(-12, 13)) +
   labs(color = "Models", pch = "Models")
 dev.off()
 
@@ -109,10 +109,10 @@ ggplot(mapping = aes(x = dist, y = resids)) +
   geom_point(aes(group = models, color = models, pch = models), data = dist_df_F4, alpha = .7) +
   scale_shape_manual(values = c(16, 15, 17, 13))+
   scale_color_manual(values = new_palette) +
-  scale_x_continuous(name = "Distance from Center", breaks = seq(0, 9, 1),
-                     limits = c(0, 9)) +
-  scale_y_continuous(name = "Residuals", breaks = seq(-15, 15, 1),
-                     limits = c(-15, 15)) +
+  scale_x_continuous(name = "Distance from Center", breaks = seq(0, 5, 1),
+                     limits = c(0, 5)) +
+  scale_y_continuous(name = "Residuals", breaks = seq(-12, 13, 1),
+                     limits = c(-12, 13)) +
   labs(color = "Models", pch = "Models")
 dev.off()
 
@@ -122,10 +122,10 @@ ggplot(mapping = aes(x = dist, y = resids)) +
   geom_point(aes(group = models, color = models, pch = models), data = dist_df_F5, alpha = .7) +
   scale_shape_manual(values = c(16, 15, 17, 13))+
   scale_color_manual(values = new_palette) +
-  scale_x_continuous(name = "Distance from Center", breaks = seq(0, 9, 1),
-                     limits = c(0, 9)) +
-  scale_y_continuous(name = "Residuals", breaks = seq(-15, 15, 1),
-                     limits = c(-15, 15)) +
+  scale_x_continuous(name = "Distance from Center", breaks = seq(0, 5, 1),
+                     limits = c(0, 5)) +
+  scale_y_continuous(name = "Residuals", breaks = seq(-12, 13, 1),
+                     limits = c(-12, 13)) +
   labs(color = "Models", pch = "Models")
 dev.off()
 
@@ -137,17 +137,17 @@ sine_thin_rmse <- sine_thin$RMSE
 mlm_thin <- thinning(ml_models, data_sine)
 mlm_thin_rmse <- mlm_thin$RMSE
 
-RMSE <- as.vector(mlm_thin_rmse)
-thin_amt <- rep(size, 18)
-models <- factor(rep(c(row.names(ml_models$pred_accuracy)), each = 19),
-                 levels = c(row.names(ml_models$pred_accuracy)))
+RMSE <- c(sine_thin_rmse, as.vector(mlm_thin_rmse))
+thin_amt <- rep(size, 19)
+models <- factor(rep(c("sine", row.names(ml_models$pred_accuracy)), each = 19),
+                 levels = c("sine", row.names(ml_models$pred_accuracy)))
 thin_df <- data.frame(RMSE, thin_amt, models)
-thin_df_F <- thin_df[thin_df$models %in% c("gbr", "lightgbm", "et", "rf"), ]
+thin_df_F <- thin_df[thin_df$models %in% c("sine", "gbr", "lightgbm", "et", "rf"), ]
 
 col_palette <- RColorBrewer::brewer.pal(12, "Paired")
-new_palette <- col_palette[c(2, 4, 10, 12)]
+new_palette <- col_palette[c(6, 2, 4, 10, 12)]
 my_palette <- c(new_palette, rep("lightgray", 14))
-new_palette1 <- col_palette[c(2, 4, 8, 10, 12)]
+new_palette1 <- col_palette[c(6, 2, 4, 8, 10, 12)]
 
 pdf("scripts/synth_thin1_sine.pdf", width = 6, height = 4)
 ggplot() +
@@ -159,16 +159,16 @@ ggplot() +
              data = thin_df_F, alpha = .9) +
   geom_abline(slope = 0, intercept = .1, color = "black",
               linetype = "longdash", linewidth = .8, alpha = .8) +
-  scale_y_continuous(breaks = seq(0, 6, by = 1), limits = c(0, 6)) +
+  scale_y_continuous(breaks = seq(0, 5, by = 1), limits = c(0, 5)) +
   scale_x_continuous(name = "Thinning Amount (%)\n(Training Size)", breaks = seq(0, 1, .1),
                      limits = c(0, 1)) +
   scale_color_manual(values = new_palette) +
   labs(color = "Models")
 dev.off()
 
-thin_df_F2 <- thin_df[thin_df$models %in% c("ada", "dt", "knn", "lr"),]
-thin_df_F3 <- thin_df[thin_df$models %in% c("ridge", "lar", "br", "huber", "omp"), ]
-thin_df_F4 <- thin_df[thin_df$models %in% c("en", "dummy", "lasso", "llar", "par"), ]
+thin_df_F2 <- thin_df[thin_df$models %in% c("sine", "ada", "dt", "knn", "lr"),]
+thin_df_F3 <- thin_df[thin_df$models %in% c("sine", "ridge", "lar", "br", "huber", "omp"), ]
+thin_df_F4 <- thin_df[thin_df$models %in% c("sine", "en", "dummy", "lasso", "llar", "par"), ]
 
 pdf("scripts/synth_thin2_sine.pdf", width = 6, height = 4)
 ggplot() +

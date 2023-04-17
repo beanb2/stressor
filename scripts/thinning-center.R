@@ -11,10 +11,10 @@ pred_thin_lm <- thinning(lm_model, data = data)$RMSE
 rf_model <- randomForest::randomForest(Y ~ ., data = data)
 pred_thin_rf <- thinning(rf_model, data = data)$RMSE
 
-Models <- factor(rep(c("Asymptotic", "Linear", "Random Forest"), each = 19),
-                 levels = c("Asymptotic", "Linear", "Random Forest"))
-RMSE <- c(pred_thin_asym, pred_thin_lm, pred_thin_rf)
-thin_amt <- rep(seq(.05, .95, .05), 3)
+Models <- factor(rep(c("Asymptotic", "Random Forest"), each = 19),
+                 levels = c("Asymptotic", "Random Forest"))
+RMSE <- c(pred_thin_asym, pred_thin_rf)
+thin_amt <- rep(seq(.05, .95, .05), 2)
 g_df <- data.frame(RMSE, Models, thin_amt)
 
 col_palette <- RColorBrewer::brewer.pal(8, "Dark2")
@@ -26,7 +26,7 @@ ggplot(data = g_df, aes(x = thin_amt, y = RMSE, color = Models)) +
   geom_point() +
   geom_abline(slope = 0, intercept = 1, color = "red",
               linetype = "longdash", linewidth = .8, alpha = .8) +
-  scale_y_continuous(breaks = seq(.9, 1.2, by = .05), limits = c(.9, 1.2)) +
+  scale_y_continuous(breaks = seq(.95, 1.3, by = .05), limits = c(.95, 1.3)) +
   scale_x_continuous(name = "Thinning Amount (%)\n(Training Size)", breaks = seq(0, 1, .1),
                      limits = c(0, 1)) +
   scale_color_manual(values = new_palette)
@@ -43,10 +43,10 @@ asym_df <- data.frame(dist_asym, resids)
 pdf("scripts/asym_dist.pdf", width = 2.75, height = 3.25)
 ggplot(data = asym_df, aes(x = dist_asym, y = resids)) +
   geom_point() +
-  scale_x_continuous(name = "Distance from Center", breaks = seq(2, 12, 1),
-                     limits = c(2, 12)) +
-  scale_y_continuous(name = "Residuals", breaks = seq(-7, 4, 1),
-                     limits = c(-7, 4.03))
+  scale_x_continuous(name = "Distance from Center", breaks = seq(0, 4, 1),
+                     limits = c(0, 4)) +
+  scale_y_continuous(name = "Residuals", breaks = seq(-5, 4, 1),
+                     limits = c(-5, 4))
 dev.off()
 
 data_lm <- data_gen_lm(1000, weight_vec = c(1, 3, 4, 5, 7), resp_sd = 1)
@@ -59,10 +59,10 @@ lm_df <- data.frame(dist_lm, resids_lm)
 pdf("scripts/lm_dist.pdf", width = 2.75, height = 3.25)
 ggplot(data = lm_df, aes(x = dist_lm, y = resids_lm)) +
   geom_point() +
-  scale_x_continuous(name = "Distance from Center", breaks = seq(0, 35, 5),
-                     limits = c(0, 35)) +
-  scale_y_continuous(name = "Residuals", breaks = seq(-35, 35, 5),
-                     limits = c(-35, 35))
+  scale_x_continuous(name = "Distance from Center", breaks = seq(0, 5, 1),
+                     limits = c(0, 5)) +
+  scale_y_continuous(name = "Residuals", breaks = seq(-30, 40, 5),
+                     limits = c(-31, 40))
 dev.off()
 
 rf_model <- randomForest::randomForest(Y ~ ., data = data)

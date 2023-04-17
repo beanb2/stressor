@@ -116,17 +116,18 @@ ggplot(data_scv_latlon, aes(x = models, y = rmse)) +
   ggtitle("Repeated 10-fold SCV with Grouping")
 dev.off()
 
-pdf("scripts/joint_cv.pdf")
-ggplot(data_joint, aes(x = Method, y = rmse, fill = Method)) +
+pdf("scripts/joint_cv.pdf", width = 5.75, height = 5)
+ggplot(data_joint, aes(x = models, y = rmse, fill = Method)) +
   geom_boxplot() +
-  #scale_y_continuous(name = "RMSE", breaks = seq(15, 60, 5),
-  #                   limits = c(15, 60)) +
+  scale_y_continuous(name = "RMSE", breaks = seq(15, 60, 5),
+                    limits = c(15, 60)) +
   # ggtitle("Repeated 10-fold CV on Various Techniques") +
   scale_fill_brewer(palette = "Dark2") +
-  theme(axis.text.x = element_blank(),
-        axis.title = element_text(size = 12, face = "bold")) +
-  xlab("Models") +
-  facet_wrap(~ models, ncol = 3, scales = "free")
+  theme(axis.text.x = element_text(angle = -60, vjust = .6, hjust = 0),
+        axis.title = element_text(size = 12, face = "bold"),
+        axis.text = element_text(size = 12)) +
+  xlab("Models") #+
+  # facet_wrap(~ models, ncol = 3, scales = "free")
 dev.off()
 
 ind1 <- c("et", "rf", "lightgbm", "gbr", "knn", "dt")

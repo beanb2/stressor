@@ -58,6 +58,8 @@ model <- rep(colnames(apmc_cv), 4)
 quantile <- rep(c(.25, .5, .75, 1), each = 14)
 df_dist <- data.frame(PCC, model, quantile)
 df_dist_F <- df_dist[df_dist$model %in% c("rf", "et", "lightgbm", "gbc"),]
+df_dist_F1 <- df_dist[df_dist$model %in% c("ada", "lda", "ridge", "dt", "lr"),]
+df_dist_F2 <- df_dist[df_dist$model %in% c("knn", "qda", "nb", "svm", "dummy"),]
 
 pdf("scripts/quantile_apmc.pdf", width = 6, height = 4)
 ggplot(df_dist, aes(x = quantile, y = PCC)) +
@@ -68,10 +70,40 @@ ggplot(df_dist, aes(x = quantile, y = PCC)) +
   scale_color_manual(values = new_palette) +
   scale_x_continuous(name = "Quantile (Distance from Center)", breaks = seq(.25, 1, .25),
                      limits = c(.25, 1)) +
-  scale_y_continuous(name = "Residuals", breaks = seq(40, 90, 5),
+  scale_y_continuous(name = "PCC", breaks = seq(40, 90, 5),
                      limits = c(40, 90)) +
   labs(color = "Models", pch = "Models")
 dev.off()
+
+pdf("scripts/quantile_apmc1.pdf", width = 6, height = 4)
+ggplot(df_dist, aes(x = quantile, y = PCC)) +
+  geom_point(aes(group = model), size = 2, color = "grey", alpha = .5) +
+  geom_point(aes(group = model, color = model, pch = model), size = 3, alpha = .7,
+             data = df_dist_F1) +
+  scale_shape_manual(values = c(16, 15, 17, 13, 12))+
+  scale_color_manual(values = new_palette) +
+  scale_x_continuous(name = "Quantile (Distance from Center)", breaks = seq(.25, 1, .25),
+                     limits = c(.25, 1)) +
+  scale_y_continuous(name = "PCC", breaks = seq(40, 90, 5),
+                     limits = c(40, 90)) +
+  labs(color = "Models", pch = "Models")
+dev.off()
+
+pdf("scripts/quantile_apmc2.pdf", width = 6, height = 4)
+ggplot(df_dist, aes(x = quantile, y = PCC)) +
+  geom_point(aes(group = model), size = 2, color = "grey", alpha = .5) +
+  geom_point(aes(group = model, color = model, pch = model), size = 3, alpha = .7,
+             data = df_dist_F2) +
+  scale_shape_manual(values = c(16, 15, 17, 13, 12))+
+  scale_color_manual(values = new_palette) +
+  scale_x_continuous(name = "Quantile (Distance from Center)", breaks = seq(.25, 1, .25),
+                     limits = c(.25, 1)) +
+  scale_y_continuous(name = "PCC", breaks = seq(40, 90, 5),
+                     limits = c(40, 90)) +
+  labs(color = "Models", pch = "Models")
+dev.off()
+
+
 
 # Visualizations
 
@@ -102,6 +134,8 @@ models <- factor(rep(colnames(apmc_cv), each = 19),
                  levels = colnames(apmc_cv))
 thin_df <- data.frame(PCC, thin_amt, models)
 thin_df_F <- thin_df[thin_df$models %in% c("rf", "et", "lightgbm", "gbc", "ada"),]
+thin_df_F1 <- thin_df[thin_df$models %in% c("lda", "ridge", "dt", "lr", "knn"),]
+thin_df_F2 <- thin_df[thin_df$models %in% c("qda", "nb", "svm", "dummy"),]
 
 col_palette <- RColorBrewer::brewer.pal(12, "Paired")
 new_palette <- col_palette[c(6, 2, 4, 10, 12)]
@@ -114,6 +148,36 @@ ggplot() +
             data = thin_df_F, linewidth = .75, alpha = .9) +
   geom_point(aes(thin_amt, PCC, group = models, color = models),
              data = thin_df_F, alpha = .9) +
+  scale_y_continuous(breaks = seq(0.45, .85, by = .1), limits = c(.45, .85)) +
+  scale_x_continuous(name = "Thinning Amount (%)\n(Training Size)", breaks = seq(0, 1, .1),
+                     limits = c(0, 1)) +
+  scale_color_manual(values = new_palette) +
+  labs(color = "Models")
+dev.off()
+
+pdf("scripts/apmc_thin1.pdf", width = 6, height = 4)
+ggplot() +
+  geom_line(aes(thin_amt, PCC, group = models), data = thin_df, color = "grey",
+            alpha = .7) +
+  geom_line(aes(thin_amt, PCC, group = models, color = models),
+            data = thin_df_F1, linewidth = .75, alpha = .9) +
+  geom_point(aes(thin_amt, PCC, group = models, color = models),
+             data = thin_df_F1, alpha = .9) +
+  scale_y_continuous(breaks = seq(0.45, .85, by = .1), limits = c(.45, .85)) +
+  scale_x_continuous(name = "Thinning Amount (%)\n(Training Size)", breaks = seq(0, 1, .1),
+                     limits = c(0, 1)) +
+  scale_color_manual(values = new_palette) +
+  labs(color = "Models")
+dev.off()
+
+pdf("scripts/apmc_thin2.pdf", width = 6, height = 4)
+ggplot() +
+  geom_line(aes(thin_amt, PCC, group = models), data = thin_df, color = "grey",
+            alpha = .7) +
+  geom_line(aes(thin_amt, PCC, group = models, color = models),
+            data = thin_df_F2, linewidth = .75, alpha = .9) +
+  geom_point(aes(thin_amt, PCC, group = models, color = models),
+             data = thin_df_F2, alpha = .9) +
   scale_y_continuous(breaks = seq(0.45, .85, by = .1), limits = c(.45, .85)) +
   scale_x_continuous(name = "Thinning Amount (%)\n(Training Size)", breaks = seq(0, 1, .1),
                      limits = c(0, 1)) +
@@ -165,6 +229,100 @@ cv_df <- data.frame(code = colnames(mlm_yield_cv), models.cv, yield.cv, yield.sc
                     yield.scv.lat)
 
 knitr::kable(cv_df, "latex", digits = 2)
+
+# Data Thin Poofed in the cloud
+
+# DistCENT
+breaks <- c(1.1, 2.903, 3.616, 4.689, 23.4)
+yield_cuts <- cut(yield_dist, breaks = breaks, right = FALSE, labels = FALSE)
+dist_df <- data.frame(distance = yield_dist, mlm_yield_cv, yield = corn_yield$YIELD, cuts = yield_cuts)
+df3 <- dist_df %>% group_by(cuts) %>%
+  summarise(etRMSE = rmse(et, yield),
+            rfRMSE = rmse(rf, yield),
+            lightgbmRMSE = rmse(lightgbm, yield),
+            gbrRMSE = rmse(gbr, yield),
+            knnRMSE = rmse(knn, yield),
+            dtRMSE = rmse(dt, yield),
+            adaRMSE = rmse(ada, yield),
+            lrRMSE = rmse(lr, yield),
+            ridgeRMSE = rmse(ridge, yield),
+            brRMSE = rmse(br, yield),
+            lassoRMSE = rmse(lasso, yield),
+            larRMSE = rmse(lar, yield),
+            enRMSE = rmse(en, yield),
+            huberRMSE = rmse(huber, yield),
+            ompRMSE = rmse(omp, yield),
+            dummyRMSE = rmse(dummy, yield),
+            llarRMSE = rmse(llar, yield),
+            parRMSE = rmse(par, yield),
+            .groups = 'drop')%>%
+  as.data.frame()
+
+RMSE <- unlist(c(df3[1, ][-1], df3[2, ][-1], df3[3, ][-1], df3[4, ][-1]))
+model <- rep(colnames(mlm_yield_cv), 4)
+quantile <- rep(c(.25, .5, .75, 1), each = 18)
+df_dist <- data.frame(RMSE, model, quantile)
+df_dist_F <- df_dist[df_dist$model %in% c("et", "rf", "lightgbm", "gbr"), ]
+df_dist_F1 <- df_dist[df_dist$model %in% c("knn", "dt", "ada", "lr"), ]
+df_dist_F2 <- df_dist[df_dist$model %in% c("ridge", "br", "lasso", "lar", "en"), ]
+df_dist_F3 <- df_dist[df_dist$model %in% c("huber", "omp", "dummy", "llar", "par"), ]
+
+pdf("scripts/quantile_yield.pdf", width = 6, height = 4)
+ggplot(df_dist, aes(x = quantile, y = RMSE)) +
+  geom_point(aes(group = model), size = 2, color = "grey", alpha = .5) +
+  geom_point(aes(group = model, color = model, pch = model), size = 3, alpha = .7,
+             data = df_dist_F) +
+  scale_shape_manual(values = c(16, 15, 17, 13))+
+  scale_color_manual(values = new_palette) +
+  scale_x_continuous(name = "Quantile (Distance from Center)", breaks = seq(.25, 1, .25),
+                     limits = c(.25, 1)) +
+  scale_y_continuous(name = "RMSE", breaks = seq(10, 50, 5),
+                     limits = c(10, 50)) +
+  labs(color = "Models", pch = "Models")
+dev.off()
+
+pdf("scripts/quantile_yield1.pdf", width = 6, height = 4)
+ggplot(df_dist, aes(x = quantile, y = RMSE)) +
+  geom_point(aes(group = model), size = 2, color = "grey", alpha = .5) +
+  geom_point(aes(group = model, color = model, pch = model), size = 3, alpha = .7,
+             data = df_dist_F1) +
+  scale_shape_manual(values = c(16, 15, 17, 13))+
+  scale_color_manual(values = new_palette) +
+  scale_x_continuous(name = "Quantile (Distance from Center)", breaks = seq(.25, 1, .25),
+                     limits = c(.25, 1)) +
+  scale_y_continuous(name = "RMSE", breaks = seq(10, 50, 5),
+                     limits = c(10, 50)) +
+  labs(color = "Models", pch = "Models")
+dev.off()
+
+pdf("scripts/quantile_yield2.pdf", width = 6, height = 4)
+ggplot(df_dist, aes(x = quantile, y = RMSE)) +
+  geom_point(aes(group = model), size = 2, color = "grey", alpha = .5) +
+  geom_point(aes(group = model, color = model, pch = model), size = 3, alpha = .7,
+             data = df_dist_F2) +
+  scale_shape_manual(values = c(16, 15, 17, 13, 12))+
+  scale_color_manual(values = new_palette) +
+  scale_x_continuous(name = "Quantile (Distance from Center)", breaks = seq(.25, 1, .25),
+                     limits = c(.25, 1)) +
+  scale_y_continuous(name = "RMSE", breaks = seq(10, 50, 5),
+                     limits = c(10, 50)) +
+  labs(color = "Models", pch = "Models")
+dev.off()
+
+pdf("scripts/quantile_yield3.pdf", width = 6, height = 4)
+ggplot(df_dist, aes(x = quantile, y = RMSE)) +
+  geom_point(aes(group = model), size = 2, color = "grey", alpha = .5) +
+  geom_point(aes(group = model, color = model, pch = model), size = 3, alpha = .7,
+             data = df_dist_F3) +
+  scale_shape_manual(values = c(16, 15, 17, 13, 12))+
+  scale_color_manual(values = new_palette) +
+  scale_x_continuous(name = "Quantile (Distance from Center)", breaks = seq(.25, 1, .25),
+                     limits = c(.25, 1)) +
+  scale_y_continuous(name = "RMSE", breaks = seq(10, 50, 5),
+                     limits = c(10, 50)) +
+  labs(color = "Models", pch = "Models")
+dev.off()
+
 
 save(apmc_cv, apmc_scv, file = "scripts/apmc_cv_scv.Rdata")
 save(apmc_thin, file = "scripts/ apmc_thin.Rdata")

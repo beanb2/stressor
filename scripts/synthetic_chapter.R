@@ -62,10 +62,10 @@ ggplot(mapping = aes(x = dist, y = resids)) +
   geom_point(aes(group = models, color = models, pch = models), data = dist_df_F, alpha = .7) +
   scale_shape_manual(values = c(16, 15, 17, 13))+
   scale_color_manual(values = new_palette) +
-  scale_x_continuous(name = "Distance from Center", breaks = seq(3, 18, 1),
-                     limits = c(3, 18)) +
-  scale_y_continuous(name = "Residuals", breaks = seq(-5, 2, 1),
-                     limits = c(-5, 2)) +
+  scale_x_continuous(name = "Distance from Center", breaks = seq(0, 4, 1),
+                     limits = c(0, 4)) +
+  scale_y_continuous(name = "Residuals", breaks = seq(-3, 2, 1),
+                     limits = c(-3, 2)) +
   labs(color = "Models", pch = "Models")
 dev.off()
 
@@ -75,10 +75,10 @@ ggplot(mapping = aes(x = dist, y = resids)) +
   geom_point(aes(group = models, color = models, pch = models), data = dist_df_F1, alpha = .7) +
   scale_shape_manual(values = c(16, 15, 17, 13))+
   scale_color_manual(values = new_palette) +
-  scale_x_continuous(name = "Distance from Center", breaks = seq(3, 18, 1),
-                     limits = c(3, 18)) +
-  scale_y_continuous(name = "Residuals", breaks = seq(-5, 2, 1),
-                     limits = c(-5, 2)) +
+  scale_x_continuous(name = "Distance from Center", breaks = seq(0, 4, 1),
+                     limits = c(0, 4)) +
+  scale_y_continuous(name = "Residuals", breaks = seq(-3, 2, 1),
+                     limits = c(-3, 2)) +
   labs(color = "Models", pch = "Models")
 dev.off()
 
@@ -88,10 +88,10 @@ ggplot(mapping = aes(x = dist, y = resids)) +
   geom_point(aes(group = models, color = models, pch = models), data = dist_df_F2, alpha = .7) +
   scale_shape_manual(values = c(16, 15, 17, 13))+
   scale_color_manual(values = new_palette) +
-  scale_x_continuous(name = "Distance from Center", breaks = seq(3, 18, 1),
-                     limits = c(3, 18)) +
-  scale_y_continuous(name = "Residuals", breaks = seq(-5, 2, 1),
-                     limits = c(-5, 2)) +
+  scale_x_continuous(name = "Distance from Center", breaks = seq(0, 4, 1),
+                     limits = c(0, 4)) +
+  scale_y_continuous(name = "Residuals", breaks = seq(-3, 2, 1),
+                     limits = c(-3, 2)) +
   labs(color = "Models", pch = "Models")
 dev.off()
 
@@ -101,10 +101,10 @@ ggplot(mapping = aes(x = dist, y = resids)) +
   geom_point(aes(group = models, color = models, pch = models), data = dist_df_F3, alpha = .7) +
   scale_shape_manual(values = c(16, 15, 17, 13))+
   scale_color_manual(values = new_palette) +
-  scale_x_continuous(name = "Distance from Center", breaks = seq(3, 18, 1),
-                     limits = c(3, 18)) +
-  scale_y_continuous(name = "Residuals", breaks = seq(-5, 2, 1),
-                     limits = c(-5, 2)) +
+  scale_x_continuous(name = "Distance from Center", breaks = seq(0, 4, 1),
+                     limits = c(0, 4)) +
+  scale_y_continuous(name = "Residuals", breaks = seq(-3, 2, 1),
+                     limits = c(-3, 2)) +
   labs(color = "Models", pch = "Models")
 dev.off()
 
@@ -114,10 +114,10 @@ ggplot(mapping = aes(x = dist, y = resids)) +
   geom_point(aes(group = models, color = models, pch = models), data = dist_df_F4, alpha = .7) +
   scale_shape_manual(values = c(16, 15, 17, 13))+
   scale_color_manual(values = new_palette) +
-  scale_x_continuous(name = "Distance from Center", breaks = seq(3, 18, 1),
-                     limits = c(3, 18)) +
-  scale_y_continuous(name = "Residuals", breaks = seq(-5, 2, 1),
-                     limits = c(-5, 2)) +
+  scale_x_continuous(name = "Distance from Center", breaks = seq(0, 4, 1),
+                     limits = c(0, 4)) +
+  scale_y_continuous(name = "Residuals", breaks = seq(-3, 2, 1),
+                     limits = c(-3, 2)) +
   labs(color = "Models", pch = "Models")
 dev.off()
 
@@ -127,10 +127,10 @@ ggplot(mapping = aes(x = dist, y = resids)) +
   geom_point(aes(group = models, color = models, pch = models), data = dist_df_F5, alpha = .7) +
   scale_shape_manual(values = c(16, 15, 17, 13))+
   scale_color_manual(values = new_palette) +
-  scale_x_continuous(name = "Distance from Center", breaks = seq(3, 18, 1),
-                     limits = c(3, 18)) +
-  scale_y_continuous(name = "Residuals", breaks = seq(-5, 2, 1),
-                     limits = c(-5, 2)) +
+  scale_x_continuous(name = "Distance from Center", breaks = seq(0, 4, 1),
+                     limits = c(0, 4)) +
+  scale_y_continuous(name = "Residuals", breaks = seq(-3, 2, 1),
+                     limits = c(-3, 2)) +
   labs(color = "Models", pch = "Models")
 dev.off()
 

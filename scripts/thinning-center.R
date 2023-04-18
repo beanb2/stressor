@@ -37,7 +37,7 @@ data_asym <- data_gen_asym(1000, resp_sd = 1)
 asym_model <- reg_asym(Y ~., data = data_asym)
 dist_asym <- dist_cent(Y ~., data_asym)
 cv_asym <- cv(asym_model, data = data_asym)
-resids <- residual(cv_asym, data_asym$Y)
+resids_asym <- residual(cv_asym, data_asym$Y)
 asym_df <- data.frame(dist_asym, resids)
 
 pdf("scripts/asym_dist.pdf", width = 2.75, height = 3.25)
@@ -65,4 +65,26 @@ ggplot(data = lm_df, aes(x = dist_lm, y = resids_lm)) +
                      limits = c(-31, 40))
 dev.off()
 
-rf_model <- randomForest::randomForest(Y ~ ., data = data)
+library(ggh4x)
+
+scales_y <- list(
+  Method == "Asymptotic" ~ scale_y_continuous(breaks = seq(-6, 4, 2),
+                                                 limits = c(-6, 4)),
+  Method == "Linear" ~ scale_y_continuous(breaks = seq(-30, 30, 10),
+                                             limits = c(-32, 32))
+)
+residuals <- c(resids_asym, resids_lm)
+distances <- c(dist_asym, dist_lm)
+Method <- factor(rep(c("Asymptotic", "Linear"), each = 1000),
+                 levels = c("Asymptotic", "Linear"))
+joint_df <- data.frame(residuals, distances, Method)
+
+pdf("scripts/jnt_dist.pdf", width = 6, height = 4)
+ggplot(data = joint_df, aes(x = distances, y = residuals)) +
+  geom_point() +
+  facet_wrap(~ Method, scales = "free_y") +
+  scale_x_continuous(name = "Distance from Center", breaks = seq(0, 5, 1),
+                     limits = c(0, 5)) +
+  facetted_pos_scales(y = scales_y) +
+  ylab("Residuals")
+dev.off()

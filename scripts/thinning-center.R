@@ -38,7 +38,7 @@ asym_model <- reg_asym(Y ~., data = data_asym)
 dist_asym <- dist_cent(Y ~., data_asym)
 cv_asym <- cv(asym_model, data = data_asym)
 resids_asym <- residual(cv_asym, data_asym$Y)
-asym_df <- data.frame(dist_asym, resids)
+asym_df <- data.frame(dist_asym, resids_asym)
 
 pdf("scripts/asym_dist.pdf", width = 2.75, height = 3.25)
 ggplot(data = asym_df, aes(x = dist_asym, y = resids)) +

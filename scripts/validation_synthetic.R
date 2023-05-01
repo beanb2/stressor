@@ -190,6 +190,7 @@ dev.off()
 
 # Visualization for Spatial Cross Validation
 library(RColorBrewer)
+set.seed(43421)
 x1 <- rnorm(50)
 x2 <- rnorm(50)
 df <- data.frame(x1, x2)

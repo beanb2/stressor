@@ -83,15 +83,15 @@ This is core of cross validation both standard and using k-mean groups. This
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{lm}: Cross Validation for lm
+\item \code{cv(lm)}: Cross Validation for lm
 
-\item \code{mlm_stressor}: Cross Validation for mlm_stressor
+\item \code{cv(mlm_stressor)}: Cross Validation for mlm_stressor
 
-\item \code{reg_asym}: Cross Validation for reg_asym
+\item \code{cv(reg_asym)}: Cross Validation for reg_asym
 
-\item \code{reg_sine}: Cross Validation for reg_sine
+\item \code{cv(reg_sine)}: Cross Validation for reg_sine
+
 }}
-
 \examples{
  # lm example
  lm_test <- data_gen_lm(10)

@@ -41,7 +41,7 @@ reg_sine <- function(formula, data, method = "BFGS",
 #' @noRd
 sine_function <- function(estimated, X, Y) {
   Y_pred <- sine_yhat(estimated, X)
-  error <- sum((Y_pred - Y)^2, na.rm=TRUE)
+  error <- sum((Y - Y_pred)^2, na.rm=TRUE)
   error
 }
 
@@ -79,7 +79,7 @@ sine_yhat <- function(estimated, X) {
         shift <- est_mat[3, i]
         vec_2[, i] <- amp * sin(per * (X[, i] - shift))
       }
-      Y_pred <- colSums(vec_2) + estimated[length(estimated)]
+      Y_pred <- rowSums(vec_2) + estimated[length(estimated)]
   }
   Y_pred
 }

@@ -41,15 +41,15 @@ create_groups <- function(formula, data, n_folds = 10, k_mult = NULL,
   data_check(formula, data)
   boolean_check(repl)
   x_data <- model.matrix(formula, data = data)[, -1]
-  if (repl) {
-    x_data_copy <- as.data.frame(x_data)
-    x_data <- as.data.frame(x_data)
-    x_data <- dplyr::distinct(x_data)
-  }
   if (!is.null(grouping_formula)) {
     data_check(grouping_formula, data)
     x_data_copy <- model.matrix(grouping_formula, data)[, -1]
     x_data <- dplyr::distinct(as.data.frame(x_data_copy))
+  }
+  if (repl) {
+    x_data_copy <- as.data.frame(x_data)
+    x_data <- as.data.frame(x_data)
+    x_data <- dplyr::distinct(x_data)
   }
   if (!is.null(n_folds) && is.null(k_mult)){
     integer_check(n_folds)

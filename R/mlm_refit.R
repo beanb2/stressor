@@ -36,6 +36,7 @@ mlm_refit <- function(mlm_object, train_data, test_data,
 
   prediction_mlm <- matrix(0, nrow = nrow(test_data),
                            ncol = length(mlm_object$models))
+
   modelnames <- row.names(mlm_object$pred_accuracy)
   colnames(prediction_mlm) <- modelnames
 
@@ -47,7 +48,7 @@ mlm_refit <- function(mlm_object, train_data, test_data,
     # For the python file to execute
     refit_mlm_X <<- as.matrix(train_data[, -1])
     refit_mlm_y <<- as.matrix(train_data[, 1])
-    refit_mlm_test <<- test_data[, -1]
+    refit_mlm_test <<- as.matrix(test_data[, -1])
     for (i in seq_len(length(mlm_object$models))) {
       refit_mlm_temp <<- mlm_object$models[[i]]
       reticulate::source_python(file)

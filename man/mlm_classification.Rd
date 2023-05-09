@@ -23,19 +23,19 @@ classifiers that are currently being fit, the user may specify a subset of
 them using a character vector.
 \tabular{rl}{
   ada \tab AdaBoost Classifier \cr
-  et \tab Extra Trees Classifier \cr
-  lightgbm \tab Light Gradient Boosting Machine\cr
-  gbr \tab Gradient Boosting Classifier\cr
-  lr \tab Logistic Regression\cr
-  rf \tab Random Forest Classifier\cr
-  ridge \tab Ridge Classifier\cr
-  knn \tab K Neighbors Classifier\cr
   dt \tab Decision Tree Classifier\cr
   dummy \tab Dummy Classifier\cr
-  svm \tab SVM - Linear Kernel\cr
+  et \tab Extra Trees Classifier \cr
+  gbc \tab Gradient Boosting Classifier\cr
+  knn \tab K Neighbors Classifier\cr
   lda \tab Linear Discriminant Analysis\cr
+  lightgbm \tab Light Gradient Boosting Machine\cr
+  lr \tab Logistic Regression\cr
   nb \tab Naive Bayes \cr
-  qda \tab Quadratic Discriminant Analysis
+  qda \tab Quadratic Discriminant Analysis\cr
+  rf \tab Random Forest Classifier\cr
+  ridge \tab Ridge Classifier\cr
+  svm \tab SVM - Linear Kernel
 }}
 
 \item{n_models}{An integer value defaulted to a large integer value to

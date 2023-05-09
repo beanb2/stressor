@@ -13,23 +13,23 @@
 #'   them using a character vector.
 #'   \tabular{rl}{
 #'     ada \tab AdaBoost Regressor \cr
+#'     br \tab Bayesian Ridge \cr
+#'     dt \tab Decision Tree Regressor \cr
+#'     dummy \tab Dummy Regressor \cr
+#'     en \tab Elastic Net \cr
 #'     et \tab Extra Trees Regressor \cr
-#'     lightgbm \tab Light Gradient Boosting Machine\cr
-#'     gbr \tab Gradient Boosting Regressor\cr
-#'     lr \tab Linear Regression\cr
+#'     gbr \tab Gradient Boosting Regressor \cr
+#'     huber \tab Huber Regressor \cr
+#'     knn \tab K Neighbors Regressor \cr
+#'     lar \tab Least Angle Regression \cr
+#'     lasso \tab Lasso Regression \cr
+#'     lightgbm \tab Light Gradient Boosting Machine \cr
+#'     llar \tab Lasso Least Angle Regression \cr
+#'     lr \tab Linear Regression \cr
+#'     omp \tab Orthogonal Matching Pursuit \cr
+#'     par \tab Passive Aggressive Regressor \cr
 #'     rf \tab Random Forest Regressor\cr
-#'     ridge \tab Ridge Regression\cr
-#'     knn \tab K Neighbors Regressor\cr
-#'     dt \tab Decision Tree Regressor\cr
-#'     dummy \tab Dummy Regressor\cr
-#'     lar \tab Least Angle Regression\cr
-#'     br \tab Bayesian Ridge\cr
-#'     huber \tab Huber Regressor\cr
-#'    omp \tab Orthogonal Matching Pursuit\cr
-#'     lasso \tab Lasso Regression\cr
-#'     en \tab Elastic Net\cr
-#'     llar \tab Lasso Least Angle Regression\cr
-#'     par \tab Passive Aggressive Regressor
+#'     ridge \tab Ridge Regression
 #'   }
 #' @param n_models An integer value defaulted to a large integer value to
 #'   return all possible models.

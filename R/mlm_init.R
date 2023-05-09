@@ -38,7 +38,7 @@
 #'     dt \tab Decision Tree Classifier\cr
 #'     dummy \tab Dummy Classifier\cr
 #'     et \tab Extra Trees Classifier \cr
-#'     gbr \tab Gradient Boosting Classifier\cr
+#'     gbc \tab Gradient Boosting Classifier\cr
 #'     knn \tab K Neighbors Classifier\cr
 #'     lda \tab Linear Discriminant Analysis\cr
 #'     lightgbm \tab Light Gradient Boosting Machine\cr
@@ -81,12 +81,14 @@ mlm_init <- function(formula, data, fit_models, n_models = 9999,
   vv <- attr(terms(formula(data)), which = "variables")
   rr <- as.character(vv[[2]]) # The response variable name
   if (classification) {
+    sortv <- 'Accuracy'
     if (!all(is.element(fit_models, class_models))) {
       stop("The current models are not supported.")
     }
     message("Importing Pycaret Classification")
     reg <- reticulate::import("pycaret.classification")
   } else {
+    sortv <- 'RMSE'
     if (!all(is.element(fit_models, regress_models))) {
       stop("The current models are not supported.")
     }
@@ -106,6 +108,7 @@ mlm_init <- function(formula, data, fit_models, n_models = 9999,
   #  I will have to dive deeper into the documentation into how to do it.
   # par <- reticulate::import('pycaret.parallel') include = fit_models,
   models <- reg$compare_models(include = fit_models,
+                               sort = sortv,
                                n_select = as.integer(n_models),
                                errors = 'raise')
   Model <- reg$pull()$Model
@@ -116,6 +119,9 @@ mlm_init <- function(formula, data, fit_models, n_models = 9999,
     row.names(pred_accuracy) <- row.names(reg$pull())
     for (i in seq_len(length(models))) {
       pred_results <- reg$predict_model(models[[i]], data = test)
+      if (!all(suppressWarnings(is.na(as.integer(pred_results$Label))))) {
+        pred_results$Label <- as.integer(pred_results$Label)
+      }
       pred_accuracy[i, 2] <- sum(test[, rr] == pred_results$Label) /
                                      nrow(test)
     }

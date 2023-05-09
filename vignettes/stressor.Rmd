@@ -68,6 +68,67 @@ lm_data <- data_gen_lm(500, weight_vec = rep(1, 5), y_int = 0, resp_sd = 1)
 head(lm_data)
 ```
 
+### Validation of Data Generation
+Below is a visual of when we know the standard deviation of the epsilon term we 
+can show that our models fit data if we are close to the theoretical error. In the graphic below the black dots represent the RMSE value given the current epsilon that we are on. The red line represents the expected theoretical error.
+```{r, echo = FALSE, fig.align='center', fig.height=5, fig.width = 5}
+library(ggplot2)
+# Data Verification
+simulation <- function(n, eps, weight_mat, label, test_size = 100, 
+                       seed = 43421) {
+  pred_accuracy <- matrix(0, nrow = length(eps), ncol = length(n))
+  conv_mat <- matrix(0, nrow = length(eps), ncol = length(n))
+  set.seed(seed)
+  for (i in seq_len(ncol(pred_accuracy))) {
+    for (j in seq_len(nrow(pred_accuracy))) {
+      temp <- data_gen_lm(n[i] + test_size, weight_mat = weight_mat, 
+                          resp_sd = eps[j])
+      test <- sample(nrow(temp), test_size)
+      data <- temp[-test,]
+      test <- temp[test, ]
+      test_y <- test[, 1]
+      test <- test[, -1]
+      obj <- lm(Y ~ ., data = data)
+      pred <- predict(obj, test)
+      pred_accuracy[j, i] <- sqrt(sum((test_y - pred)^2) / test_size)
+    }
+  }
+  pred_accuracy <- as.data.frame(pred_accuracy)
+  colnames(pred_accuracy) <- label
+  sim_list <- list(pred_accuracy, conv_mat)
+  return(sim_list)
+}
+eps <- seq(from = .1, to = 1, by = .1)
+n <- c(100, 300, 500, 700, 900, 1000) # add in 5000
+lab <- c("n = 100", "n = 300", "n = 500", "n = 700",
+         "n = 900", "n = 1000")
+weight_vec <- c(1, 3, 4, 5, 7)
+lm_accuracy_res <- simulation(n, eps, weight_vec, lab)
+lm_accuracy <- lm_accuracy_res[[1]]
+
+eps2 <- rep(seq(.1, 1, .1), 6)
+lm_results <- as.data.frame(eps2)
+rmse <- c(lm_accuracy$`n = 100`, lm_accuracy$`n = 300`,
+          lm_accuracy$`n = 500`, lm_accuracy$`n = 700`,
+          lm_accuracy$`n = 900`, lm_accuracy$`n = 1000`)
+lm_results$rmse <- rmse
+lm_results$groups <- c(rep("n = 100", 10), rep("n = 300", 10),
+                       rep("n = 500", 10), rep("n = 700", 10),
+                       rep("n = 900", 10), rep("n = 1000", 10))
+lm_results$groups <- factor(lm_results$groups, levels = lab)
+
+ggplot(lm_results, aes(x = eps2, y = rmse)) +
+  geom_point() +
+  geom_line(aes(x = eps2, y = eps2), color = "red") +
+  scale_x_continuous(name = "eps", breaks = seq(0, 1, by = .2), 
+                     limits = c(0.0, 1.05)) +
+  scale_y_continuous(breaks = seq(0, 1.2, by = .2), limits = c(0, 1.2)) +
+  facet_wrap(~ groups, nrow = 2) +
+  ggtitle("Linear Model Validation") +
+  theme(axis.title=element_text(size=14,face="bold"),
+        axis.text.x = element_text(angle = 45))
+```
+
 ## Machine Learning Model Workflow
 
 In this section, we will demonstrate a typical workflow using the
@@ -267,6 +328,7 @@ If the second `use_python` command has the matching virtual environment
 you can ignore this warning and continue with your analysis.
 
 If you recieve an error stating
+
 
 <p style="text-align:center; color:darkred">ERROR: The requested version of 
 Python ... cannot be used, as another

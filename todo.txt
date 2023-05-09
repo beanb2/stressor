@@ -1,9 +1,0 @@
-## TODO: 
-- Need to fix the link with classification process in stressor (done)
-- Talk with brennan about which variables to keep in model, lots of NA's
-    - Impute NA's from median county, then classified.
-- Writing for the defense proposal.
-- Look at preprocess data with dropping is.null
-- Finish getting cv to work with classification
-- Accuracy function?
-- Defense Proposal

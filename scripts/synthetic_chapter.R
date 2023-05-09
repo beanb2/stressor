@@ -56,7 +56,8 @@ dist_df_F3 <- dist_df[dist_df$models %in% c("asym", "lar", "lr", "huber"), ]
 dist_df_F4 <- dist_df[dist_df$models %in% c("asym", "omp", "en", "lasso"), ]
 dist_df_F5 <- dist_df[dist_df$models %in% c("asym", "llar", "dummy", "par"), ]
 
-pdf("scripts/dist1.pdf", width = 6, height = 4)
+# pdf("scripts/dist1.pdf", width = 6, height = 4)
+jpeg("scripts/dist1.jpeg", quality = 90)
 ggplot(mapping = aes(x = dist, y = resids)) +
   geom_point(aes(group = models), data = dist_df, color = "grey", alpha = .5) +
   geom_point(aes(group = models, color = models, pch = models), data = dist_df_F, alpha = .7) +
@@ -64,8 +65,8 @@ ggplot(mapping = aes(x = dist, y = resids)) +
   scale_color_manual(values = new_palette) +
   scale_x_continuous(name = "Distance from Center", breaks = seq(0, 4, 1),
                      limits = c(0, 4)) +
-  scale_y_continuous(name = "Residuals", breaks = seq(-3, 2, 1),
-                     limits = c(-3, 2)) +
+  scale_y_continuous(name = "Residuals", breaks = seq(-4, 4, 1),
+                     limits = c(-4.3, 4)) +
   labs(color = "Models", pch = "Models")
 dev.off()
 

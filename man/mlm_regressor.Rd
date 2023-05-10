@@ -10,7 +10,6 @@ mlm_regressor(
   fit_models = c("ada", "et", "lightgbm", "gbr", "lr", "rf", "ridge", "knn", "dt",
     "dummy", "lar", "br", "huber", "omp", "lasso", "en", "llar", "par"),
   n_models = 9999,
-  example = FALSE,
   ...
 )
 }
@@ -46,9 +45,6 @@ them using a character vector.
 \item{n_models}{An integer value defaulted to a large integer value to
 return all possible models.}
 
-\item{example}{A Boolean value used for checks for examples to run defaulted
-to `FALSE`}
-
 \item{...}{additional arguments passed onto \link[stressor]{mlm_init}}
 }
 \value{
@@ -73,7 +69,9 @@ PyCaret is a python module. Where machine learning models can be fitted with
   data.frame objects that are less than 10,000 rows.
 }
 \examples{
+\dontrun{
  lm_test <- data_gen_lm(20)
  create_virtualenv()
  mlm_lm <- mlm_regressor(Y ~ ., lm_test, example = TRUE)
+}
 }

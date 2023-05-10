@@ -40,6 +40,13 @@
 #'   fit on. Then compare models function is executed which fits all the models
 #'   that are currently available. This process takes less than five minutes for
 #'   data.frame objects that are less than 10,000 rows.
+#' @examples
+#' \dontrun{
+#'  lm_test <- data_gen_lm(20)
+#'  binary_response <- sample(c(0, 1), 20, replace = TRUE)
+#'  lm_test$Y <- binary_response
+#'  mlm_class <- mlm_classification(Y ~ ., lm_test)
+#' }
 #' @export
 mlm_classification <- function(formula, data,
                                fit_models = c('ada', 'et', 'lightgbm','dummy',

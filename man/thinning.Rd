@@ -4,7 +4,14 @@
 \alias{thinning}
 \title{Thinning algorithm for Models with Predict function}
 \usage{
-thinning(model, data, max = 0.95, min = 0.05, iter = 0.05)
+thinning(
+  model,
+  data,
+  max = 0.95,
+  min = 0.05,
+  iter = 0.05,
+  classification = FALSE
+)
 }
 \arguments{
 \item{model}{a model that is currently of class type "reg_sine", "reg_asym",

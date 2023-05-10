@@ -100,7 +100,7 @@ mlm_init <- function(formula, data, fit_models, n_models = 9999,
   data <- data[-data_test, ]
   # Need to take it off the parallel process to run -
   #  Github reference from PyCaret
-  message("Setting up the data for fitting models. Please press return key.")
+  message("Setting up the data for fitting models.")
   exp_reg <- reg$setup(data = data, target = rr, n_jobs = as.integer(1), ...)
 
   message("Fitting Machine Learning Models")
@@ -109,8 +109,7 @@ mlm_init <- function(formula, data, fit_models, n_models = 9999,
   # par <- reticulate::import('pycaret.parallel') include = fit_models,
   models <- reg$compare_models(include = fit_models,
                                sort = sortv,
-                               n_select = as.integer(n_models),
-                               errors = 'raise')
+                               n_select = as.integer(n_models))
   Model <- reg$pull()$Model
 
   if (classification) {
@@ -119,10 +118,11 @@ mlm_init <- function(formula, data, fit_models, n_models = 9999,
     row.names(pred_accuracy) <- row.names(reg$pull())
     for (i in seq_len(length(models))) {
       pred_results <- reg$predict_model(models[[i]], data = test)
-      if (!all(suppressWarnings(is.na(as.integer(pred_results$Label))))) {
-        pred_results$Label <- as.integer(pred_results$Label)
+      pred_values <- pred_results$prediction_label
+      if (!all(suppressWarnings(is.na(as.integer(pred_values))))) {
+        pred_results$prediction_label <- as.integer(pred_values)
       }
-      pred_accuracy[i, 2] <- sum(test[, rr] == pred_results$Label) /
+      pred_accuracy[i, 2] <- sum(test[, rr] == pred_results$prediction_label) /
                                      nrow(test)
     }
   } else {
@@ -131,7 +131,8 @@ mlm_init <- function(formula, data, fit_models, n_models = 9999,
     row.names(pred_accuracy) <- row.names(reg$pull())
     for (i in seq_len(length(models))) {
       pred_results <- reg$predict_model(models[[i]], data = test)
-      pred_accuracy[i, 2] <- sqrt(sum((test[, rr] - pred_results$Label)^2) /
+      pred_values <- pred_results$prediction_label
+      pred_accuracy[i, 2] <- sqrt(sum((test[, rr] - pred_values)^2) /
                                     nrow(test))
     }
   }

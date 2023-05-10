@@ -25,6 +25,9 @@ defaulted to .95.}
 \item{min}{a numeric value in (0, 1) and less than `max`, defaulted to .05.}
 
 \item{iter}{a numeric value to indicate the step size, defaulted to .05}
+
+\item{classification}{A boolean value defaulted `FALSE`, used for
+`mlm_classification`.}
 }
 \value{
 a list object where the first element is the RMSE values at each
@@ -34,9 +37,11 @@ a list object where the first element is the RMSE values at each
 Fits various train size and test sizes.
 }
 \examples{
+\dontrun{
  lm_test <- data_gen_lm(20)
  create_virtualenv()
- mlm_lm <- mlm_regressor(Y ~ ., lm_test, example = TRUE)
+ mlm_lm <- mlm_regressor(Y ~ ., lm_test)
  thin <- thinning(mlm_lm, lm_test, max = .8, min = .7, iter = .05)
  thin
+}
 }

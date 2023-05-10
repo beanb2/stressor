@@ -13,13 +13,15 @@
 #'   methods. Will also declare global variables with the heading of
 #'   `"refit_mlm_`, these are needed for the python code to execute.
 #' @examples
+#' \dontrun{
 #'  lm_train <- data_gen_lm(20)
 #'  train_idx <- sample.int(20, 5)
 #'  train <- lm_train[train_idx, ]
 #'  test <- lm_train[-train_idx, ]
 #'  create_virtualenv()
-#'  mlm_lm <- mlm_regressor(Y ~ ., lm_train, example = TRUE)
+#'  mlm_lm <- mlm_regressor(Y ~ ., lm_train)
 #'  mlm_refit(mlm_lm, train, test, classification = FALSE)
+#' }
 #' @export
 mlm_refit <- function(mlm_object, train_data, test_data,
                       classification = FALSE) {

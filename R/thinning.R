@@ -8,19 +8,23 @@
 #'  defaulted to .95.
 #' @param min a numeric value in (0, 1) and less than `max`, defaulted to .05.
 #' @param iter a numeric value to indicate the step size, defaulted to .05
+#' @param classification A boolean value defaulted `FALSE`, used for
+#'   `mlm_classification`.
 #' @return a list object where the first element is the RMSE values at each
 #'   iteration and the second element being the predictions.
 #' @examples
+#' \dontrun{
 #'  lm_test <- data_gen_lm(20)
 #'  create_virtualenv()
-#'  mlm_lm <- mlm_regressor(Y ~ ., lm_test, example = TRUE)
+#'  mlm_lm <- mlm_regressor(Y ~ ., lm_test)
 #'  thin <- thinning(mlm_lm, lm_test, max = .8, min = .7, iter = .05)
 #'  thin
+#' }
 #' @export
 thinning <- function(model, data, max = .95, min = .05, iter = .05,
                      classification = FALSE) {
   train_size <- seq(min, max, iter)
-  curr_methods <- c("reg_sine", "reg_asym", "lm", "mlm_stressor", "randomForest.formula")
+  curr_methods <- c("reg_sine", "reg_asym", "lm", "mlm_stressor")
   method <- class(model)[1]
   data <- model.frame(formula = formula(model), data = data)
   vv <- attr(terms(formula(data)), which = "variables")
@@ -54,8 +58,6 @@ thinning <- function(model, data, max = .95, min = .05, iter = .05,
     } else if (method == "lm"){
       predictions[[i]] <- predict(lm(formula(model),
                                             data = train), test)
-    } else if (method == "randomForest.formula") {
-      predictions[[i]] <- predict(randomForest::randomForest(formula(model), data = train), newdata = test)
     } else {
       stop("Current method is unsupported at this time.")
     }

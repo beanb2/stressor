@@ -5,6 +5,7 @@ vignette: >
   %\VignetteIndexEntry{stressor}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteDepends{ggplot2}
 editor_options: 
   markdown: 
     wrap: 72
@@ -15,6 +16,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+library(ggplot2)
 ```
 
 This package is designed to allow the user to apply multiple machine
@@ -72,7 +74,6 @@ head(lm_data)
 Below is a visual of when we know the standard deviation of the epsilon term we 
 can show that our models fit data if we are close to the theoretical error. In the graphic below the black dots represent the RMSE value given the current epsilon that we are on. The red line represents the expected theoretical error.
 ```{r, echo = FALSE, warning=FALSE, fig.align='center', fig.height=5, fig.width = 5}
-library(ggplot2)
 # Data Verification
 simulation <- function(n, eps, weight_mat, label, test_size = 100, 
                        seed = 43421) {

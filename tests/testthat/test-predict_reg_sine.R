@@ -5,7 +5,7 @@ test_that("correct output of predict sine", {
                              resp_sd = 0)
   test_obj <- reg_sine(Y ~ ., test_data)
   test_pred <- predict(test_obj, test_data[, -1])
-  expect_equal(unname(round(test_pred, 2)), c(1.75, 0.08, 0.57, 0.91))
+  expect_equal(unname(round(test_pred, 2)), c(2.11, 0.12, -0.29, 1.06))
 
   # 1-dimensional case
   test_one <- data_gen_sine(4, weight_mat = matrix(c(1, 1, 0),

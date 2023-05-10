@@ -28,11 +28,13 @@ Refits models fitted in the \link[stressor]{mlm_init}, and returns the
  predictions.
 }
 \examples{
+\dontrun{
  lm_train <- data_gen_lm(20)
  train_idx <- sample.int(20, 5)
  train <- lm_train[train_idx, ]
  test <- lm_train[-train_idx, ]
  create_virtualenv()
- mlm_lm <- mlm_regressor(Y ~ ., lm_train, example = TRUE)
+ mlm_lm <- mlm_regressor(Y ~ ., lm_train)
  mlm_refit(mlm_lm, train, test, classification = FALSE)
+}
 }

@@ -94,16 +94,17 @@ This is core of cross validation both standard and using k-mean groups. This
 }}
 \examples{
  # lm example
- lm_test <- data_gen_lm(10)
+ lm_test <- data_gen_lm(20)
  lm <- lm(Y ~ ., lm_test)
  cv(lm, lm_test, n_folds = 2)
 
  # Machine Learning Models example
+ \dontrun{
  lm_test <- data_gen_lm(20)
  create_virtualenv()
- mlm_lm <- mlm_regressor(Y ~ ., lm_test, example = TRUE)
+ mlm_lm <- mlm_regressor(Y ~ ., lm_test)
  cv(mlm_lm, lm_test, n_folds = 2)
-
+ }
  # Asymptotic example
  asym_data <- data_gen_asym(10)
  asym_fit <- reg_asym(Y ~ ., asym_data)

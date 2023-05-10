@@ -6,11 +6,13 @@
 #' @param observed A vector of the observed results
 #' @return  A finite value or a data frame of methods and their rmse values
 #' @examples
-#'   # Using vignette data
-#'   data(boston)
-#'   data(mlm_vignette_boston_cv)
-#'   rmse_boston <- rmse(mlm_vignette_boston_cv, boston$cmedv)
-#'   rmse_boston
+#'   lm_data <- data_gen_lm(25)
+#'   test_index <- sample(1:nrow(lm_data), 5)
+#'   test <- lm_data[test_index, ]
+#'   train <- lm_data[-test_index, ]
+#'   lm_test <- lm(Y ~ ., train)
+#'   lm_cv <- cv(lm_test, lm_data, n_folds = 5)
+#'   lm_cv
 #' @export
 rmse <- function(predictions, observed) {
   if (is.null(ncol(predictions))) {

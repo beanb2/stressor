@@ -2,9 +2,5 @@
 ^\.Rproj\.user$
 ^LICENSE\.md$
 ^data-raw$
-^R/scratch$
 ^logs.log$
 ^vignettes/logs.log$
-^lightgbm.model$
-^catboost_info$
-^scripts$

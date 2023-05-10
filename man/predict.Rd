@@ -35,10 +35,12 @@ Predict values on `mlm_stressor`, `reg_asym`, or `reg_sine`
 }
 \examples{
  # mlm_stressor example
- lm_test <- data_gen_lm(20)
+ \dontrun{
+  lm_test <- data_gen_lm(20)
  create_virtualenv()
- mlm_lm <- mlm_regressor(Y ~ ., lm_test, example = TRUE)
+ mlm_lm <- mlm_regressor(Y ~ ., lm_test)
  predict(mlm_lm, lm_test)
+ }
  # Asymptotic Examples
  asym_data <- data_gen_asym(10)
  asym_fit <- reg_asym(Y ~ ., asym_data)

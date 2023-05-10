@@ -2,11 +2,12 @@
 #' @importFrom stats formula
 #' @examples
 #'  # Machine Learning Models example
+#'  \dontrun{
 #'  lm_test <- data_gen_lm(20)
 #'  create_virtualenv()
-#'  mlm_lm <- mlm_regressor(Y ~ ., lm_test, example = TRUE)
+#'  mlm_lm <- mlm_regressor(Y ~ ., lm_test)
 #'  cv(mlm_lm, lm_test, n_folds = 2)
-#'
+#'  }
 #' @export
 cv.mlm_stressor <- function(object, data, n_folds = 10, k_mult = NULL,
                             repl = FALSE, grouping_formula = NULL) {

@@ -301,7 +301,6 @@ a few lines of code, perform 10 fold cross validation and clustered
 cross validation. With a simple command, you can return the RMSE values
 from the predictions.
 
-::: {#troubleshoot}
 ## Troubleshooting
 
 When initiating the virtual environment, you may receive some errors or

@@ -37,7 +37,8 @@ To install python, It is recommended using Python version 3.8.10 from
 }
 \section{Troubleshoot}{
 
- If python is not being found properly
+ If python is not being found properly trying setting the
+  \verb|``RETICULATE_PYTHON"| to ``".
 }
 
 \examples{

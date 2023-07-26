@@ -22,7 +22,8 @@
 #'  `LightGBM`documentation
 #'  \href{https://lightgbm.readthedocs.io/en/latest/Installation-Guide.html}{here}.
 #' @section Troubleshoot:
-#'  If python is not being found properly
+#'  If python is not being found properly trying setting the
+#'   \verb|``RETICULATE_PYTHON"| to ``".
 #' @examples
 #'  create_virtualenv()
 #' @export

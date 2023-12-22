@@ -23,7 +23,11 @@
 #'  \href{https://lightgbm.readthedocs.io/en/latest/Installation-Guide.html}{here}.
 #' @section Troubleshoot:
 #'  If python is not being found properly trying setting the
-#'   \verb|``RETICULATE_PYTHON"| to ``".
+#'   `RETICULATE_PYTHON` to ``''. Also ensure that you do not have other
+#'   python objects in your environment.
+#'
+#'  Also note that on some instances that a warning message may be displayed as
+#'    to which version of python is being used.
 #' @examples
 #'  create_virtualenv()
 #' @export
@@ -47,7 +51,7 @@ create_virtualenv <- function(python = Sys.which('python'),
   if ((length(stressor_env) == 0 || sum(active_env) == 0)
            && delete_env == FALSE) {
     # Create the new environment
-    time <- gsub(":", "", gsub(" ", "", Sys.time()))
+    time <- gsub("\\.", "", gsub(":", "", gsub(" ", "", Sys.time())))
 
     reticulate::virtualenv_create(paste0("stressor-env", time),
                                   python = python)
@@ -89,6 +93,3 @@ create_virtualenv <- function(python = Sys.which('python'),
     stop("ERROR:: No Virtual Environments exist!")
   }
 }
-
-# MAC users need an additional package to install a package from PyCaret. Might
-#  could leverage Sys.info() function.

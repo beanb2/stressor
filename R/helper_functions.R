@@ -62,20 +62,6 @@ matrix_check <- function(matrix) {
   }
 }
 
-#' @title Vector Check function
-#' @description A helper function to check if the vector is properly formatted
-#' @param vector A vector
-#' @return Allows the function to run or returns a user friendly error message.
-#' @noRd
-vector_check <- function(vector) {
-  if (!is.vector(vector)) {
-    stop("Not a vector.")
-  }
-  if (!length(vector) > 0) {
-    stop("Not a valid vector. Length of vector must be greater than 0.")
-  }
-}
-
 #' @title Boolean Check function
 #' @description A helper function to check if value is a Boolean value.
 #' @param boolean A Boolean value

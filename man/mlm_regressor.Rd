@@ -10,6 +10,7 @@ mlm_regressor(
   fit_models = c("ada", "et", "lightgbm", "gbr", "lr", "rf", "ridge", "knn", "dt",
     "dummy", "lar", "br", "huber", "omp", "lasso", "en", "llar", "par"),
   n_models = 9999,
+  seed = NULL,
   ...
 )
 }
@@ -44,6 +45,9 @@ them using a character vector.
 
 \item{n_models}{An integer value defaulted to a large integer value to
 return all possible models.}
+
+\item{seed}{An integer value to set the seed of the python environment.
+Default value is set to `NULL`.}
 
 \item{...}{additional arguments passed onto \link[stressor]{mlm_init}}
 }

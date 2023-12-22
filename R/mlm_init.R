@@ -52,6 +52,8 @@
 #' @param n_models A defaulted integer to return the maximum number of models
 #' @param classification A Boolean value tag to indicate if classification
 #'   methods should be used.
+#' @param seed An integer value to set the seed of the python environment.
+#'   Default value is set to `NULL`.
 #' @param ... Additional arguments passed to the setup function in PyCaret
 #' @return A list object that contains all the fitted models and the CV
 #'   predictive accuracy. With a class attribute of `"mlm_stressor"`
@@ -67,7 +69,7 @@
 #'   data.frame objects that are less than 10,000 rows.
 #' @importFrom stats model.frame terms
 mlm_init <- function(formula, data, fit_models, n_models = 9999,
-                        classification = FALSE, ...) {
+                        classification = FALSE, seed = NULL, ...) {
   # Declaring Constants
   regress_models <- c('ada', 'br', 'dt', 'dummy', 'en', 'et', 'gbr', 'huber',
                       'knn', 'lar', 'lasso', 'lightgbm', 'llar', 'lr', 'omp',
@@ -101,7 +103,15 @@ mlm_init <- function(formula, data, fit_models, n_models = 9999,
   # Need to take it off the parallel process to run -
   #  Github reference from PyCaret
   message("Setting up the data for fitting models.")
-  exp_reg <- reg$setup(data = data, target = rr, n_jobs = as.integer(1), ...)
+  if (!is.null(seed)) {
+    exp_reg <- reg$setup(data = data, target = rr, n_jobs = as.integer(1),
+                         session_id = as.integer(seed), system_log = FALSE,
+                         memory = FALSE, ...)
+    reg$set_config('seed', as.integer(seed))
+  } else {
+    exp_reg <- reg$setup(data = data, target = rr, n_jobs = as.integer(1),
+                         system_log = FALSE, memory = FALSE, ...)
+  }
 
   message("Fitting Machine Learning Models")
   # Through the fugue package there is a possibility to parallelization

@@ -58,9 +58,6 @@ thinning <- function(model, data, max = .95, min = .05, iter = .05,
     } else if (method == "lm"){
       predictions[[i]] <- predict(lm(formula(model),
                                             data = train), test)
-    } else if (method == "randomForest.formula"){
-      predictions[[i]] <- predict(randomForest::randomForest(formula(model),
-                                     data = train), test)
     } else {
       stop("Current method is unsupported at this time.")
     }

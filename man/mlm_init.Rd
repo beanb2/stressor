@@ -10,6 +10,7 @@ mlm_init(
   fit_models,
   n_models = 9999,
   classification = FALSE,
+  seed = NULL,
   ...
 )
 }
@@ -65,6 +66,9 @@ specified but these are the default values for classification:
 
 \item{classification}{A Boolean value tag to indicate if classification
 methods should be used.}
+
+\item{seed}{An integer value to set the seed of the python environment.
+Default value is set to `NULL`.}
 
 \item{...}{Additional arguments passed to the setup function in PyCaret}
 }

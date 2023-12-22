@@ -7,6 +7,21 @@ Sys.setenv(RETICULATE_PYTHON =
 reticulate::use_virtualenv(tenv[3])
 
 stressor::create_virtualenv()
+create_virtualenv()
+
+set.seed(43421)
+lm_data <- data_gen_lm(500)
+set.seed(43421)
+mlm_lm <- mlm_regressor(Y ~ ., lm_data, seed = 43421)
+mlm_lm_cv <- cv(mlm_lm, lm_data, n_folds = 10)
+
+mlm_vignette <- list(pred_accuracy = mlm_lm$pred_accuracy, mlm_lm_cv = mlm_lm_cv)
+
+#usethis::use_data(mlm_vignette, internal = TRUE)
+
+saveRDS(mlm_vignette$pred_accuracy, file = "vignettes/pred_lm.rds")
+saveRDS(mlm_vignette$mlm_lm_cv, file = "vignettes/mlm_lm_cv.rds")
+
 library(mlbench)
 data("BostonHousing2")
 boston <- dplyr::select(.data = BostonHousing2, -town, -tract, -lon, -lat,

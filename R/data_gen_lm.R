@@ -28,7 +28,7 @@ data_gen_lm <- function(n, weight_vec = rep(1, 5), y_int = 0,
                         resp_sd = 1, ...) {
   # User input check
   integer_check(n)
-  vector_check(weight_vec)
+  numeric_check(weight_vec)
   numeric_check(y_int)
   numeric_check(resp_sd)
 

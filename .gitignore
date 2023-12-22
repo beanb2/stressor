@@ -51,3 +51,5 @@ data-raw/true-train.RDS
 data-raw/tl_2019_us_county
 R/scratch
 # scripts
+/doc/
+/Meta/

@@ -4,3 +4,5 @@
 ^data-raw$
 ^logs.log$
 ^vignettes/logs.log$
+^doc$
+^Meta$

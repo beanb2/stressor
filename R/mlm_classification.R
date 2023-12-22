@@ -29,6 +29,8 @@
 #'   }
 #' @param n_models An integer value defaulted to a large integer value to
 #'   return all possible models.
+#' @param seed An integer value to set the seed of the python environment.
+#'   Default value is set to `NULL`.
 #' @param ... additional arguments passed onto \link[stressor]{mlm_init}
 #' @return A list object where the first entry is the models fitted and the
 #'   second is the initial predictive accuracy on the random test data. Returns
@@ -52,9 +54,9 @@ mlm_classification <- function(formula, data,
                                fit_models = c('ada', 'et', 'lightgbm','dummy',
                                               'lr', 'rf', 'ridge', 'knn', 'dt',
                                               'gbc', 'svm', 'lda', 'nb', 'qda'),
-                               n_models = 9999, ...) {
+                               n_models = 9999, seed = NULL, ...) {
   obj <- mlm_init(formula, data, fit_models, n_models,
-                  classification = TRUE, ...)
+                  classification = TRUE, seed = seed, ...)
   class(obj) <- c(class(obj), "classifier")
   obj
 }

@@ -67,6 +67,7 @@
 #'   fit on. Then compare models function is executed which fits all the models
 #'   that are currently available. This process takes less than five minutes for
 #'   data.frame objects that are less than 10,000 rows.
+#' @inherit mlm_regressor examples
 #' @importFrom stats model.frame terms
 mlm_init <- function(formula, data, fit_models, n_models = 9999,
                         classification = FALSE, seed = NULL, ...) {

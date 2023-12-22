@@ -73,9 +73,9 @@ PyCaret is a python module. Where machine learning models can be fitted with
   data.frame objects that are less than 10,000 rows.
 }
 \examples{
-\dontrun{
+\dontshow{if (python_avail()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
  lm_test <- data_gen_lm(20)
  create_virtualenv()
- mlm_lm <- mlm_regressor(Y ~ ., lm_test, example = TRUE)
-}
+ mlm_lm <- mlm_regressor(Y ~ ., lm_test)
+\dontshow{\}) # examplesIf}
 }

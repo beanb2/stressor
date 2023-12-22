@@ -37,11 +37,7 @@ a list object where the first element is the RMSE values at each
 Fits various train size and test sizes.
 }
 \examples{
-\dontrun{
- lm_test <- data_gen_lm(20)
- create_virtualenv()
- mlm_lm <- mlm_regressor(Y ~ ., lm_test)
- thin <- thinning(mlm_lm, lm_test, max = .8, min = .7, iter = .05)
- thin
-}
+ lm_data <- data_gen_lm(1000)
+ lm_model <- lm(Y ~ ., lm_data)
+ thin_results <- thinning(lm_model, lm_data)
 }

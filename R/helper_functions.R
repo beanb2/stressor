@@ -8,6 +8,9 @@
 #'  as inputs.
 #' @returns Stops the function from continuing it's output by displaying an
 #'  error message or nothing is returned.
+#' @examples
+#'  lm_data <- data_gen_lm(10)
+#'  data_check(Y ~ ., lm_data)
 #' @noRd
 data_check <- function(formula, data, train_data = NULL) {
   if (!inherits(formula, "formula")) {
@@ -30,6 +33,8 @@ data_check <- function(formula, data, train_data = NULL) {
 #' @description A helper function to check if value is an integer
 #' @param integer An integer value
 #' @return Allows the function to run or returns a user friendly error message.
+#' @examples
+#'  integer_check(1)
 #' @noRd
 integer_check <- function(integer) {
   if (integer %% 1 != 0) {
@@ -41,6 +46,8 @@ integer_check <- function(integer) {
 #' @description A helper function to check if value is an numeric
 #' @param numeric A numeric value
 #' @return Allows the function to run or returns a user friendly error message.
+#' @examples
+#'  numeric_check(1.5)
 #' @noRd
 numeric_check <- function(numeric) {
   if (!is.numeric(numeric)) {
@@ -52,6 +59,8 @@ numeric_check <- function(numeric) {
 #' @description A helper function to check if the matrix is properly formatted
 #' @param matrix A matrix
 #' @return Allows the function to run or returns a user friendly error message.
+#'  mat <- matrix(rep(1, 4), nrow = 2)
+#'  matrix_check(mat)
 #' @noRd
 matrix_check <- function(matrix) {
   if (!inherits(matrix, "matrix")) {
@@ -66,6 +75,8 @@ matrix_check <- function(matrix) {
 #' @description A helper function to check if value is a Boolean value.
 #' @param boolean A Boolean value
 #' @return Allows the function to run or returns a user friendly error message.
+#' @examples
+#'  boolean_check(TRUE)
 #' @noRd
 boolean_check <- function(boolean) {
   if (!is.logical(boolean)) {

@@ -26,3 +26,25 @@ Either a vector of predictions for `"reg_sine", "reg_asym", "lm"` and
 The machinery to run cross validation in that it subsets the test and train
  set based on the groups it receives.
 }
+\examples{
+ # lm example
+ lm_test <- data_gen_lm(20)
+ lm <- lm(Y ~ ., lm_test)
+ cv(lm, lm_test, n_folds = 2)
+
+\dontshow{if (python_avail()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+ lm_test <- data_gen_lm(20)
+ create_virtualenv()
+ mlm_lm <- mlm_regressor(Y ~ ., lm_test)
+ cv(mlm_lm, lm_test, n_folds = 2)
+\dontshow{\}) # examplesIf}
+ # Asymptotic example
+ asym_data <- data_gen_asym(10)
+ asym_fit <- reg_asym(Y ~ ., asym_data)
+ cv(asym_fit, asym_data, n_folds = 2)
+
+ # Sine example
+ sine_data <- data_gen_sine(10)
+ sine_fit <- reg_sine(Y ~ ., sine_data)
+ cv(sine_fit, sine_data, n_folds = 2)
+}

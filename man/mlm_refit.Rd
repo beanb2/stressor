@@ -28,7 +28,7 @@ Refits models fitted in the \link[stressor]{mlm_init}, and returns the
  predictions.
 }
 \examples{
-\dontrun{
+python_avail()
  lm_train <- data_gen_lm(20)
  train_idx <- sample.int(20, 5)
  train <- lm_train[train_idx, ]
@@ -36,5 +36,4 @@ Refits models fitted in the \link[stressor]{mlm_init}, and returns the
  create_virtualenv()
  mlm_lm <- mlm_regressor(Y ~ ., lm_train)
  mlm_refit(mlm_lm, train, test, classification = FALSE)
-}
 }

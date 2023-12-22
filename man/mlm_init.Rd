@@ -95,3 +95,10 @@ The formula should be linear, however, that does not imply a linear
   that are currently available. This process takes less than five minutes for
   data.frame objects that are less than 10,000 rows.
 }
+\examples{
+\dontshow{if (python_avail()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+ lm_test <- data_gen_lm(20)
+ create_virtualenv()
+ mlm_lm <- mlm_regressor(Y ~ ., lm_test)
+\dontshow{\}) # examplesIf}
+}

@@ -98,13 +98,12 @@ This is core of cross validation both standard and using k-mean groups. This
  lm <- lm(Y ~ ., lm_test)
  cv(lm, lm_test, n_folds = 2)
 
- # Machine Learning Models example
- \dontrun{
+\dontshow{if (python_avail()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
  lm_test <- data_gen_lm(20)
  create_virtualenv()
  mlm_lm <- mlm_regressor(Y ~ ., lm_test)
  cv(mlm_lm, lm_test, n_folds = 2)
- }
+\dontshow{\}) # examplesIf}
  # Asymptotic example
  asym_data <- data_gen_asym(10)
  asym_fit <- reg_asym(Y ~ ., asym_data)

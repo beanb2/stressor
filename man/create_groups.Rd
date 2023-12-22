@@ -50,13 +50,14 @@ If `k_mult` is specified as an integer the formula object will be
    groups for training and testing.
 }
 \examples{
-#'
  # data generation
- lm_data <- data_gen_lm(20)
+ lm_data <- data_gen_lm(1000)
 
  # 10 Fold CV group
  create_groups(Y ~ ., lm_data)
- create_groups(Y ~ ., lm_data, n_folds = 10, k_mult = NULL)
+
+ # Spatial CV
+ create_groups(Y ~ ., lm_data, n_folds = 10, k_mult = 5)
 
  # LOO CV group
  create_groups(Y ~ ., lm_data, n_folds = NULL)

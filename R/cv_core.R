@@ -11,6 +11,7 @@
 #' @param ... Additional arguments that are passed to the predict function.
 #' @return Either a vector of predictions for `"reg_sine", "reg_asym", "lm"` and
 #'   a data frame for `"mlm_stressor"`
+#' @inherit cv examples
 #' @importFrom stats predict formula lm
 cv_core <- function(object, data, t_groups, ...) {
   data_check(formula(object), data)

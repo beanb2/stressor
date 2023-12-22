@@ -39,12 +39,10 @@
 #' @return A list object where the first entry is the models fitted and the
 #'   second is the initial predictive accuracy on the random test data. Returns
 #'   as two classes `"mlm_stressor"` and `"regressor"`
-#' @examples
-#' \dontrun{
+#' @examplesIf python_avail()
 #'  lm_test <- data_gen_lm(20)
 #'  create_virtualenv()
-#'  mlm_lm <- mlm_regressor(Y ~ ., lm_test, example = TRUE)
-#' }
+#'  mlm_lm <- mlm_regressor(Y ~ ., lm_test)
 #' @inherit mlm_classification details
 #' @export
 mlm_regressor <- function(formula, data,

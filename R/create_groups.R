@@ -23,13 +23,15 @@
 #'    groups necessary to perform the cross validation. If you were wanting to
 #'    use for your own use. It is nice function that separates the `data` into
 #'    groups for training and testing.
-#' @examples#'
+#' @examples
 #'  # data generation
-#'  lm_data <- data_gen_lm(20)
+#'  lm_data <- data_gen_lm(1000)
 #'
 #'  # 10 Fold CV group
 #'  create_groups(Y ~ ., lm_data)
-#'  create_groups(Y ~ ., lm_data, n_folds = 10, k_mult = NULL)
+#'
+#'  # Spatial CV
+#'  create_groups(Y ~ ., lm_data, n_folds = 10, k_mult = 5)
 #'
 #'  # LOO CV group
 #'  create_groups(Y ~ ., lm_data, n_folds = NULL)

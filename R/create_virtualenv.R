@@ -28,7 +28,7 @@
 #'
 #'  Also note that on some instances that a warning message may be displayed as
 #'    to which version of python is being used.
-#' @examples
+#' @examplesIf python_avail()
 #'  create_virtualenv()
 #' @export
 create_virtualenv <- function(python = Sys.which('python'),

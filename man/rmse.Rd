@@ -25,5 +25,5 @@ Calculates the root mean square error.
   train <- lm_data[-test_index, ]
   lm_test <- lm(Y ~ ., train)
   lm_cv <- cv(lm_test, lm_data, n_folds = 5)
-  lm_cv
+  rmse(lm_cv, lm_data$Y)
 }

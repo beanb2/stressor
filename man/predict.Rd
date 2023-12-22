@@ -35,6 +35,7 @@ Predict values on `mlm_stressor`, `reg_asym`, or `reg_sine`
 }
 \examples{
 \dontshow{if (python_avail()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+ # mlm_stressor example
  lm_test <- data_gen_lm(20)
  create_virtualenv()
  mlm_lm <- mlm_regressor(Y ~ ., lm_test)

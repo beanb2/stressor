@@ -46,5 +46,7 @@ To install python, It is recommended using Python version 3.8.10 from
 }
 
 \examples{
+\dontshow{if (python_avail()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
  create_virtualenv()
+\dontshow{\}) # examplesIf}
 }

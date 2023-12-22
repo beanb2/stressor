@@ -1,12 +1,9 @@
 #' @rdname predict
-#' @examples
-#'  # mlm_stressor example
-#'  \dontrun{
-#'   lm_test <- data_gen_lm(20)
+#' @examplesIf python_avail()
+#'  lm_test <- data_gen_lm(20)
 #'  create_virtualenv()
 #'  mlm_lm <- mlm_regressor(Y ~ ., lm_test)
 #'  predict(mlm_lm, lm_test)
-#'  }
 #' @export
 predict.mlm_stressor <- function(object, newdata, train_data = NULL, ...) {
   data_check(formula(object), newdata, train_data)

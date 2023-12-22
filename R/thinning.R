@@ -12,14 +12,12 @@
 #'   `mlm_classification`.
 #' @return a list object where the first element is the RMSE values at each
 #'   iteration and the second element being the predictions.
-#' @examples
-#' \dontrun{
+#' @examplesIf python_avail()
 #'  lm_test <- data_gen_lm(20)
 #'  create_virtualenv()
 #'  mlm_lm <- mlm_regressor(Y ~ ., lm_test)
 #'  thin <- thinning(mlm_lm, lm_test, max = .8, min = .7, iter = .05)
 #'  thin
-#' }
 #' @export
 thinning <- function(model, data, max = .95, min = .05, iter = .05,
                      classification = FALSE) {
@@ -40,7 +38,6 @@ thinning <- function(model, data, max = .95, min = .05, iter = .05,
     pred_rmse <- vector("numeric", length = length(train_size))
   }
   for (i in seq_len(length(train_size))) {
-    print(i)
     train_index <- sample(1:nrow(data), train_size[i] * nrow(data))
     test <- data[-train_index, ]
     train <- data[train_index, ]

@@ -72,3 +72,13 @@ boolean_check <- function(boolean) {
     stop("Value provided is not a Boolean value.")
   }
 }
+
+#' @title Check if Python is available
+#' @description A function that allows examples to run when appropriate.
+#' @return A boolean value is returned
+#' @examples
+#'  python_avail()
+#' @export
+python_avail <- function() {
+  reticulate::py_available()
+}

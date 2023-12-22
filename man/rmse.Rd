@@ -13,7 +13,7 @@ rows or length as the length of observed values.}
 \item{observed}{A vector of the observed results}
 }
 \value{
-A finite value or a data frame of methods and their rmse values
+A finite value or a data frame of methods and their RMSE values
 }
 \description{
 Calculates the root mean square error.

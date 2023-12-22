@@ -4,7 +4,7 @@
 #' @param predictions A data frame or vector object that is the same number of
 #'   rows or length as the length of observed values.
 #' @param observed A vector of the observed results
-#' @return  A finite value or a data frame of methods and their rmse values
+#' @return  A finite value or a data frame of methods and their RMSE values
 #' @examples
 #'   lm_data <- data_gen_lm(25)
 #'   test_index <- sample(1:nrow(lm_data), 5)

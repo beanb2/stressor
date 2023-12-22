@@ -41,7 +41,7 @@ mlm_refit <- function(mlm_object, train_data, test_data,
 
   modelnames <- row.names(mlm_object$pred_accuracy)
   colnames(prediction_mlm) <- modelnames
-
+  #prediction_mlm <- vector(mode = "list", length = 18)
 
   if (!is.null(train_data)) {
     # Re-position if necessary the data
@@ -66,7 +66,9 @@ mlm_refit <- function(mlm_object, train_data, test_data,
     # Predicting generally
     for (i in seq_len(length(mlm_object$models))){
       model <- mlm_object$models[[i]]
-      prediction_mlm[, i] <- reg$predict_model(model, test_data)[, "Label"]
+      #prediction_mlm[[i]] <- reg$predict_model(model,test_data)
+      prediction_mlm[, i] <- reg$predict_model(model,
+                                               test_data)[, "prediction_label"]
     }
   }
 

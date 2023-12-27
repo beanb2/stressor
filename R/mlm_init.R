@@ -106,12 +106,10 @@ mlm_init <- function(formula, data, fit_models, n_models = 9999,
   message("Setting up the data for fitting models.")
   if (!is.null(seed)) {
     exp_reg <- reg$setup(data = data, target = rr, n_jobs = as.integer(1),
-                         session_id = as.integer(seed), system_log = FALSE,
-                         memory = FALSE, ...)
+                         session_id = as.integer(seed), ...)
     reg$set_config('seed', as.integer(seed))
   } else {
-    exp_reg <- reg$setup(data = data, target = rr, n_jobs = as.integer(1),
-                         system_log = FALSE, memory = FALSE, ...)
+    exp_reg <- reg$setup(data = data, target = rr, n_jobs = as.integer(1), ...)
   }
 
   message("Fitting Machine Learning Models")

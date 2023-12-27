@@ -28,7 +28,7 @@ Refits models fitted in the \link[stressor]{mlm_init}, and returns the
  predictions.
 }
 \examples{
-python_avail()
+\dontshow{if (python_avail()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
  lm_train <- data_gen_lm(20)
  train_idx <- sample.int(20, 5)
  train <- lm_train[train_idx, ]
@@ -36,4 +36,5 @@ python_avail()
  create_virtualenv()
  mlm_lm <- mlm_regressor(Y ~ ., lm_train)
  mlm_refit(mlm_lm, train, test, classification = FALSE)
+\dontshow{\}) # examplesIf}
 }

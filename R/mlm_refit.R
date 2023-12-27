@@ -12,7 +12,7 @@
 #' @return A matrix with the predictions of the various machine learning
 #'   methods. Will also declare global variables with the heading of
 #'   `"refit_mlm_`, these are needed for the python code to execute.
-#' @examples python_avail()
+#' @examplesIf python_avail()
 #'  lm_train <- data_gen_lm(20)
 #'  train_idx <- sample.int(20, 5)
 #'  train <- lm_train[train_idx, ]

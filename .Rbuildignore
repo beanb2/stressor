@@ -6,3 +6,5 @@
 ^vignettes/logs.log$
 ^doc$
 ^Meta$
+^\.github$
+^README\.Rmd$

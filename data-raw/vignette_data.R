@@ -10,10 +10,15 @@ stressor::create_virtualenv()
 create_virtualenv()
 
 set.seed(43421)
-lm_data <- data_gen_lm(500)
+lm_data <- data_gen_lm(1000)
 set.seed(43421)
-mlm_lm <- mlm_regressor(Y ~ ., lm_data, seed = 43421)
+indices <- split_data_prob(lm_data, .8)
+train <- lm_data[indices, ]
+test <- lm_data[!indices, ]
+mlm_lm <- mlm_regressor(Y ~ ., train, sort_v = 'RMSE', seed = 43421)
+mlm_pred <- predict(mlm_lm, test)
 mlm_lm_cv <- cv(mlm_lm, lm_data, n_folds = 10)
+mlm_pred_rmse <- rmse(mlm_pred, test$Y)
 
 mlm_vignette <- list(pred_accuracy = mlm_lm$pred_accuracy, mlm_lm_cv = mlm_lm_cv)
 
@@ -21,12 +26,14 @@ mlm_vignette <- list(pred_accuracy = mlm_lm$pred_accuracy, mlm_lm_cv = mlm_lm_cv
 
 saveRDS(mlm_vignette$pred_accuracy, file = "vignettes/pred_lm.rds")
 saveRDS(mlm_vignette$mlm_lm_cv, file = "vignettes/mlm_lm_cv.rds")
+saveRDS(mlm_pred_rmse, file = "vignettes/mlm_test.rds")
 
 library(mlbench)
 data("BostonHousing2")
 boston <- dplyr::select(.data = BostonHousing2, -town, -tract, -lon, -lat,
-                        -medv, -chas)
-mlm_vignette_boston <- mlm_regressor(cmedv ~ ., boston)
+                        -medv, -b)
+boston$chas <- as.factor(boston$chas)
+mlm_vignette_boston <- mlm_regressor(cmedv ~ ., boston, sort_v = 'RMSE')
 mlm_vignette_boston_pred <- mlm_vignette_boston$pred_accuracy
 mlm_vignette_boston_cv <- cv(mlm_vignette_boston, boston)
 mlm_vignette_boston_cluster <- cv(mlm_vignette_boston, boston, n_folds = 10,

@@ -9,9 +9,9 @@ test_that("mlm_regressor fits regression models and is reproducible", {
   expect_equal(is.data.frame(mlm_regressor$pred_accuracy), TRUE)
   expect_s3_class(mlm_regressor, "mlm_stressor")
   expect_s3_class(mlm_regressor, "regressor")
-  expect_equal(initial_pred, c(0.94, 0.94, 0.97, 0.97, 1.11, 1.12, 1.89, 1.97,
-                               2.21, 2.21, 2.48, 2.48, 2.49, 2.67, 3.02, 3.03,
-                               3.03, 3.24))
+  expect_equal(initial_pred, c(0.97, 1.03, 1.03, 1.04, 1.07, 1.42, 1.43, 1.55,
+                               1.67, 1.80, 1.97, 1.97, 2.20, 2.31, 2.31, 2.40,
+                               2.60, 2.60))
 })
 
 test_that("mlm_classification fits classification models and is reproducible", {

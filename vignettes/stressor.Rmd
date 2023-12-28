@@ -35,8 +35,7 @@ instructions provide at:
 <p style="text-align:center;"><a href = https://www.python.org/downloads/release/python-3810/>
 https://www.python.org/downloads/release/python-3810/</a></p>
 
-Once Python is installed, you can install stressor currently from github
-with future plans for it to be available on CRAN. For convenience, we
+Once Python is installed, you can install stressor from CRAN. For convenience, we
 have attached stressor with the `library` statement to use the python
 features of stressor.
 
@@ -172,8 +171,12 @@ Here are the commands:
 ```{r, eval = FALSE}
 set.seed(43421)
 lm_data <- data_gen_lm(1000)
-set.seed(43421)
-mlm_lm <- mlm_regressor(Y ~ ., lm_data, seed = 43421)
+# Split the data into a 80/20 split
+indices <- split_data_prob(lm_data, .8)
+train <- lm_data[indices, ]
+test <- lm_data[!indices, ]
+# Tune the models
+mlm_lm <- mlm_regressor(Y ~ ., lm_data, sort_v = 'RMSE', seed = 43421)
 ```
 
 ```{r echo=FALSE}
@@ -181,21 +184,21 @@ pred <- readRDS(file = "pred_lm.rds")
 cv <- readRDS(file = "mlm_lm_cv.rds")
 mlm_vignette <- list(pred_accuracy = pred, mlm_lm_cv = cv)
 set.seed(43421)
-lm_data <- data_gen_lm(500)
+lm_data <- data_gen_lm(1000)
 acc <- mlm_vignette$pred_accuracy
-top_rmse <- min(acc$rmse)
-name_rmse <- acc$Model[acc$rmse == top_rmse]
+top_rmse <- min(acc$RMSE)
+name_rmse <- acc$Model[acc$RMSE == top_rmse]
 ```
 
-Now, we can look at the initial predictive Root Mean Squared Error
-(RMSE) of the various models. RMSE is the only method supported at this
-time. The `mlm_lm` is a list object where the first element is a list of
+Now, we can look at the initial training predictive accuracy measures such as
+RMSE. The `mlm_lm` is a list object where the first element is a list of
 all the models that were fitted. Example, if I were to pass these models
 back to PyCaret they can be refitted or used again for predictions. The
 second element is a data frame for the initial RMSE values and the
 corresponding models. If you want to specify the models that are fitted,
 you can change the `fit_models` parameter -- a character vector --
-specifying the models to be used.
+specifying the models to be used. Also we can change how the models are sorted
+based upon the metrics listed which is given to the `sort_v` variable.
 
 ```{r, eval = FALSE}
 mlm_lm$pred_accuracy
@@ -204,6 +207,18 @@ mlm_lm$pred_accuracy
 ```{r, echo = FALSE}
 mlm_vignette$pred_accuracy
 ```
+We pulled out a test validation set and we can currently check the RMSE of those
+predicted values.
+```{r, eval = FALSE}
+pred_lm <- predict(mlm_lm, test)
+rmse(pred_lm, test$Y)
+```
+
+```{r, echo = FALSE}
+lm_rmse <- readRDS("mlm_test.rds")
+lm_rmse
+```
+
 
 In comparison, we can fit this data using the `lm()` function and check
 the initial predictive accuracy with simple test data.

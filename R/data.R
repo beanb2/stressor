@@ -19,7 +19,7 @@
 #'   \item{rad}{index of accessibility to radial highways}
 #'   \item{tax}{full-value property-tax rate per USD 10,000}
 #'   \item{ptratio}{pupil-teacher ratio by town}
-#'   \item{b}{$1000(B−0.63)^2$ where BB is the proportion of blacks by town}
+#'   \item{chas}{Charles River dummy variable (= 1 if tract bounds river; 0 otherwise)}
 #'   \item{lstat}{percentage of lower status of the population}
 #' }
 #' @name boston

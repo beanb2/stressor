@@ -6,8 +6,9 @@
 \usage{
 mlm_init(
   formula,
-  data,
+  train_data,
   fit_models,
+  sort_v = NULL,
   n_models = 9999,
   classification = FALSE,
   seed = NULL,
@@ -18,7 +19,7 @@ mlm_init(
 \item{formula}{The regression formula or classification formula. This formula
 should be linear.}
 
-\item{data}{A data.frame object that includes the test data}
+\item{train_data}{A data.frame object that includes data to be trained on.}
 
 \item{fit_models}{A character vector with all the possible Machine Learning
  regressors that are currently being fit, the user may specify a subset of
@@ -61,6 +62,9 @@ specified but these are the default values for classification:
    ridge \tab Ridge Classifier\cr
    svm \tab SVM - Linear Kernel
  }}
+
+\item{sort_v}{A character vector indicating what to sort the tuned models on.
+Default value is `NULL`.}
 
 \item{n_models}{A defaulted integer to return the maximum number of models}
 

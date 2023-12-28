@@ -6,18 +6,19 @@
 \usage{
 mlm_classification(
   formula,
-  data,
+  train_data,
   fit_models = c("ada", "et", "lightgbm", "dummy", "lr", "rf", "ridge", "knn", "dt",
     "gbc", "svm", "lda", "nb", "qda"),
+  sort_v = c("Accuracy", "AUC", "Recall", "Precision", "F1", "Kappa", "MCC"),
   n_models = 9999,
   seed = NULL,
   ...
 )
 }
 \arguments{
-\item{formula}{The classification formula, as a formula object}
+\item{formula}{The classification formula, as a formula object.}
 
-\item{data}{A data frame object that includes the test data}
+\item{train_data}{A data.frame object that includes data to be trained on.}
 
 \item{fit_models}{A character vector with all the possible Machine Learning
 classifiers that are currently being fit, the user may specify a subset of
@@ -39,6 +40,8 @@ them using a character vector.
   svm \tab SVM - Linear Kernel
 }}
 
+\item{sort_v}{A character vector indicating what to sort the tuned models on.}
+
 \item{n_models}{An integer value defaulted to a large integer value to
 return all possible models.}
 
@@ -50,7 +53,7 @@ Default value is set to `NULL`.}
 \value{
 A list object where the first entry is the models fitted and the
   second is the initial predictive accuracy on the random test data. Returns
-  as two classes `"mlm_stressor"` and `"classifier"`
+  as two classes `"mlm_stressor"` and `"classifier"`.
 }
 \description{
 Through the \href{https://pycaret.gitbook.io/docs/get-started/quickstart#classification}{PyCaret}

@@ -6,9 +6,10 @@
 \usage{
 mlm_regressor(
   formula,
-  data,
+  train_data,
   fit_models = c("ada", "et", "lightgbm", "gbr", "lr", "rf", "ridge", "knn", "dt",
     "dummy", "lar", "br", "huber", "omp", "lasso", "en", "llar", "par"),
+  sort_v = c("MAE", "MSE", "RMSE", "R2", "RMSLE", "MAPE"),
   n_models = 9999,
   seed = NULL,
   ...
@@ -17,7 +18,7 @@ mlm_regressor(
 \arguments{
 \item{formula}{A linear formula object}
 
-\item{data}{A data.frame object that includes the test data}
+\item{train_data}{A data.frame object that includes data to be trained on.}
 
 \item{fit_models}{A character vector with all the possible Machine Learning
 regressors that are currently being fit, the user may specify a subset of
@@ -42,6 +43,8 @@ them using a character vector.
   rf \tab Random Forest Regressor\cr
   ridge \tab Ridge Regression
 }}
+
+\item{sort_v}{A character vector indicating what to sort the tuned models on.}
 
 \item{n_models}{An integer value defaulted to a large integer value to
 return all possible models.}

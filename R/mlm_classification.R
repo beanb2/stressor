@@ -6,8 +6,8 @@
 #'   programming on the part of the user. The core function to fitting the
 #'   initial models. This function is specifically designed for the
 #'   classification models fitted by PyCaret.
-#' @param formula The classification formula, as a formula object
-#' @param data A data frame object that includes the test data
+#' @param formula The classification formula, as a formula object.
+#' @param train_data A data.frame object that includes data to be trained on.
 #' @param fit_models A character vector with all the possible Machine Learning
 #'   classifiers that are currently being fit, the user may specify a subset of
 #'   them using a character vector.
@@ -27,6 +27,7 @@
 #'     ridge \tab Ridge Classifier\cr
 #'     svm \tab SVM - Linear Kernel
 #'   }
+#' @param sort_v A character vector indicating what to sort the tuned models on.
 #' @param n_models An integer value defaulted to a large integer value to
 #'   return all possible models.
 #' @param seed An integer value to set the seed of the python environment.
@@ -34,7 +35,7 @@
 #' @param ... additional arguments passed onto \link[stressor]{mlm_init}
 #' @return A list object where the first entry is the models fitted and the
 #'   second is the initial predictive accuracy on the random test data. Returns
-#'   as two classes `"mlm_stressor"` and `"classifier"`
+#'   as two classes `"mlm_stressor"` and `"classifier"`.
 #' @details
 #'  PyCaret is a python module. Where machine learning models can be fitted with
 #'   little coding by the user. The pipeline that PyCaret uses is that it has a
@@ -48,12 +49,14 @@
 #'  lm_test$Y <- binary_response
 #'  mlm_class <- mlm_classification(Y ~ ., lm_test)
 #' @export
-mlm_classification <- function(formula, data,
+mlm_classification <- function(formula, train_data,
                                fit_models = c('ada', 'et', 'lightgbm','dummy',
                                               'lr', 'rf', 'ridge', 'knn', 'dt',
                                               'gbc', 'svm', 'lda', 'nb', 'qda'),
+                               sort_v = c('Accuracy', 'AUC', 'Recall',
+                                          'Precision', 'F1', 'Kappa', 'MCC'),
                                n_models = 9999, seed = NULL, ...) {
-  obj <- mlm_init(formula, data, fit_models, n_models,
+  obj <- mlm_init(formula, train_data, fit_models, sort_v, n_models,
                   classification = TRUE, seed = seed, ...)
   class(obj) <- c(class(obj), "classifier")
   obj

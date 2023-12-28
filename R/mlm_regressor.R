@@ -7,7 +7,7 @@
 #'   initial models. This function is
 #'   specifically designed for the regression models.
 #' @param formula A linear formula object
-#' @param data A data.frame object that includes the test data
+#' @param train_data A data.frame object that includes data to be trained on.
 #' @param fit_models A character vector with all the possible Machine Learning
 #'   regressors that are currently being fit, the user may specify a subset of
 #'   them using a character vector.
@@ -31,6 +31,7 @@
 #'     rf \tab Random Forest Regressor\cr
 #'     ridge \tab Ridge Regression
 #'   }
+#' @param sort_v A character vector indicating what to sort the tuned models on.
 #' @param n_models An integer value defaulted to a large integer value to
 #'   return all possible models.
 #' @param seed An integer value to set the seed of the python environment.
@@ -45,16 +46,19 @@
 #'  mlm_lm <- mlm_regressor(Y ~ ., lm_test)
 #' @inherit mlm_classification details
 #' @export
-mlm_regressor <- function(formula, data,
+mlm_regressor <- function(formula, train_data,
                           fit_models = c('ada', 'et', 'lightgbm','gbr',
                                          'lr', 'rf', 'ridge', 'knn', 'dt',
                                          'dummy', 'lar', 'br', 'huber', 'omp',
                                          'lasso', 'en', 'llar', 'par'),
+                          sort_v = c('MAE', 'MSE', 'RMSE', 'R2', 'RMSLE',
+                                     'MAPE'),
                           n_models = 9999, seed = NULL, ...) {
   # Throw in a data_check/formula_check
-  data_check(formula, data)
+  data_check(formula, train_data)
   integer_check(n_models)
-  obj <- mlm_init(formula, data, fit_models, n_models, seed = seed, ...)
+  obj <- mlm_init(formula, train_data, fit_models, sort_v, n_models,
+                  seed = seed, ...)
   class(obj) <- c(class(obj), "regressor")
   obj
 }

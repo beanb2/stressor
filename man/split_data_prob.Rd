@@ -4,12 +4,13 @@
 \alias{split_data_prob}
 \title{Create Train Index Set}
 \usage{
-split_data_prob(data, train_size)
+split_data_prob(data, test_prop)
 }
 \arguments{
 \item{data}{A data.frame object used to determine the length of the vector.}
 
-\item{train_size}{A numeric that is between zero and one.}
+\item{test_prop}{A numeric that is between zero and one that represents the
+proportion of observations to be included in the test data.}
 }
 \value{
 A logical vector is returned that is the same length as the number of

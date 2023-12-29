@@ -3,7 +3,8 @@
 #' This function takes in a data.frame object and the training size and returns
 #'   a logical vector indicating which entries to include.
 #' @param data A data.frame object used to determine the length of the vector.
-#' @param train_size A numeric that is between zero and one.
+#' @param test_prop A numeric that is between zero and one that represents the
+#' proportion of observations to be included in the test data.
 #' @return A logical vector is returned that is the same length as the number of
 #'   rows of the data.
 #' @examples
@@ -12,11 +13,11 @@
 #'   train <- lm_data[indices, ]
 #'   test <- lm_data[!indices, ]
 #' @export
-split_data_prob <- function(data, train_size) {
-  numeric_check(train_size)
-  if (!(train_size >= 0 && train_size <= 1)) {
+split_data_prob <- function(data, test_prop) {
+  numeric_check(test_prop)
+  if (!(test_prop >= 0 && test_prop <= 1)) {
     stop("Training size must be between 0 and 1.")
   }
   sample(c(TRUE, FALSE), nrow(data), replace = TRUE,
-         prob = c(train_size, 1 - train_size))
+         prob = c(test_prop, 1 - test_prop))
 }

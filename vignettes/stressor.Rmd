@@ -71,7 +71,7 @@ head(lm_data)
 
 ### Validation of Data Generation
 Below is a visual of when we know the standard deviation of the epsilon term we 
-can show that our models fit data if we are close to the theoretical error. In the graphic below the black dots represent the RMSE value given the current epsilon that we are on. The red line represents the expected theoretical error.
+can show that our models fit data if we are close to the theoretical error. In the graphic below the black dots represent the  value given the current epsilon that we are on. The red line represents the expected theoretical error.
 ```{r, echo = FALSE, warning=FALSE, fig.align='center', fig.height=5, fig.width = 5}
 # Data Verification
 simulation <- function(n, eps, weight_mat, label, test_size = 100, 
@@ -186,15 +186,15 @@ mlm_vignette <- list(pred_accuracy = pred, mlm_lm_cv = cv)
 set.seed(43421)
 lm_data <- data_gen_lm(1000)
 acc <- mlm_vignette$pred_accuracy
-top_rmse <- min(acc$RMSE)
-name_rmse <- acc$Model[acc$RMSE == top_rmse]
+top_RMSE <- min(acc$RMSE)
+name_RMSE <- acc$Model[acc$RMSE == top_RMSE]
 ```
 
 Now, we can look at the initial training predictive accuracy measures such as
-RMSE. The `mlm_lm` is a list object where the first element is a list of
+. The `mlm_lm` is a list object where the first element is a list of
 all the models that were fitted. Example, if I were to pass these models
 back to PyCaret they can be refitted or used again for predictions. The
-second element is a data frame for the initial RMSE values and the
+second element is a data frame for the initial  values and the
 corresponding models. If you want to specify the models that are fitted,
 you can change the `fit_models` parameter -- a character vector --
 specifying the models to be used. Also we can change how the models are sorted
@@ -211,12 +211,12 @@ We pulled out a test validation set and we can currently check the RMSE of those
 predicted values.
 ```{r, eval = FALSE}
 pred_lm <- predict(mlm_lm, test)
-rmse(pred_lm, test$Y)
+score(test$Y, pred_lm)
 ```
 
 ```{r, echo = FALSE}
-lm_rmse <- readRDS("mlm_test.rds")
-lm_rmse
+lm_score <- readRDS("mlm_test.rds")
+lm_score
 ```
 
 
@@ -224,19 +224,19 @@ In comparison, we can fit this data using the `lm()` function and check
 the initial predictive accuracy with simple test data.
 
 ```{r}
-test_index <- sample(1:nrow(lm_data), 50)
+test_index <- split_data_prob(lm_data, .2)
 test <- lm_data[test_index, ]
-train <- lm_data[-test_index, ]
+train <- lm_data[!test_index, ]
 lm_test <- lm(Y ~ ., train)
 lm_pred <- predict(lm_test, newdata = test)
-lm_rmse <- rmse(lm_pred, test$Y)
-lm_rmse
+lm_score <- score(test$Y, lm_pred)
+lm_score
 ```
 
 As we look at this initial result, we see that there are some comparable
 models to the RMSE generated from `lm()` (which is
-`r trunc(lm_rmse * 100)/100` compared to `r trunc(top_rmse * 100)/100`
-fitted by `r name_rmse`). We see that the mlm
+`r trunc(lm_score * 100)/100` compared to `r trunc(top_RMSE * 100)/100`
+fitted by `r name_RMSE`). We see that the mlm
 outperforms the models that were fitted by `lm()`. However, it is not
 clear from this output alone whether the better performance observed
 from the lm model is statistically significant. A better practice would
@@ -261,8 +261,8 @@ mlm_cv <- mlm_vignette$mlm_lm_cv
 
 Now to compare the corresponding RMSE.
 ```{r}
-rmse(mlm_cv, lm_data$Y)
-rmse(lm_cv, lm_data$Y)
+score(lm_data$Y, mlm_cv)
+score(lm_data$Y, lm_cv)
 ```
 
 We can see that the top five ML models are close in value to the linear model.
@@ -285,7 +285,7 @@ variables from the analysis.
 
 This next code chunk opens the cleaned Boston data set attached to this
 package and fits the initial machine learning models. It then displays
-the initial RMSE values from the first fit.
+the initial  values from the first fit.
 
 ```{r eval=FALSE}
 data(boston)
@@ -299,19 +299,19 @@ mlm_boston_pred_accuracy <- readRDS(file = "pred.rds")
 mlm_boston_pred_accuracy
 ```
 
-Observe the initial RMSE values for the Boston data set. Now compare
-these to the cross validated RMSE values.
+Observe the initial  values for the Boston data set. Now compare
+these to the cross validated  values.
 
 ```{r eval=FALSE}
 mlm_boston_cv <- cv(mlm_boston, boston, n_folds = 10)
-mlm_boston_rmse <- rmse(mlm_boston_cv, boston$cmedv)
-mlm_boston_rmse
+mlm_boston_score <- score(boston$cmedv, mlm_boston_cv)
+mlm_boston_score
 ```
 
 ```{r echo=FALSE}
 cv_data <- readRDS(file = "cv.rds")
-mlm_boston_rmse <- rmse(cv_data, boston$cmedv)
-mlm_boston_rmse
+mlm_boston_score <- score(boston$cmedv, cv_data)
+mlm_boston_score
 ```
 
 Clustered cross validation is subsetting the parameter space into groups
@@ -322,26 +322,26 @@ Now, compare to the clustered cross validation:
 
 ```{r eval=FALSE}
 mlm_boston_clust_cv <- cv(mlm_boston, boston, n_folds = 10, k_mult = 5)
-mlm_boston_clust_rmse <- rmse(mlm_boston_clust_cv, boston$cmedv)
-mlm_boston_clust_rmse
+mlm_boston_clust_score <- score(boston$cmedv, mlm_boston_clust_cv)
+mlm_boston_clust_score
 ```
 
 ```{r echo=FALSE}
 clus_data <- readRDS(file = "cluster.rds")
-boston_clust_rmse <- rmse(clus_data, boston$cmedv)
-boston_clust_rmse
+boston_clust_score <- score(boston$cmedv, clus_data)
+boston_clust_score
 ```
 
 What we notice about this result is when we ignored spatial
 autocorrelation, we compare the 10 fold cross validation with the
-clustered cross validation, we see a general improvement in the RMSE
+clustered cross validation, we see a general improvement in the 
 values. This suggests that maybe there is some other underlying factors,
 i.e. spatial relationships.
 
 The power to be able to explore is a compliment to the purpose of R.
 With stressor you are able to fit multiple machine learning models with
 a few lines of code, perform 10 fold cross validation and clustered
-cross validation. With a simple command, you can return the RMSE values
+cross validation. With a simple command, you can return the  values
 from the predictions.
 
 ## Troubleshooting

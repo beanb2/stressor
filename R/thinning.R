@@ -70,9 +70,10 @@ thinning <- function(model, data, max = .95, min = .05, iter = .05,
       }
     } else {
       if (method == "mlm_stressor") {
-        pred_rmse[, i] <- rmse(predictions[[i]], test[, rr])[, 2]
+        pred_rmse[, i] <- score(test[, rr], predictions[[i]], metrics = "RMSE")
+
       } else {
-        pred_rmse[i] <- rmse(predictions[[i]], test[, rr])
+        pred_rmse[i] <- score(test[, rr], predictions[[i]], metrics = "RMSE")
       }
     }
 

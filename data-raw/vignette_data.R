@@ -18,7 +18,7 @@ test <- lm_data[!indices, ]
 mlm_lm <- mlm_regressor(Y ~ ., train, sort_v = 'RMSE', seed = 43421)
 mlm_pred <- predict(mlm_lm, test)
 mlm_lm_cv <- cv(mlm_lm, lm_data, n_folds = 10)
-mlm_pred_rmse <- rmse(mlm_pred, test$Y)
+mlm_pred_rmse <- score(test$Y, mlm_pred)
 
 mlm_vignette <- list(pred_accuracy = mlm_lm$pred_accuracy, mlm_lm_cv = mlm_lm_cv)
 

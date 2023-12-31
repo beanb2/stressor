@@ -1,4 +1,4 @@
-#' Spatial cluster-based partitions for cross validation
+#' Spatial Cluster-Based Partitions for Cross Validation
 #'
 #' This function creates cluster-based partitions of a sample space based on
 #'   k-means clustering. Included in the function are algorithms that attempt
@@ -11,7 +11,7 @@
 #'   created as part of the balancing algorithm.
 #' @param ... Additional arguments passed to \link[stats]{kmeans} as needed.
 #' @details More information regarding spatial cross validation can be found in
-#'  Robin Lovelace explanation of spatial cross validation in his
+#'  Robin Lovelace's explanation of spatial cross validation in his
 #'  \href{https://geocompr.robinlovelace.net/spatial-cv.html?q=cross\%20validation#intro-cv}{textbook}
 #' @importFrom stats kmeans
 #' @examples

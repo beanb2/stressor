@@ -7,9 +7,9 @@
 dist_cent(formula, data)
 }
 \arguments{
-\item{formula}{A formula object}
+\item{formula}{A formula object.}
 
-\item{data}{A data.frame object}
+\item{data}{A data.frame object.}
 }
 \value{
 A vector of distances from the center.

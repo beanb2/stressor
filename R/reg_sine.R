@@ -5,11 +5,11 @@
 #'  functions with a common intercept term.
 #' @param formula A formula object to describe the relationship.
 #' @param data The response and predictor variables.
-#' @param method The method that is passed to the optim function by default it
+#' @param method The method that is passed to the optim function. By default, it
 #'  is the BFGS method which uses a gradient.
-#' @param init_guess The initial parameter guesses for the optim function, by
-#'  default it is all ones.
-#' @param ... Additional arguments passed to the optim function
+#' @param init_guess The initial parameter guesses for the optim function. By
+#'  default, it is all ones.
+#' @param ... Additional arguments passed to the optim function.
 #' @return A "reg_sine" object is returned which contains the results from the
 #'  optim function that was returned.
 #' @importFrom stats model.frame terms
@@ -29,7 +29,7 @@ reg_sine <- function(formula, data, method = "BFGS",
   obj
 }
 
-#' @title Sine function for the optimize function
+#' @title Sine function for the Optim Function
 #' @description It returns the loss of the additive sinusoidal function for the
 #'   \link[stats]{optim()} function.
 #' @inheritParams sine_yhat
@@ -50,11 +50,11 @@ sine_function <- function(estimated, X, Y) {
 #'   and the current predictor space.
 #' @param estimated A vector of the current guesses on the coefficients of the
 #'   model.
-#' @param X A matrix of the predictor variables
-#' @return A vector of predictions from the model
-#' @details When you want predictions from the model use `sine_yhat` if you want
-#'  the loss then use the `sine_func` as `optim` requires that function returns
-#'  the loss value.
+#' @param X A matrix of the predictor variables.
+#' @return A vector of predictions from the model.
+#' @details When you want predictions from the model, use `sine_yhat`. If you
+#'  want the loss then use the `sine_func` as `optim` requires that function
+#'  returns the loss value.
 #' @noRd
 sine_yhat <- function(estimated, X) {
   vec_2 <- X
@@ -111,9 +111,9 @@ sine_gradient <- function(estimated, X, Y) {
 #' @title Optim function for the Additive Sinusoidal Regression Model
 #' @description Utilizes the \link[stats]{optim()} function to perform the
 #'   optimization of the curve.
-#' @param init_guess The initial parameter guesses for the optim function, by
-#'  default it is all ones.
-#' @param X A matrix of the predictor variables
+#' @param init_guess The initial parameter guesses for the optim function. By
+#'  default, it is all ones.
+#' @param X A matrix of the predictor variables.
 #' @param Y A vector of the observed results used to calculate the Loss
 #'   function.
 #' @param method The method to be used. See method in

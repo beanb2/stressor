@@ -14,24 +14,24 @@ thinning(
 )
 }
 \arguments{
-\item{model}{a model that is currently of class type "reg_sine", "reg_asym",
+\item{model}{A model that is currently of class type "reg_sine", "reg_asym",
 "lm", or "mlm_stressor".}
 
-\item{data}{a data frame with all the data}
+\item{data}{A data frame with all the data.}
 
-\item{max}{a numeric value in (0, 1] and greater than `min`,
+\item{max}{A numeric value in (0, 1] and greater than `min`,
 defaulted to .95.}
 
-\item{min}{a numeric value in (0, 1) and less than `max`, defaulted to .05.}
+\item{min}{A numeric value in (0, 1) and less than `max`, defaulted to .05.}
 
-\item{iter}{a numeric value to indicate the step size, defaulted to .05}
+\item{iter}{A numeric value to indicate the step size, defaulted to .05.}
 
-\item{classification}{A boolean value defaulted `FALSE`, used for
+\item{classification}{A Boolean value defaulted `FALSE`, used for
 `mlm_classification`.}
 }
 \value{
-a list object where the first element is the RMSE values at each
-  iteration and the second element being the predictions.
+A list of objects, where the first element is the RMSE values at each
+  iteration and the second element is the predictions.
 }
 \description{
 Fits various train size and test sizes.

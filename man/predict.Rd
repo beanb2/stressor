@@ -6,7 +6,7 @@
 \alias{predict.mlm_stressor}
 \alias{predict.reg_asym}
 \alias{predict.reg_sine}
-\title{Prediction methods for various models}
+\title{Prediction methods for various models.}
 \usage{
 \method{predict}{mlm_stressor}(object, newdata, train_data = NULL, ...)
 
@@ -15,15 +15,15 @@
 \method{predict}{reg_sine}(object, newdata, ...)
 }
 \arguments{
-\item{object}{A `mlm_stressor`, `reg_asym`, or `reg_sine` object}
+\item{object}{A `mlm_stressor`, `reg_asym`, or `reg_sine` object.}
 
-\item{newdata}{A data.frame object that is the data to be predicted on}
+\item{newdata}{A data.frame object that is the data to be predicted on.}
 
-\item{train_data}{A data.frame object defaulted to `NULL`, only used when
-an `mlm_stressor` object needs to be refitted.}
+\item{train_data}{A data.frame object defaulted to `NULL`. This is only used
+when an `mlm_stressor` object needs to be refitted.}
 
-\item{...}{Extending the \link[stats]{predict} function default, in this
-case it is ignored.}
+\item{...}{Extending the \link[stats]{predict} function default. In this
+case, it is ignored.}
 }
 \value{
 A data.frame of predictions if `mlm_stressor` object or vector of
@@ -31,7 +31,7 @@ A data.frame of predictions if `mlm_stressor` object or vector of
 }
 \description{
 Predict values on `mlm_stressor`, `reg_asym`, or `reg_sine`
- objects. That expand the \link[stats]{predict} function.
+ objects. This expands the \link[stats]{predict} function.
 }
 \examples{
 \dontshow{if (python_avail()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

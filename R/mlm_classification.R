@@ -3,9 +3,8 @@
 #' Through the \href{https://pycaret.gitbook.io/docs/get-started/quickstart#classification}{PyCaret}
 #'   module from python, this function fits many machine
 #'   learning models simultaneously with without requiring any python
-#'   programming on the part of the user. The core function to fitting the
-#'   initial models. This function is specifically designed for the
-#'   classification models fitted by PyCaret.
+#'   programming on the part of the user. This function is specifically
+#'   designed for the classification models fitted by PyCaret.
 #' @param formula The classification formula, as a formula object.
 #' @param train_data A data.frame object that includes data to be trained on.
 #' @param fit_models A character vector with all the possible Machine Learning
@@ -37,10 +36,10 @@
 #'   second is the initial predictive accuracy on the random test data. Returns
 #'   as two classes `"mlm_stressor"` and `"classifier"`.
 #' @details
-#'  PyCaret is a python module. Where machine learning models can be fitted with
-#'   little coding by the user. The pipeline that PyCaret uses is that it has a
+#'  PyCaret is a python module where machine learning models can be fitted with
+#'   little coding by the user. The pipeline that PyCaret uses is a
 #'   setup function to parameterize the data that is easy for all the models to
-#'   fit on. Then compare models function is executed which fits all the models
+#'   fit on. Then the compare models function is executed, which fits all the models
 #'   that are currently available. This process takes less than five minutes for
 #'   data.frame objects that are less than 10,000 rows.
 #' @examplesIf python_avail()

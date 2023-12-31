@@ -1,16 +1,16 @@
 #' Data Generation for Sinusoidal Regression
 #'
-#' Creates a synthetic data set for an additive sinusoidal regression model see
+#' Creates a synthetic data set for an additive sinusoidal regression model. See
 #'  the details section for clarification.
 #' @param n The number of observations for each parameter.
-#' @param weight_mat The parameter coefficients where each column represents
+#' @param weight_mat The parameter coefficients, where each column represents
 #'  the coefficients and is three rows as each additive equation contains three
 #'  parameters. Defaulted to be 15 random numbers from the normal distribution.
 #' @param y_int The y-intercept term of the additive model.
 #' @param resp_sd The standard deviation of the epsilon term to be added for
 #'  noise.
 #' @param ... additional arguments that are not currently implemented
-#' @return A data frame object with the n rows and the response variable with
+#' @return A data.frame object with the n rows and the response variable with
 #'  the number of parameters being equal to the number of columns from the
 #'  weight matrix.
 #' @details

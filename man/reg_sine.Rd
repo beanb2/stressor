@@ -17,13 +17,13 @@ reg_sine(
 
 \item{data}{The response and predictor variables.}
 
-\item{method}{The method that is passed to the optim function by default it
+\item{method}{The method that is passed to the optim function. By default, it
 is the BFGS method which uses a gradient.}
 
-\item{init_guess}{The initial parameter guesses for the optim function, by
-default it is all ones.}
+\item{init_guess}{The initial parameter guesses for the optim function. By
+default, it is all ones.}
 
-\item{...}{Additional arguments passed to the optim function}
+\item{...}{Additional arguments passed to the optim function.}
 }
 \value{
 A "reg_sine" object is returned which contains the results from the

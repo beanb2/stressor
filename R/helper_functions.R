@@ -1,12 +1,12 @@
-#' Data and Formula helper check function
+#' Data and Formula Helper Check Function
 #'
 #' Checks that the formula is a formula object, data is data.frame object, and
-#'  if all the variables in the formula call are in the data.frame
-#' @param formula A formula object
-#' @param data A data.frame object
+#'  if all the variables in the formula call are in the data.frame.
+#' @param formula A formula object.
+#' @param data A data.frame object.
 #' @param train_data A data.frame object. Some methods include two data.frames
 #'  as inputs.
-#' @returns Stops the function from continuing it's output by displaying an
+#' @returns Stops the function from continuing its output by displaying an
 #'  error message or nothing is returned.
 #' @examples
 #'  lm_data <- data_gen_lm(10)
@@ -29,9 +29,9 @@ data_check <- function(formula, data, train_data = NULL) {
   }
 }
 
-#' @title Integer Check function
-#' @description A helper function to check if value is an integer
-#' @param integer An integer value
+#' @title Integer Check Function
+#' @description A helper function to check if value is an integer.
+#' @param integer An integer value.
 #' @return Allows the function to run or returns a user friendly error message.
 #' @examples
 #'  integer_check(1)
@@ -42,9 +42,9 @@ integer_check <- function(integer) {
   }
 }
 
-#' @title Numeric Check function
-#' @description A helper function to check if value is an numeric
-#' @param numeric A numeric value
+#' @title Numeric Check Function
+#' @description A helper function to check if value is an numeric.
+#' @param numeric A numeric value.
 #' @return Allows the function to run or returns a user friendly error message.
 #' @examples
 #'  numeric_check(1.5)
@@ -55,9 +55,9 @@ numeric_check <- function(numeric) {
   }
 }
 
-#' @title Matrix Check function
-#' @description A helper function to check if the matrix is properly formatted
-#' @param matrix A matrix
+#' @title Matrix Check Function
+#' @description A helper function to check if the matrix is properly formatted.
+#' @param matrix A matrix.
 #' @return Allows the function to run or returns a user friendly error message.
 #'  mat <- matrix(rep(1, 4), nrow = 2)
 #'  matrix_check(mat)
@@ -71,9 +71,9 @@ matrix_check <- function(matrix) {
   }
 }
 
-#' @title Boolean Check function
+#' @title Boolean Check Function
 #' @description A helper function to check if value is a Boolean value.
-#' @param boolean A Boolean value
+#' @param boolean A Boolean value.
 #' @return Allows the function to run or returns a user friendly error message.
 #' @examples
 #'  boolean_check(TRUE)
@@ -84,9 +84,9 @@ boolean_check <- function(boolean) {
   }
 }
 
-#' @title Check if Python is available
+#' @title Check if Python is Available
 #' @description A function that allows examples to run when appropriate.
-#' @return A boolean value is returned
+#' @return A boolean value is returned.
 #' @examples
 #'  python_avail()
 #' @export

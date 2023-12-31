@@ -1,16 +1,16 @@
 #' Cross Validation Function
 #'
-#' The machinery to run cross validation in that it subsets the test and train
+#' This is the machinery to run cross validation. It subsets the test and train
 #'  set based on the groups it receives.
 #' @param object Currently `"reg_sine", "reg_asym", "lm", "mlm_stressor"`
 #'   objects are accepted.
-#' @param data A data frame object that has the same formula that was fitted on
+#' @param data A data.frame object that has the same formula that was fitted on
 #'   the data.
 #' @param t_groups The groups for cross validation: standard cross validation,
 #'   LOO cross_validation, or spatial cross validation.
 #' @param ... Additional arguments that are passed to the predict function.
 #' @return Either a vector of predictions for `"reg_sine", "reg_asym", "lm"` and
-#'   a data frame for `"mlm_stressor"`
+#'   a data frame for `"mlm_stressor"`.
 #' @inherit cv examples
 #' @importFrom stats predict formula lm
 cv_core <- function(object, data, t_groups, ...) {

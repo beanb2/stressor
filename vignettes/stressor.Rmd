@@ -21,21 +21,21 @@ library(ggplot2)
 
 This package is designed to allow the user to apply multiple machine
 learning methods by calling simple commands for data exploration. Python
-has a library called PyCaret which uses pipeline processes for fitting
+has a library, called PyCaret, which uses pipeline processes for fitting
 multiple models with a few lines of codes. Stressor uses the
 `reticulate` package to allow python to be run in R, giving access to
 the same tools that exist in python. One of the strengths of R is
-exploration, stressor gives you the freedom to explore the machine
+exploration. Stressor gives you the freedom to explore the machine
 learning models side by side.
 
 To get started, stressor requires that you have Python 3.8.10</a>
 installed on your computer. To install Python, please follow the
-instructions provide at:
+instructions provided at:
 
 <p style="text-align:center;"><a href = https://www.python.org/downloads/release/python-3810/>
 https://www.python.org/downloads/release/python-3810/</a></p>
 
-Once Python is installed, you can install stressor from CRAN. For convenience, we
+Once Python is installed, you can install stressor from CRAN. For your convenience, we
 have attached stressor with the `library` statement to use the python
 features of stressor.
 
@@ -46,8 +46,8 @@ library(stressor)
 ## Data Generation
 
 It is convenient when testing new functions or algorithms to be able to
-generate toy data sets. With these toy data sets we can choose the
-distribution of the parameters and of the error term as well as the
+generate toy data sets. With these toy data sets, we can choose the
+distribution of the parameters, of the error term, and the
 underlying model of the toy data set.
 
 In this section, we will show an example of generating linear data with
@@ -58,7 +58,7 @@ that the residuals follow a normal distribution with a mean of zero and
 a standard deviation of one. With respect to the variables chosen, each
 variable is sampled from a normal distribution with mean zero and
 standard deviation of one. For this case, we chose to let the
-coefficients on each term be one as we wanted each independent variable
+coefficients on each term be one, as we wanted each independent variable
 to be equally weighted. When we create the response variable, Y, it is
 the sum of each independent variable plus an epsilon term that is
 sampled from a standard normal distribution.
@@ -70,8 +70,8 @@ head(lm_data)
 ```
 
 ### Validation of Data Generation
-Below is a visual of when we know the standard deviation of the epsilon term we 
-can show that our models fit data if we are close to the theoretical error. In the graphic below the black dots represent the  value given the current epsilon that we are on. The red line represents the expected theoretical error.
+Below is a visual of when we know the standard deviation of the epsilon term. We 
+can show that our models fit the data if we are close to the theoretical error. In the graphic below, the black dots represent the value given the current epsilon that we are on. The red line represents the expected theoretical error.
 ```{r, echo = FALSE, warning=FALSE, fig.align='center', fig.height=5, fig.width = 5}
 # Data Verification
 simulation <- function(n, eps, weight_mat, label, test_size = 100, 
@@ -135,7 +135,7 @@ In this section, we will demonstrate a typical workflow using the
 functions of this package to explore the machine learning models (mlm)
 that are accessible through the PyCaret module in python. First, we need
 to create a virtual environment for the PyCaret module to exist in. The
-first time you run this code it will take some time (\~ 5 min) as it
+first time you run this code it will take some time (\~ 5 min), as it
 needs to install the necessary modules into the virtual environment. Note that 
 this virtual environment will be about 1 GB of space on the user's disk.
 PyCaret recommends that its library be used in a virtual environment. A
@@ -144,7 +144,7 @@ specific python version installed, as well as other python libraries.
 This enables the tools needed to be contained without disturbing the
 main version of python installed.
 
-Once installed the following message will be shown after you execute the
+Once installed, the following message will be shown after you execute the
 code indicating that you are now using the virtual environment.
 
 ```{r, eval=FALSE}
@@ -155,14 +155,14 @@ See the <a
 href=#troubleshoot>troubleshoot</a> section if other errors appear. The
 only time you will need to install a new environment is if you decide to
 delete a stressor environment and need to initiate a new one. You do not
-need to install a new environment for each R session, one and done.
+need to install a new environment for each R session, it is one and done.
 These environments are stored inside the python module on your computer.
 
 To begin using, we need to create all the mlm. This may take a moment
-(\< 3 min). The first time you run it as the PyCaret module needs to be
+(\< 3 min) the first time you run it, as the PyCaret module needs to be
 imported. Then depending on your data size it may take a moment (\< 5
-min for data \<10,000) to fit the data. Note console output will be shown and
-a progress bar displayed showing the progress of the fitting.
+min for data \<10,000) to fit the data. Note that console output will be shown and
+a progress bar will be displayed showing the progress of the fitting.
 
 For reproducibility, we have set the seed again and have defined a new data set,
 and set the seed for the python side by passing the seed to the function.
@@ -191,9 +191,9 @@ name_RMSE <- acc$Model[acc$RMSE == top_RMSE]
 ```
 
 Now, we can look at the initial training predictive accuracy measures such as
-. The `mlm_lm` is a list object where the first element is a list of
-all the models that were fitted. Example, if I were to pass these models
-back to PyCaret they can be refitted or used again for predictions. The
+RMSE. The `mlm_lm` is a list object where the first element is a list of
+all the models that were fitted. For example, if we were to pass these models
+back to PyCaret, they can be refitted or used again for predictions. The
 second element is a data frame for the initial  values and the
 corresponding models. If you want to specify the models that are fitted,
 you can change the `fit_models` parameter -- a character vector --
@@ -279,8 +279,8 @@ We will be using the Boston Housing Data from the `mlbench` package.
 There are two versions of this data, the second version includes a
 corrected `medv` value, standardizing the median income to USD 1000's.
 As some of the original data was missing. This data version also has had
-the town, tract, longitude and latitude added. For this analysis we are
-ignoring spatial autocorrelation, therefore, will be removing these
+the town, tract, longitude and latitude added. For this analysis, we are
+ignoring spatial autocorrelation and therefore will be removing these
 variables from the analysis.
 
 This next code chunk opens the cleaned Boston data set attached to this
@@ -299,8 +299,8 @@ mlm_boston_pred_accuracy <- readRDS(file = "pred.rds")
 mlm_boston_pred_accuracy
 ```
 
-Observe the initial  values for the Boston data set. Now compare
-these to the cross validated  values.
+Observe the initial values for the Boston data set. Now compare
+these to the cross validated values.
 
 ```{r eval=FALSE}
 mlm_boston_cv <- cv(mlm_boston, boston, n_folds = 10)
@@ -315,7 +315,7 @@ mlm_boston_score
 ```
 
 Clustered cross validation is subsetting the parameter space into groups
-that share similar attributes with one another.Therefore if we train on
+that share similar attributes with one another. Therefore, if we train on
 those groups the other group should fit similarly across the test group.
 
 Now, compare to the clustered cross validation:
@@ -332,16 +332,16 @@ boston_clust_score <- score(boston$cmedv, clus_data)
 boston_clust_score
 ```
 
-What we notice about this result is when we ignored spatial
-autocorrelation, we compare the 10 fold cross validation with the
+What we notice about this result is when we ignore spatial
+autocorrelation and we compare the 10 fold cross validation with the
 clustered cross validation, we see a general improvement in the 
 values. This suggests that maybe there is some other underlying factors,
 i.e. spatial relationships.
 
 The power to be able to explore is a compliment to the purpose of R.
-With stressor you are able to fit multiple machine learning models with
-a few lines of code, perform 10 fold cross validation and clustered
-cross validation. With a simple command, you can return the  values
+With stressor, you are able to fit multiple machine learning models with
+a few lines of code and  perform 10 fold cross validation and clustered
+cross validation. With a simple command, you can return the values
 from the predictions.
 
 ## Troubleshooting
@@ -360,7 +360,7 @@ If you system is not recognizing the python path that you have, you will need to
 add it to your system variables, or specify initially the python path that 
 `create_virtualenv()` needs to use. If you are still having trouble getting the
 virtual environment to start you can use `reticulate`'s function 
-`reticulate::use_virtualenv()`. It also helps sometimes to unset the `RETICULATE_PYTHON` variable. Also note that if your environment has python objects in it the user will have to clear them to restart the `reticulate` `python` version. 
+`reticulate::use_virtualenv()`. It also helps sometimes to unset the `RETICULATE_PYTHON` variable. Also note that if the environment has python objects in it the user will have to clear them to restart the `reticulate` `python` version. 
 
 If you receive a warning that says
 
@@ -378,6 +378,6 @@ version of Python ... has already been initialized. Please restart the R
 session if you need to attach reticulate to a different version of
 Python.</p>
 
-If this error appears restart your R session and run the
-`create_virtualenv()` function again and there should be no problems
-attaching it after that. As long as your environment does not contain any `Python` objects.
+If this error appears, restart your R session and run the
+`create_virtualenv()` function again. There should be no problems
+attaching it after that, as long as your environment does not contain any `Python` objects.

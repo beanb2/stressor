@@ -15,7 +15,7 @@ data_gen_sine(
 \arguments{
 \item{n}{The number of observations for each parameter.}
 
-\item{weight_mat}{The parameter coefficients where each column represents
+\item{weight_mat}{The parameter coefficients, where each column represents
 the coefficients and is three rows as each additive equation contains three
 parameters. Defaulted to be 15 random numbers from the normal distribution.}
 
@@ -27,12 +27,12 @@ noise.}
 \item{...}{additional arguments that are not currently implemented}
 }
 \value{
-A data frame object with the n rows and the response variable with
+A data.frame object with the n rows and the response variable with
  the number of parameters being equal to the number of columns from the
  weight matrix.
 }
 \description{
-Creates a synthetic data set for an additive sinusoidal regression model see
+Creates a synthetic data set for an additive sinusoidal regression model. See
  the details section for clarification.
 }
 \details{

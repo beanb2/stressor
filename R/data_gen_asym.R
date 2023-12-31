@@ -1,19 +1,19 @@
 #' Data Generation Asymptotic
 #'
-#' Creates a synthetic data set for an additive asymptotic model see the details
+#' Creates a synthetic data set for an additive asymptotic model. See the details
 #'  section for clarification.
 #' @param n The number of observations for each parameter.
-#' @param weight_mat The parameter coefficients where each column represents
+#' @param weight_mat The parameter coefficients, where each column represents
 #'  the coefficients and is two rows as each additive equation contains two
 #'  parameters. Defaulted to be 10 random numbers from the log-normal
-#'  distribution. Where the second row of the matrix needs to be positive.
+#'  distribution. The second row of the matrix needs to be positive.
 #' @param y_int The y-intercept term of the additive model.
 #' @param resp_sd The standard deviation of the epsilon term to be added for
 #'  noise.
 #' @param window Used to determine for any given X variable to get you within
 #'  distance to capture the asymptotic behavior.
-#' @param ... additional arguments that are not currently implemented
-#' @return A data frame object with the n rows and the response variable with
+#' @param ... additional arguments that are not currently implemented.
+#' @return A data.frame object with the n rows and the response variable with
 #'  the number of parameters being equal to the number of columns from the
 #'  weight matrix.
 #' @details

@@ -55,10 +55,10 @@ cv(
 )
 }
 \arguments{
-\item{object}{One of the four objects that is accepted mlm_stressor,
+\item{object}{One of the four objects that is accepted: mlm_stressor,
 reg_sine, reg_asym, or lm.}
 
-\item{data}{A data frame object that contains all the entries to be cross-
+\item{data}{A data.frame object that contains all the entries to be cross-
 validated on.}
 
 \item{n_folds}{An integer value for the number of folds defaulted to 10. If
@@ -74,12 +74,12 @@ replicates need to be included in the same group.}
 be gathered.}
 }
 \value{
-If the object is of class mlm_stressor then a data frame will be
-  returned otherwise a vector of the predictions will be returned.
+If the object is of class mlm_stressor, then a data.frame will be
+  returned. Otherwise, a vector of the predictions will be returned.
 }
 \description{
-This is core of cross validation both standard and using k-mean groups. This
- method is called by other cv methods of classes.
+This is the core of cross validation- both standard and using k-mean groups.
+ This method is called by other cv methods of classes.
 }
 \section{Methods (by class)}{
 \itemize{

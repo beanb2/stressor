@@ -16,12 +16,12 @@ mlm_regressor(
 )
 }
 \arguments{
-\item{formula}{A linear formula object}
+\item{formula}{A linear formula object.}
 
 \item{train_data}{A data.frame object that includes data to be trained on.}
 
 \item{fit_models}{A character vector with all the possible Machine Learning
-regressors that are currently being fit, the user may specify a subset of
+regressors that are currently being fit. The user may specify a subset of
 them using a character vector.
 \tabular{rl}{
   ada \tab AdaBoost Regressor \cr
@@ -63,15 +63,14 @@ A list object where the first entry is the models fitted and the
 Through the \href{https://pycaret.gitbook.io/docs/get-started/quickstart#regression}{PyCaret}
   module from python, this function fits many machine
   learning models simultaneously with without requiring any python
-  programming on the part of the user. The core function to fitting the
-  initial models. This function is
+  programming on the part of the user. This function is
   specifically designed for the regression models.
 }
 \details{
-PyCaret is a python module. Where machine learning models can be fitted with
-  little coding by the user. The pipeline that PyCaret uses is that it has a
+PyCaret is a python module where machine learning models can be fitted with
+  little coding by the user. The pipeline that PyCaret uses is a
   setup function to parameterize the data that is easy for all the models to
-  fit on. Then compare models function is executed which fits all the models
+  fit on. Then the compare models function is executed, which fits all the models
   that are currently available. This process takes less than five minutes for
   data.frame objects that are less than 10,000 rows.
 }

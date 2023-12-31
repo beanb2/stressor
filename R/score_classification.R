@@ -74,16 +74,16 @@ mcc <- function(confusion_matrix) {
   mcc <- ((confusion_matrix[1, 1] / tot) - (pos_FN * pos_FP)) / denominator
 }
 
-#' @title Score function for Binary Classification
+#' @title Score Function for Binary Classification
 #'
 #' @description This function takes the observed and predicted values and computes metrics
 #'  that are found in PyCaret such as: `Accuracy`, `AUC`, `Recall`, `Prec.`,
 #'  `F1`, `MCC`, and `Kappa`.
 #' @param observed A vector of the observed results.
-#' @param predicted  data frame or vector object that is the same number of
+#' @param predicted  A data.frame or vector object that is the same number of
 #'   rows or length as the length of observed values.
-#' @param metrics A character vector of the metrics to be fitted. Defaulted to
-#'   be the metrics from PyCaret.
+#' @param metrics A character vector of the metrics to be fitted. This is
+#'   defaulted to be the metrics from PyCaret.
 #' @return A vector or data.frame of the methods and metrics.
 score_classification <- function(observed, predicted,
                                  metrics = c('Accuracy', 'AUC', 'Recall',
@@ -135,18 +135,18 @@ score_classification <- function(observed, predicted,
         results[, i] <- apply(predicted, 2, function(x) {auc(observed, x)})
       } else {
         results[, i] <- sapply(confusion_mat, function(x) {
-          if (x == "Accuracy") {
-            res <- accuracy(confusion_mat)
-          } else if (x == "Kappa") {
-            res <- kappa_class(confusion_mat)
-          } else if (x == "MCC") {
-            res <- mcc(confusion_mat)
-          } else if (x == "Recall") {
-            res <- recall(confusion_mat)
-          } else if (x == "Prec.") {
-            res <- precision(confusion_mat)
-          } else if (x == "F1") {
-            res <- f1(confusion_mat)
+          if (met == "Accuracy") {
+            res <- accuracy(x)
+          } else if (met == "Kappa") {
+            res <- kappa_class(x)
+          } else if (met == "MCC") {
+            res <- mcc(x)
+          } else if (met == "Recall") {
+            res <- recall(x)
+          } else if (met == "Prec.") {
+            res <- precision(x)
+          } else if (met == "F1") {
+            res <- f1(x)
           } else {
             stop("Method not implemented.")
           }

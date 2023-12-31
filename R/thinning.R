@@ -1,17 +1,17 @@
 #' Thinning algorithm for Models with Predict function
 #'
 #' Fits various train size and test sizes.
-#' @param model a model that is currently of class type "reg_sine", "reg_asym",
+#' @param model A model that is currently of class type "reg_sine", "reg_asym",
 #'   "lm", or "mlm_stressor".
-#' @param data a data frame with all the data
-#' @param max a numeric value in (0, 1] and greater than `min`,
+#' @param data A data frame with all the data.
+#' @param max A numeric value in (0, 1] and greater than `min`,
 #'  defaulted to .95.
-#' @param min a numeric value in (0, 1) and less than `max`, defaulted to .05.
-#' @param iter a numeric value to indicate the step size, defaulted to .05
-#' @param classification A boolean value defaulted `FALSE`, used for
+#' @param min A numeric value in (0, 1) and less than `max`, defaulted to .05.
+#' @param iter A numeric value to indicate the step size, defaulted to .05.
+#' @param classification A Boolean value defaulted `FALSE`, used for
 #'   `mlm_classification`.
-#' @return a list object where the first element is the RMSE values at each
-#'   iteration and the second element being the predictions.
+#' @return A list of objects, where the first element is the RMSE values at each
+#'   iteration and the second element is the predictions.
 #' @examples
 #'  lm_data <- data_gen_lm(1000)
 #'  lm_model <- lm(Y ~ ., lm_data)

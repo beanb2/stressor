@@ -9,22 +9,22 @@ score(observed, predicted, ...)
 \arguments{
 \item{observed}{A vector of the observed results.}
 
-\item{predicted}{data frame or vector object that is the same number of
+\item{predicted}{A data.frame or vector object that is the same number of
 rows or length as the length of observed values.}
 
 \item{...}{
   Arguments passed on to \code{\link[=score_classification]{score_classification}}, \code{\link[=score_regression]{score_regression}}
   \describe{
-    \item{\code{metrics}}{A character vector of the metrics to be fitted. Defaulted to
-be the metrics from PyCaret.}
+    \item{\code{metrics}}{A character vector of the metrics to be fitted. This is
+defaulted to be the metrics from PyCaret.}
   }}
 }
 \description{
-A score function that takes the observed and predicted values and returns a
+A score function takes the observed and predicted values and returns a
   vector or data.frame of the various metrics that are reported from PyCaret.
   For regression, the following metrics are available: `RMSE`, `MAE`, `MSE`,
-  `R2`, `RMSLE`, and `MAPE`. And for classification the following metrics:
-  `Accuracy`, `AUC`, `Recall`, `Prec.`, `F1`, `MCC`, and `Kappa`.
+  `R2`, `RMSLE`, and `MAPE`. For classification, the following metrics are
+  available:`Accuracy`, `AUC`, `Recall`, `Prec.`, `F1`, `MCC`, and `Kappa`.
 }
 \examples{
 lm_data <- data_gen_lm(100)

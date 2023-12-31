@@ -5,11 +5,11 @@
 #'  functions with a common intercept term.
 #' @param formula A formula object to describe the relationship.
 #' @param data The response and predictor variables.
-#' @param method The method that is passed to the optim function by default it
+#' @param method The method that is passed to the optim function. By default, it
 #'  is the BFGS method which uses a gradient.
-#' @param init_guess The initial parameter guesses for the optim function, by
-#'  default it is all ones.
-#' @param ... Additional arguments passed to the optim function
+#' @param init_guess The initial parameter guesses for the optim function. By
+#'  default, it is all ones.
+#' @param ... Additional arguments passed to the optim function.
 #' @return A "reg_asym" object is returned which contains the results from the
 #'  optim function that was returned.
 #' @importFrom stats model.frame terms
@@ -30,7 +30,7 @@ reg_asym <- function(formula, data, method = "BFGS",
   obj
 }
 
-#' @title Asymptotic function for an optimize function
+#' @title Asymptotic Function for the Optim Function
 #' @description It returns the loss of the additive asymptotic function for the
 #'   \link[stats]{optim} function.
 #' @inheritParams asym_yhat
@@ -47,11 +47,11 @@ asym_function <- function(estimated, X, Y) {
   error
 }
 
-#' @title Gradient Asymptotic Function used for Optim
+#' @title Gradient Asymptotic Function used for the Optim Function
 #' @description This is the gradient function used for the \link[stats]{optim}
 #'  for the `"BFGS"` optimization of optim.
 #' @inheritParams asym_function
-#' @return The gradient of the loss with the current parameter estimates
+#' @return The gradient of the loss with the current parameter estimates.
 #' @noRd
 asym_gradient <- function(estimated, X, Y) {
   Y_pred <- asym_yhat(estimated, X)
@@ -70,14 +70,14 @@ asym_gradient <- function(estimated, X, Y) {
 
 #' @title Predictions for the Additive Asymptotic Model
 #' @description Fits the Additive Sinusoidal model with the current coefficients
-#'   and the current predictor variables
+#'   and the current predictor variables.
 #' @param estimated A vector of the current guesses on the coefficients of the
 #'   model.
-#' @param X A matrix of the predictor variables
-#' @return A vector of predictions from the model
-#' @details When you want predictions from the model use `asym_yhat` if you want
-#'  the loss then use the `asym_func` as `optim` requires that function returns
-#'  the loss value.
+#' @param X A matrix of the predictor variables.
+#' @return A vector of predictions from the model.
+#' @details When you want predictions from the model use `asym_yhat`. If you
+#'  want the loss then use the `asym_func`, as `optim` requires that function
+#'  returns the loss value.
 #' @noRd
 asym_yhat <- function(estimated, X) {
   vec_2 <- X
@@ -94,9 +94,9 @@ asym_yhat <- function(estimated, X) {
 #' @title Optim function for the Additive Asymptotic Regression Model
 #' @description Utilizes the [stats::optim()] function to perform the
 #'   optimization of the curve.
-#' @param init_guess The initial parameter guesses for the optim function, by
-#'  default it is all ones.
-#' @param X A matrix of the predictor space
+#' @param init_guess The initial parameter guesses for the optim function. By
+#'  default, it is all ones.
+#' @param X A matrix of the predictor space.
 #' @param Y A vector of the observed results used to calculate the Loss
 #'   function.
 #' @param method The method to be used. See method in

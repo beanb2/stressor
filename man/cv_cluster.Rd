@@ -2,7 +2,7 @@
 % Please edit documentation in R/cv_cluster.R
 \name{cv_cluster}
 \alias{cv_cluster}
-\title{Spatial cluster-based partitions for cross validation}
+\title{Spatial Cluster-Based Partitions for Cross Validation}
 \usage{
 cv_cluster(features, k, k_mult = 5, ...)
 }
@@ -25,7 +25,7 @@ This function creates cluster-based partitions of a sample space based on
 }
 \details{
 More information regarding spatial cross validation can be found in
- Robin Lovelace explanation of spatial cross validation in his
+ Robin Lovelace's explanation of spatial cross validation in his
  \href{https://geocompr.robinlovelace.net/spatial-cv.html?q=cross\%20validation#intro-cv}{textbook}
 }
 \examples{

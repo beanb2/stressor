@@ -3,13 +3,12 @@
 #' Through the \href{https://pycaret.gitbook.io/docs/get-started/quickstart#regression}{PyCaret}
 #'   module from python, this function fits many machine
 #'   learning models simultaneously with without requiring any python
-#'   programming on the part of the user. The core function to fitting the
-#'   initial models. This function is
+#'   programming on the part of the user. This function is
 #'   specifically designed for the regression models.
-#' @param formula A linear formula object
+#' @param formula A linear formula object.
 #' @param train_data A data.frame object that includes data to be trained on.
 #' @param fit_models A character vector with all the possible Machine Learning
-#'   regressors that are currently being fit, the user may specify a subset of
+#'   regressors that are currently being fit. The user may specify a subset of
 #'   them using a character vector.
 #'   \tabular{rl}{
 #'     ada \tab AdaBoost Regressor \cr

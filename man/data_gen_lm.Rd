@@ -17,10 +17,10 @@ coefficients for the additive linear model.}
 \item{resp_sd}{The standard deviation of the epsilon term to be added for
 noise.}
 
-\item{...}{additional arguments that are not currently implemented}
+\item{...}{additional arguments that are not currently implemented.}
 }
 \value{
-A data frame object with the n rows and the response variable with
+A data.frame object with the n rows and the response variable with
  the number of parameters being equal to the number of columns from the
  weight matrix.
 }

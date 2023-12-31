@@ -2,7 +2,7 @@
 % Please edit documentation in R/score_regression.R
 \name{score_regression}
 \alias{score_regression}
-\title{Score function for Regression}
+\title{Score Function for Regression}
 \usage{
 score_regression(
   observed,
@@ -13,11 +13,11 @@ score_regression(
 \arguments{
 \item{observed}{A vector of the observed results.}
 
-\item{predicted}{data frame or vector object that is the same number of
+\item{predicted}{A data.frame or vector object that is the same number of
 rows or length as the length of observed values.}
 
-\item{metrics}{A character vector of the metrics to be fitted. Defaulted to
-be the metrics from PyCaret.}
+\item{metrics}{A character vector of the metrics to be fitted. This is
+defaulted to be the metrics from PyCaret.}
 }
 \value{
 A vector or data.frame of the methods and metrics.

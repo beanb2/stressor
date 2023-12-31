@@ -7,7 +7,7 @@
 rmse(predicted, observed)
 }
 \arguments{
-\item{predicted}{data frame or vector object that is the same number of
+\item{predicted}{A data.frame or vector object that is the same number of
 rows or length as the length of observed values.}
 
 \item{observed}{A vector of the observed results.}

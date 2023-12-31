@@ -1,27 +1,27 @@
 #' Create groups for CV
 #'
-#' Creates groups for the data by separating them either into 10 fold cross-
+#' Create groups for the data by separating them either into 10 fold cross-
 #'   validation, LOO cross-validation, or k-means grouping.
-#' @param formula A formula object that specifies the
-#' @param data The data that will be separated into each group
+#' @param formula A formula object that specifies the model to be fit.
+#' @param data The data that will be separated into each group.
 #' @param n_folds An integer value defaulted to 10 fold cross-validation if NULL
 #'   uses Leave One Out(LOO) instead.
-#' @param k_mult When specified is passed onto the \link[stressor]{cv_cluster}
-#'   to fit the data into k_groups
+#' @param k_mult When specified, this is passed onto the \link[stressor]{cv_cluster}
+#'   to fit the data into k_groups.
 #' @param repl A Boolean value defaulted to `FALSE`, change to `TRUE` when
 #'   replicates need to be included in the same group.
 #' @param grouping_formula A formula object that specifies how the groups will
 #'   be gathered.
 #' @return A vector of the length equal to number of rows of data.frame from the
 #'   data argument.
-#' @details If `k_mult` is specified as an integer the formula object will be
-#'   used to help determine the features specified by the user. Which will be
-#'   passed to the \link[stressor]{cv_cluster} function. Which takes a scaled
+#' @details If `k_mult` is specified as an integer, the formula object will be
+#'   used to help determine the features specified by the user. This will be
+#'   passed to the \link[stressor]{cv_cluster} function, which takes a scaled
 #'   matrix of features.
 #'
 #'   This function is called by the \link[stressor]{cv} methods as it forms the
-#'    groups necessary to perform the cross validation. If you were wanting to
-#'    use for your own use. It is nice function that separates the `data` into
+#'    groups necessary to perform the cross validation. If you want to
+#'    use this, it is a nice function that separates the `data` into
 #'    groups for training and testing.
 #' @examples
 #'  # data generation

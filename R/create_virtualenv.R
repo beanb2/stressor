@@ -1,11 +1,11 @@
 #' Create Python Virtual Environment
 #'
 #' Allows the user to create a stressor python environment with PyCaret
-#'   installed on the environment. This function assumes that
-#'   you have properly installed python. We recommend version 3.8.10. Uses
+#'   installed in the environment. This function assumes that
+#'   you have properly installed python. We recommend version 3.8.10. It uses
 #'   existing stressor environments.
-#' @param python Defaults to your install of python, prefer 3.8.10. This is
-#'  assuming that you installed python from python.org. Currently Anaconda
+#' @param python Defaults to your install of python. We prefer version 3.8.10.
+#'  This is assuming that you installed python from python.org. Currently Anaconda
 #'  installations of python are not implemented.
 #' @param delete_env Boolean value to indicate if the environments need to be
 #'  deleted.
@@ -22,8 +22,8 @@
 #'  `LightGBM`documentation
 #'  \href{https://lightgbm.readthedocs.io/en/latest/Installation-Guide.html}{here}.
 #' @section Troubleshoot:
-#'  If python is not being found properly trying setting the
-#'   `RETICULATE_PYTHON` to ``''. Also ensure that you do not have other
+#'  If python is not being found properly, trying setting the
+#'   `RETICULATE_PYTHON` to blank string. Also ensure that you do not have other
 #'   python objects in your environment.
 #'
 #'  Also note that on some instances that a warning message may be displayed as

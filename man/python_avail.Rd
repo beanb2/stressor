@@ -2,12 +2,12 @@
 % Please edit documentation in R/helper_functions.R
 \name{python_avail}
 \alias{python_avail}
-\title{Check if Python is available}
+\title{Check if Python is Available}
 \usage{
 python_avail()
 }
 \value{
-A boolean value is returned
+A boolean value is returned.
 }
 \description{
 A function that allows examples to run when appropriate.

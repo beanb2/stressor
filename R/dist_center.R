@@ -2,8 +2,8 @@
 #'
 #' Calculates the distance from center of the matrix of predictor variables
 #'  using a euclidean distance, or the average of all x-dimensions.
-#' @param formula A formula object
-#' @param data A data.frame object
+#' @param formula A formula object.
+#' @param data A data.frame object.
 #' @return A vector of distances from the center.
 #' @details
 #'  Formula used to calculate the center point:

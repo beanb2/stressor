@@ -10,7 +10,7 @@ cv_core(object, data, t_groups, ...)
 \item{object}{Currently `"reg_sine", "reg_asym", "lm", "mlm_stressor"`
 objects are accepted.}
 
-\item{data}{A data frame object that has the same formula that was fitted on
+\item{data}{A data.frame object that has the same formula that was fitted on
 the data.}
 
 \item{t_groups}{The groups for cross validation: standard cross validation,
@@ -20,10 +20,10 @@ LOO cross_validation, or spatial cross validation.}
 }
 \value{
 Either a vector of predictions for `"reg_sine", "reg_asym", "lm"` and
-  a data frame for `"mlm_stressor"`
+  a data frame for `"mlm_stressor"`.
 }
 \description{
-The machinery to run cross validation in that it subsets the test and train
+This is the machinery to run cross validation. It subsets the test and train
  set based on the groups it receives.
 }
 \examples{

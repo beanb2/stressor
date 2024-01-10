@@ -26,7 +26,7 @@ This function creates cluster-based partitions of a sample space based on
 \details{
 More information regarding spatial cross validation can be found in
  Robin Lovelace's explanation of spatial cross validation in his
- \href{https://geocompr.robinlovelace.net/spatial-cv.html?q=cross\%20validation#intro-cv}{textbook}
+ \href{https://r.geocompx.org/spatial-cv.html?q=cross\%20validation#intro-cv}{textbook}
 }
 \examples{
  # Creating a matrix of predictor variables

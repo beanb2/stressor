@@ -1,14 +1,13 @@
 Package: stressor
 Type: Package
-Title: Algorithms for testing models under stress 
+Title: Algorithms for Testing Models under Stress 
 Version: 0.1.0
 Authors@R: c(
-    person("Samuel", "Haycock", email = "sam.haycock@usu.edu",
+    person("Sam", "Haycock", email = "haycock.sam@outlook.com",
     role = c("aut", "cre")),
     person("Brennan", "Bean", email = "brennan.bean@usu.edu", 
     role = c("aut"))
   )
-Maintainer: Sam Haycock <haycock.sam@outlook.com>
 Description: Traditional model evaluation metrics fail to capture model 
     performance under less than ideal conditions. This package employs 
     techniques to evaluate models "under-stress". This includes testing 

@@ -6,15 +6,21 @@ Authors@R: c(
     person("Samuel", "Haycock", email = "sam.haycock@usu.edu",
     role = c("aut", "cre")),
     person("Brennan", "Bean", email = "brennan.bean@usu.edu", 
-    role = c("aut"))
+    role = c("aut")),
+    person("Utah State University", "", role = c("cph", "fnd")),
+    person("Thermo Fisher Scientific", "Inc.", role = c("fnd"))
   )
 Maintainer: Sam Haycock <haycock.sam@outlook.com>
 Description: Traditional model evaluation metrics fail to capture model 
     performance under less than ideal conditions. This package employs 
     techniques to evaluate models "under-stress". This includes testing 
     models' extrapolation ability, or testing accuracy on specific 
-    sub-samples of the overall model space. Also included are a series 
-    of convenient visualizations of model accuracy under "stressful" conditions. 
+    sub-samples of the overall model space. Details describing stress-testing 
+    methods in this package are provided in 
+    Haycock (2023) <doi:10.26076/2am5-9f67>. The other primary contribution of 
+    this package is provided R users access to Python's PyCaret library
+    <https://pycaret.org/> for quick and easy access to auto-tuned 
+    machine learning models. 
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

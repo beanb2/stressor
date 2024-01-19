@@ -10,6 +10,7 @@
 #'   rows or length as the length of observed values.
 #' @inheritDotParams score_classification metrics
 #' @inheritDotParams score_regression metrics
+#' @return A matrix with the various metrics reported.
 #' @examples
 #' lm_data <- data_gen_lm(100)
 #' indices <- split_data_prob(lm_data, .2)
@@ -20,7 +21,7 @@
 #' score(test$Y, pred_lm)
 #' @export
 score <- function(observed, predicted, ...) {
-  if (length(unique(observed)) < 5) {
+  if (length(unique(observed)) < 5 || is.factor(observed)) {
     result <- score_classification(observed, predicted, ...)
   } else {
     result <- score_regression(observed, predicted, ...)

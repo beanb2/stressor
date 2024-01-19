@@ -1,3 +1,5 @@
 from pycaret.classification import *
-refit_mlm_new_model = r.refit_mlm_temp.fit(r.refit_mlm_X, r.refit_mlm_y)
-predictions = refit_mlm_new_model.predict(r.refit_mlm_test)
+def refit(x_train, y_train, x_test, model):
+  refit_mlm_new_model = model.fit(x_train, y_train)
+  predictions = refit_mlm_new_model.predict(x_test)
+  return predictions

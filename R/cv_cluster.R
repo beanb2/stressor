@@ -13,6 +13,8 @@
 #' @details More information regarding spatial cross validation can be found in
 #'  Robin Lovelace's explanation of spatial cross validation in his
 #'  \href{https://r.geocompx.org/spatial-cv.html?q=cross\%20validation#intro-cv}{textbook}
+#' @return An integer vector that is number of rows of features with indices of
+#'  each group.
 #' @importFrom stats kmeans
 #' @examples
 #'  # Creating a matrix of predictor variables

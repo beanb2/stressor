@@ -18,6 +18,10 @@ created as part of the balancing algorithm.}
 
 \item{...}{Additional arguments passed to \link[stats]{kmeans} as needed.}
 }
+\value{
+An integer vector that is number of rows of features with indices of
+ each group.
+}
 \description{
 This function creates cluster-based partitions of a sample space based on
   k-means clustering. Included in the function are algorithms that attempt

@@ -19,6 +19,9 @@ rows or length as the length of observed values.}
 defaulted to be the metrics from PyCaret.}
   }}
 }
+\value{
+A matrix with the various metrics reported.
+}
 \description{
 A score function takes the observed and predicted values and returns a
   vector or data.frame of the various metrics that are reported from PyCaret.

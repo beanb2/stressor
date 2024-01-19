@@ -46,13 +46,14 @@ mlm_refit <- function(mlm_object, train_data, test_data,
     train_data <- model.frame(formula(mlm_object), train_data)
 
     # For the python file to execute
-    refit_mlm_X <<- as.matrix(train_data[, -1])
-    refit_mlm_y <<- as.matrix(train_data[, 1])
-    refit_mlm_test <<- as.matrix(test_data[, -1])
+    refit_mlm_X <- as.matrix(train_data[, -1])
+    refit_mlm_y <- as.matrix(train_data[, 1])
+    refit_mlm_test <- as.matrix(test_data[, -1])
     for (i in seq_len(length(mlm_object$models))) {
-      refit_mlm_temp <<- mlm_object$models[[i]]
+      refit_mlm_temp <- mlm_object$models[[i]]
       reticulate::source_python(file)
-      prediction_mlm[, i] <- predictions
+      prediction_mlm[, i] <- refit(refit_mlm_X, refit_mlm_y, refit_mlm_test,
+                                   refit_mlm_temp)
     }
   } else {
     # Import PyCaret Predict
@@ -69,9 +70,6 @@ mlm_refit <- function(mlm_object, train_data, test_data,
                                                test_data)[, "prediction_label"]
     }
   }
-
-  # Need this line to pass the CRAN Checks
-  refit_mlm_X <- refit_mlm_y <- refit_mlm_test <- refit_mlm_temp <- NULL
   prediction_mlm
 }
 

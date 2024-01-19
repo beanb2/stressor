@@ -7,7 +7,7 @@ Authors@R: c(
     role = c("aut", "cre")),
     person("Brennan", "Bean", email = "brennan.bean@usu.edu", 
     role = c("aut")),
-    person("Utah State University", "", role = c("cph", "fnd")),
+    person("Utah State University", role = c("cph", "fnd")),
     person("Thermo Fisher Scientific", "Inc.", role = c("fnd"))
   )
 Description: Traditional model evaluation metrics fail to capture model 

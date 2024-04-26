@@ -1,10 +1,10 @@
-#' Create groups for CV
+#' Create Groups for CV
 #'
-#' Create groups for the data by separating them either into 10 fold cross-
-#'   validation, LOO cross-validation, or k-means grouping.
+#' Create groups for the data by separating them either into 10 fold
+#'  cross-validation, LOO cross-validation, or k-means grouping.
 #' @param formula A formula object that specifies the model to be fit.
 #' @param data The data that will be separated into each group.
-#' @param n_folds An integer value defaulted to 10 fold cross-validation if NULL
+#' @param n_folds An integer value defaulted to 10 fold cross-validation. If NULL
 #'   uses Leave One Out(LOO) instead.
 #' @param k_mult When specified, this is passed onto the \link[stressor]{cv_cluster}
 #'   to fit the data into k_groups.
@@ -20,7 +20,7 @@
 #'   matrix of features.
 #'
 #'   This function is called by the \link[stressor]{cv} methods as it forms the
-#'    groups necessary to perform the cross validation. If you want to
+#'    groups necessary to perform the cross-validation. If you want to
 #'    use this, it is a nice function that separates the `data` into
 #'    groups for training and testing.
 #' @examples

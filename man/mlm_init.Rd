@@ -74,7 +74,7 @@ methods should be used.}
 \item{seed}{An integer value to set the seed of the python environment.
 Default value is set to `NULL`.}
 
-\item{...}{Additional arguments passed to the setup function in PyCaret.}
+\item{...}{Additional arguments passed to the setup function in `PyCaret`.}
 }
 \value{
 A list object that contains all the fitted models and the CV
@@ -82,18 +82,18 @@ A list object that contains all the fitted models and the CV
 }
 \description{
 Through the \href{https://pycaret.gitbook.io/docs/get-started/quickstart}{PyCaret}
-  module from python, this function fits many machine
-  learning models simultaneously without requiring any python
+  module from `python`, this function fits many machine
+  learning models simultaneously without requiring any `python`
   programming on the part of the user. This is the core function to fitting
   the initial models. This function is the backbone to fitting all the models.
 }
 \details{
 The formula should be linear. However, that does not imply a linear
-  fit. The formula is a simply a convenient way to separate predictor
+  fit. The formula is a convenient way to separate predictor
   variables from explanatory variables.
 
-  PyCaret is a python module where machine learning models can be fitted with
-  little coding by the user. The pipeline that PyCaret uses has a
+  `PyCaret` is a `python` module where machine learning models can be fitted with
+  little coding by the user. The pipeline that `PyCaret` uses has a
   setup function to parameterize the data that is easy for all the models to
   fit on. Then compare models function is executed which fits all the models
   that are currently available. This process takes less than five minutes for

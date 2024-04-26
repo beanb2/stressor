@@ -1,5 +1,5 @@
 #' @rdname predict
-#' @title Prediction methods for various models.
+#' @title Prediction Methods for Various Models
 #' @description Predict values on `mlm_stressor`, `reg_asym`, or `reg_sine`
 #'  objects. This expands the \link[stats]{predict} function.
 #' @param object A `mlm_stressor`, `reg_asym`, or `reg_sine` object.

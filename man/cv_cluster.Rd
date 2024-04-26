@@ -2,7 +2,7 @@
 % Please edit documentation in R/cv_cluster.R
 \name{cv_cluster}
 \alias{cv_cluster}
-\title{Spatial Cluster-Based Partitions for Cross Validation}
+\title{Spatial Cluster-Based Partitions for Cross-Validation}
 \usage{
 cv_cluster(features, k, k_mult = 5, ...)
 }
@@ -11,7 +11,7 @@ cv_cluster(features, k, k_mult = 5, ...)
 Scaling usually done with \link[base]{scale} and should not include the
 predictor variable.}
 
-\item{k}{The number of partitions for k-fold cross validation.}
+\item{k}{The number of partitions for k-fold cross-validation.}
 
 \item{k_mult}{k*k_mult determines the number of subgroups that will be
 created as part of the balancing algorithm.}
@@ -28,9 +28,10 @@ This function creates cluster-based partitions of a sample space based on
   to produce clusters of roughly equal size.
 }
 \details{
-More information regarding spatial cross validation can be found in
- Robin Lovelace's explanation of spatial cross validation in his
- \href{https://r.geocompx.org/spatial-cv.html?q=cross\%20validation#intro-cv}{textbook}
+More information regarding spatial cross-validation can be found in
+ Robin Lovelace's explanation of spatial
+ cross-validation in his
+ \href{https://r.geocompx.org/spatial-cv.html?q=cross\%20validation#intro-cv}{textbook}.
 }
 \examples{
  # Creating a matrix of predictor variables

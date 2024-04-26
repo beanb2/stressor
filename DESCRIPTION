@@ -16,8 +16,8 @@ Description: Traditional model evaluation metrics fail to capture model
     models' extrapolation ability, or testing accuracy on specific 
     sub-samples of the overall model space. Details describing stress-testing 
     methods in this package are provided in 
-    Haycock (2023) <doi:10.26076/2am5-9f67>. The other primary contribution of 
-    this package is provided R users access to Python's PyCaret library
+    Haycock (2023) <doi:10.26076/2am5-9f67>. The other primary contribution of
+    this package is provided to R users access to the 'Python' library 'PyCaret'
     <https://pycaret.org/> for quick and easy access to auto-tuned 
     machine learning models. 
 License: MIT + file LICENSE

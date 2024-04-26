@@ -1,7 +1,7 @@
 #' Score Function for Metrics
 #'
 #' A score function takes the observed and predicted values and returns a
-#'   vector or data.frame of the various metrics that are reported from PyCaret.
+#'   vector or data.frame of the various metrics that are reported from `PyCaret`.
 #'   For regression, the following metrics are available: `RMSE`, `MAE`, `MSE`,
 #'   `R2`, `RMSLE`, and `MAPE`. For classification, the following metrics are
 #'   available:`Accuracy`, `AUC`, `Recall`, `Prec.`, `F1`, `MCC`, and `Kappa`.

@@ -77,13 +77,13 @@ mcc <- function(confusion_matrix) {
 #' @title Score Function for Binary Classification
 #'
 #' @description This function takes the observed and predicted values and computes metrics
-#'  that are found in PyCaret such as: `Accuracy`, `AUC`, `Recall`, `Prec.`,
+#'  that are found in `PyCaret` such as: `Accuracy`, `AUC`, `Recall`, `Prec.`,
 #'  `F1`, `MCC`, and `Kappa`.
 #' @param observed A vector of the observed results.
 #' @param predicted  A data.frame or vector object that is the same number of
 #'   rows or length as the length of observed values.
 #' @param metrics A character vector of the metrics to be fitted. This is
-#'   defaulted to be the metrics from PyCaret.
+#'   defaulted to be the metrics from `PyCaret`.
 #' @return A vector or data.frame of the methods and metrics.
 score_classification <- function(observed, predicted,
                                  metrics = c('Accuracy', 'AUC', 'Recall',

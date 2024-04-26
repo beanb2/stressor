@@ -20,8 +20,7 @@ methods need to be used to refit the data.}
 }
 \value{
 A matrix with the predictions of the various machine learning
-  methods. It will also declare global variables with the heading of
-  `"refit_mlm_`. These are needed for the python code to execute.
+  methods.
 }
 \description{
 Refits models fitted in the \link[stressor]{mlm_init}, and returns the

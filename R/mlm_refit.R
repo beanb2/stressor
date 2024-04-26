@@ -10,8 +10,7 @@
 #' @param classification A Boolean value used to represent if classification
 #'   methods need to be used to refit the data.
 #' @return A matrix with the predictions of the various machine learning
-#'   methods. It will also declare global variables with the heading of
-#'   `"refit_mlm_`. These are needed for the python code to execute.
+#'   methods.
 #' @examplesIf python_avail()
 #'  lm_train <- data_gen_lm(20)
 #'  train_idx <- sample.int(20, 5)

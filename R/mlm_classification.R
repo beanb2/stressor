@@ -1,10 +1,10 @@
 #' Fit Machine Learning Classification Models
 #'
 #' Through the \href{https://pycaret.gitbook.io/docs/get-started/quickstart#classification}{PyCaret}
-#'   module from python, this function fits many machine
-#'   learning models simultaneously with without requiring any python
+#'   module from `python`, this function fits many machine
+#'   learning models simultaneously without requiring any `python`
 #'   programming on the part of the user. This function is specifically
-#'   designed for the classification models fitted by PyCaret.
+#'   designed for the classification models fitted by `PyCaret`.
 #' @param formula The classification formula, as a formula object.
 #' @param train_data A data.frame object that includes data to be trained on.
 #' @param fit_models A character vector with all the possible Machine Learning
@@ -29,15 +29,15 @@
 #' @param sort_v A character vector indicating what to sort the tuned models on.
 #' @param n_models An integer value defaulted to a large integer value to
 #'   return all possible models.
-#' @param seed An integer value to set the seed of the python environment.
+#' @param seed An integer value to set the seed of the `python` environment.
 #'   Default value is set to `NULL`.
-#' @param ... additional arguments passed onto \link[stressor]{mlm_init}
+#' @param ... Additional arguments passed onto \link[stressor]{mlm_init}.
 #' @return A list object where the first entry is the models fitted and the
 #'   second is the initial predictive accuracy on the random test data. Returns
 #'   as two classes `"mlm_stressor"` and `"classifier"`.
 #' @details
-#'  PyCaret is a python module where machine learning models can be fitted with
-#'   little coding by the user. The pipeline that PyCaret uses is a
+#'  `PyCaret` is a `python` module where machine learning models can be fitted with
+#'   little coding by the user. The pipeline that `PyCaret` uses is a
 #'   setup function to parameterize the data that is easy for all the models to
 #'   fit on. Then the compare models function is executed, which fits all the models
 #'   that are currently available. This process takes less than five minutes for

@@ -17,13 +17,13 @@ score_classification(
 rows or length as the length of observed values.}
 
 \item{metrics}{A character vector of the metrics to be fitted. This is
-defaulted to be the metrics from PyCaret.}
+defaulted to be the metrics from `PyCaret`.}
 }
 \value{
 A vector or data.frame of the methods and metrics.
 }
 \description{
 This function takes the observed and predicted values and computes metrics
- that are found in PyCaret such as: `Accuracy`, `AUC`, `Recall`, `Prec.`,
+ that are found in `PyCaret` such as: `Accuracy`, `AUC`, `Recall`, `Prec.`,
  `F1`, `MCC`, and `Kappa`.
 }

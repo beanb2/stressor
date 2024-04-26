@@ -1,4 +1,4 @@
-#' @describeIn cv Cross Validation for reg_sine
+#' @describeIn cv Cross-Validation for reg_sine
 #' @importFrom stats formula
 #' @examples
 #'  # Sine example

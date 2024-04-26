@@ -9,7 +9,7 @@
 #' @param y_int The y-intercept term of the additive model.
 #' @param resp_sd The standard deviation of the epsilon term to be added for
 #'  noise.
-#' @param ... additional arguments that are not currently implemented
+#' @param ... Additional arguments that are not currently implemented.
 #' @return A data.frame object with the n rows and the response variable with
 #'  the number of parameters being equal to the number of columns from the
 #'  weight matrix.

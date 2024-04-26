@@ -29,7 +29,7 @@ noise.}
 \item{window}{Used to determine for any given X variable to get you within
 distance to capture the asymptotic behavior.}
 
-\item{...}{additional arguments that are not currently implemented.}
+\item{...}{Additional arguments that are not currently implemented.}
 }
 \value{
 A data.frame object with the n rows and the response variable with

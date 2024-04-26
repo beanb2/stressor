@@ -28,7 +28,7 @@ mape <- function(predicted, observed) {
 
 #' @title Score Function for Regression
 #' @description This function takes the observed and predicted values and
-#'  computes metrics that are found in PyCaret such as: `RMSE`, `MAE`, `MSE`,
+#'  computes metrics that are found in `PyCaret` such as: `RMSE`, `MAE`, `MSE`,
 #'  `R2`, `RMSLE`, and `MAPE`.
 #' @inheritParams score_classification
 #' @inherit score_classification return

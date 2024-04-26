@@ -16,7 +16,7 @@ rows or length as the length of observed values.}
   Arguments passed on to \code{\link[=score_classification]{score_classification}}, \code{\link[=score_regression]{score_regression}}
   \describe{
     \item{\code{metrics}}{A character vector of the metrics to be fitted. This is
-defaulted to be the metrics from PyCaret.}
+defaulted to be the metrics from `PyCaret`.}
   }}
 }
 \value{
@@ -24,7 +24,7 @@ A matrix with the various metrics reported.
 }
 \description{
 A score function takes the observed and predicted values and returns a
-  vector or data.frame of the various metrics that are reported from PyCaret.
+  vector or data.frame of the various metrics that are reported from `PyCaret`.
   For regression, the following metrics are available: `RMSE`, `MAE`, `MSE`,
   `R2`, `RMSLE`, and `MAPE`. For classification, the following metrics are
   available:`Accuracy`, `AUC`, `Recall`, `Prec.`, `F1`, `MCC`, and `Kappa`.

@@ -1,20 +1,20 @@
-#' Create Python Virtual Environment
+#' Create `Python` Virtual Environment
 #'
-#' Allows the user to create a stressor python environment with PyCaret
+#' Allows the user to create a stressor `python` environment with `PyCaret`
 #'   installed in the environment. This function assumes that
-#'   you have properly installed python. We recommend version 3.8.10. It uses
+#'   you have properly installed `python`. We recommend version 3.8.10. It uses
 #'   existing stressor environments.
-#' @param python Defaults to your install of python. We prefer version 3.8.10.
-#'  This is assuming that you installed python from python.org. Currently Anaconda
+#' @param python Defaults to your install of `python`. We prefer version 3.8.10.
+#'  This is assuming that you installed python from python.org. Currently `Anaconda`
 #'  installations of python are not implemented.
 #' @param delete_env Boolean value to indicate if the environments need to be
 #'  deleted.
 #' @return A message indicating which environment is being used.
 #' @details
-#'  To install python, It is recommended using Python version 3.8.10 from
-#'  \href{https://www.python.org/downloads/release/python-3810/}{python.org}, as
-#'  this is the same version recommended by PyCaret as it is the most stable.
-#'  Users have reported troubles using the Anaconda distribution of python.
+#'  To install `python`, it is recommended using `python` version 3.8.10 from
+#'  \href{https://www.python.org/downloads/release/python-3810/}{python.org}.
+#'  This is the same version recommended by `PyCaret`, as it is the most stable.
+#'  Users have reported troubles using the `Anaconda` distribution of `python`.
 #'
 #'  For MacOS and Linux Users note that in order to run this package, `LightGBM`
 #'  package on python requires the install of an additional compiler `cmake` and
@@ -22,12 +22,12 @@
 #'  `LightGBM`documentation
 #'  \href{https://lightgbm.readthedocs.io/en/latest/Installation-Guide.html}{here}.
 #' @section Troubleshoot:
-#'  If python is not being found properly, trying setting the
+#'  If `python` is not being found properly, trying setting the
 #'   `RETICULATE_PYTHON` to blank string. Also ensure that you do not have other
-#'   python objects in your environment.
+#'   `python` objects in your environment.
 #'
 #'  Also note that on some instances that a warning message may be displayed as
-#'    to which version of python is being used.
+#'    to which version of `python` is being used.
 #' @examplesIf python_avail()
 #'  create_virtualenv()
 #' @export
@@ -58,7 +58,7 @@ create_virtualenv <- function(python = Sys.which('python'),
     message(paste("Created Virtual Environment:",
                   paste0("stressor-env", time)))
     message("Installing pycaret")
-    reticulate::py_install("pycaret",
+    reticulate::py_install(packages = c("pycaret==3.2.0", "joblib==1.3.0"),
                            envname = paste0("stressor-env", time))
     # Possible Parallelization
     # reticulate::py_install("fugue",

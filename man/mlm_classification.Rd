@@ -45,10 +45,10 @@ them using a character vector.
 \item{n_models}{An integer value defaulted to a large integer value to
 return all possible models.}
 
-\item{seed}{An integer value to set the seed of the python environment.
+\item{seed}{An integer value to set the seed of the `python` environment.
 Default value is set to `NULL`.}
 
-\item{...}{additional arguments passed onto \link[stressor]{mlm_init}}
+\item{...}{Additional arguments passed onto \link[stressor]{mlm_init}.}
 }
 \value{
 A list object where the first entry is the models fitted and the
@@ -57,14 +57,14 @@ A list object where the first entry is the models fitted and the
 }
 \description{
 Through the \href{https://pycaret.gitbook.io/docs/get-started/quickstart#classification}{PyCaret}
-  module from python, this function fits many machine
-  learning models simultaneously with without requiring any python
+  module from `python`, this function fits many machine
+  learning models simultaneously without requiring any `python`
   programming on the part of the user. This function is specifically
-  designed for the classification models fitted by PyCaret.
+  designed for the classification models fitted by `PyCaret`.
 }
 \details{
-PyCaret is a python module where machine learning models can be fitted with
-  little coding by the user. The pipeline that PyCaret uses is a
+`PyCaret` is a `python` module where machine learning models can be fitted with
+  little coding by the user. The pipeline that `PyCaret` uses is a
   setup function to parameterize the data that is easy for all the models to
   fit on. Then the compare models function is executed, which fits all the models
   that are currently available. This process takes less than five minutes for

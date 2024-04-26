@@ -1,4 +1,4 @@
-#' @describeIn cv Cross Validation for lm
+#' @describeIn cv Cross-Validation for lm
 #' @examples
 #'  # lm example
 #'  lm_test <- data_gen_lm(20)

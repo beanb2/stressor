@@ -84,9 +84,9 @@ boolean_check <- function(boolean) {
   }
 }
 
-#' @title Check if Python is Available
+#' @title Check if `Python` is Available
 #' @description A function that allows examples to run when appropriate.
-#' @return A boolean value is returned.
+#' @return A Boolean value is returned.
 #' @examples
 #'  python_avail()
 #' @export

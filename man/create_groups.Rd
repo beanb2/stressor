@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_groups.R
 \name{create_groups}
 \alias{create_groups}
-\title{Create groups for CV}
+\title{Create Groups for CV}
 \usage{
 create_groups(
   formula,
@@ -18,7 +18,7 @@ create_groups(
 
 \item{data}{The data that will be separated into each group.}
 
-\item{n_folds}{An integer value defaulted to 10 fold cross-validation if NULL
+\item{n_folds}{An integer value defaulted to 10 fold cross-validation. If NULL
 uses Leave One Out(LOO) instead.}
 
 \item{k_mult}{When specified, this is passed onto the \link[stressor]{cv_cluster}
@@ -35,8 +35,8 @@ A vector of the length equal to number of rows of data.frame from the
   data argument.
 }
 \description{
-Create groups for the data by separating them either into 10 fold cross-
-  validation, LOO cross-validation, or k-means grouping.
+Create groups for the data by separating them either into 10 fold
+ cross-validation, LOO cross-validation, or k-means grouping.
 }
 \details{
 If `k_mult` is specified as an integer, the formula object will be
@@ -45,7 +45,7 @@ If `k_mult` is specified as an integer, the formula object will be
   matrix of features.
 
   This function is called by the \link[stressor]{cv} methods as it forms the
-   groups necessary to perform the cross validation. If you want to
+   groups necessary to perform the cross-validation. If you want to
    use this, it is a nice function that separates the `data` into
    groups for training and testing.
 }

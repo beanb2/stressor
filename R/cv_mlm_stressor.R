@@ -1,4 +1,4 @@
-#' @describeIn cv Cross Validation for mlm_stressor
+#' @describeIn cv Cross-Validation for mlm_stressor
 #' @importFrom stats formula
 #' @examplesIf python_avail()
 #'  lm_test <- data_gen_lm(20)

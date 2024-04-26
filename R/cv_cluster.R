@@ -1,4 +1,4 @@
-#' Spatial Cluster-Based Partitions for Cross Validation
+#' Spatial Cluster-Based Partitions for Cross-Validation
 #'
 #' This function creates cluster-based partitions of a sample space based on
 #'   k-means clustering. Included in the function are algorithms that attempt
@@ -6,13 +6,14 @@
 #' @param features A scaled matrix of features to be used in the clustering.
 #'   Scaling usually done with \link[base]{scale} and should not include the
 #'   predictor variable.
-#' @param k The number of partitions for k-fold cross validation.
+#' @param k The number of partitions for k-fold cross-validation.
 #' @param k_mult k*k_mult determines the number of subgroups that will be
 #'   created as part of the balancing algorithm.
 #' @param ... Additional arguments passed to \link[stats]{kmeans} as needed.
-#' @details More information regarding spatial cross validation can be found in
-#'  Robin Lovelace's explanation of spatial cross validation in his
-#'  \href{https://r.geocompx.org/spatial-cv.html?q=cross\%20validation#intro-cv}{textbook}
+#' @details More information regarding spatial cross-validation can be found in
+#'  Robin Lovelace's explanation of spatial
+#'  cross-validation in his
+#'  \href{https://r.geocompx.org/spatial-cv.html?q=cross\%20validation#intro-cv}{textbook}.
 #' @return An integer vector that is number of rows of features with indices of
 #'  each group.
 #' @importFrom stats kmeans

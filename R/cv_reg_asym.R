@@ -1,4 +1,4 @@
-#' @describeIn cv Cross Validation for reg_asym
+#' @describeIn cv Cross-Validation for reg_asym
 #' @importFrom stats formula
 #' @examples
 #'  # Asymptotic example

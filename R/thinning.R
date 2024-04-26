@@ -1,4 +1,4 @@
-#' Thinning algorithm for Models with Predict function
+#' Thinning Algorithm for Models with Predict Function
 #'
 #' Fits various train size and test sizes.
 #' @param model A model that is currently of class type "reg_sine", "reg_asym",

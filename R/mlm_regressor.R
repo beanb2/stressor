@@ -1,8 +1,8 @@
 #' Fit Machine Learning Regressor Models
 #'
 #' Through the \href{https://pycaret.gitbook.io/docs/get-started/quickstart#regression}{PyCaret}
-#'   module from python, this function fits many machine
-#'   learning models simultaneously with without requiring any python
+#'   module from `python`, this function fits many machine
+#'   learning models simultaneously with without requiring any `python`
 #'   programming on the part of the user. This function is
 #'   specifically designed for the regression models.
 #' @param formula A linear formula object.
@@ -33,12 +33,12 @@
 #' @param sort_v A character vector indicating what to sort the tuned models on.
 #' @param n_models An integer value defaulted to a large integer value to
 #'   return all possible models.
-#' @param seed An integer value to set the seed of the python environment.
+#' @param seed An integer value to set the seed of the `python` environment.
 #'   Default value is set to `NULL`.
-#' @param ... additional arguments passed onto \link[stressor]{mlm_init}
+#' @param ... Additional arguments passed onto \link[stressor]{mlm_init}.
 #' @return A list object where the first entry is the models fitted and the
 #'   second is the initial predictive accuracy on the random test data. Returns
-#'   as two classes `"mlm_stressor"` and `"regressor"`
+#'   as two classes `"mlm_stressor"` and `"regressor"`.
 #' @examplesIf python_avail()
 #'  lm_test <- data_gen_lm(20)
 #'  create_virtualenv()

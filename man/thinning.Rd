@@ -2,7 +2,7 @@
 % Please edit documentation in R/thinning.R
 \name{thinning}
 \alias{thinning}
-\title{Thinning algorithm for Models with Predict function}
+\title{Thinning Algorithm for Models with Predict Function}
 \usage{
 thinning(
   model,

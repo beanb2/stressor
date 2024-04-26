@@ -24,7 +24,7 @@ parameters. Defaulted to be 15 random numbers from the normal distribution.}
 \item{resp_sd}{The standard deviation of the epsilon term to be added for
 noise.}
 
-\item{...}{additional arguments that are not currently implemented}
+\item{...}{Additional arguments that are not currently implemented.}
 }
 \value{
 A data.frame object with the n rows and the response variable with

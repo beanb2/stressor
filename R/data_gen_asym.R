@@ -12,7 +12,7 @@
 #'  noise.
 #' @param window Used to determine for any given X variable to get you within
 #'  distance to capture the asymptotic behavior.
-#' @param ... additional arguments that are not currently implemented.
+#' @param ... Additional arguments that are not currently implemented.
 #' @return A data.frame object with the n rows and the response variable with
 #'  the number of parameters being equal to the number of columns from the
 #'  weight matrix.

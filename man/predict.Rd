@@ -6,7 +6,7 @@
 \alias{predict.mlm_stressor}
 \alias{predict.reg_asym}
 \alias{predict.reg_sine}
-\title{Prediction methods for various models.}
+\title{Prediction Methods for Various Models}
 \usage{
 \method{predict}{mlm_stressor}(object, newdata, train_data = NULL, ...)
 

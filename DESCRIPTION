@@ -1,7 +1,7 @@
 Package: stressor
 Type: Package
 Title: Algorithms for Testing Models under Stress 
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: c(
     person("Sam", "Haycock", email = "haycock.sam@outlook.com",
     role = c("aut", "cre")),
